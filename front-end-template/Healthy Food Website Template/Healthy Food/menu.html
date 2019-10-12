@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Healthy Food - Menu</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+
+</head>
+<body>
+
+	<div class="bg-sidebar-all"></div>
+
+	<div class="navigasi-healty no-absolite">
+		<div class="title-healty"><a href="index.html">Healthy</a></div>
+		<div class="menu-healty hidden-xs">
+			<ul>
+				<li><a href="index.html">Beranda</a></li>
+				<li><a href="menu.html">Menu</a></li>
+				<li><a href="artikel.html">Artikel</a></li>
+				<li><a href="tentang.html">Tentang Kami</a></li>
+			</ul>
+		</div>
+		<div class="menu-healty cart hidden-xs">
+			<ul>
+				<li><a href="cart.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+				<li>
+					<form action="" class="input-search">
+						<input type="text" name="search">
+						<button type="button" class="button-serch"><i class="fa fa-search" aria-hidden="true"></i></button>
+					</form>
+				</li>
+			</ul>
+		</div>
+		<div class="navigasi-sm hidden-sm hidden-md hidden-lg">
+			<span onclick="openNav()">&#9776;</span>
+		</div>
+	</div>
+
+	<!-- navigasi nav -->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<div class="search-sm">
+			<form action="">
+				<input type="text">
+				<button class="button-serch"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</form>
+			<a href="cart.html">Cart <i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+		</div>
+		<div class="navigasi-mb-sm">
+			<a href="index.html">Beranda</a>
+			<a href="menu.html">Menu</a>
+			<a href="artikel.html">Artikel</a>
+			<a href="tentang.html">Tentang Kami</a>
+		</div>
+	</div>
+	<!-- end navigasi nav -->
+
+	<div class="content-healty-food">
+		
+		<div class="slider-show-grup">
+
+			<div class="swiper-container">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img src="images/antioxidant-background-berries-988865.jpg"></div>
+					<div class="swiper-slide"><img src="https://images.pexels.com/photos/277253/pexels-photo-277253.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"></div>
+					<div class="swiper-slide"><img src="https://images.pexels.com/photos/461198/pexels-photo-461198.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"></div>
+				</div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>
+			</div>
+
+		</div>
+
+		<div class="grup-pesanan">
+			
+			<div class="title-head-pesaan">
+				<h2>Pesan Di sini</h2>
+			</div>
+
+			<div class="grip-clauser-slider grup-food">
+
+				<ul>
+					<li class="active"><a data-toggle="tab" href="#home">All</a></li>
+					<li><a data-toggle="tab" href="#menu1">Breakfast</a></li>
+					<li><a data-toggle="tab" href="#menu2">Special</a></li>
+					<li><a data-toggle="tab" href="#menu3">Desert</a></li>
+					<li><a data-toggle="tab" href="#menu4">Dinner</a></li>
+				</ul>
+
+				<div class="tab-content">
+					<div id="home" class="tab-pane fade in active">
+						<section id="photos">
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img id="hover-menu-food" src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2017/02/healthy-salmon-collection-main-image.jpg?itok=X-vgckbl" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://therecipecritic.com/wp-content/uploads/2017/01/2-400x600.jpg" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://cook.fnr.sndimg.com/content/dam/images/cook/fullset/2012/1/4/0/CCHGL_Hungry-Mac-Bella-Stack-Burger_s4x3.jpg.rend.hgtvcom.966.725.suffix/1368542234684.jpeg" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://abeautifulmess.typepad.com/.a/6a00d8358081ff69e2017d3f869848970c-800wi" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMQyVvSthkVjlJXlBXLsaLG4XZHwqx4glRmaM8L1NakraNQEolQ" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHw1cy-26nob8gURHk6duEatsXrRWw_n88tHFmcTA0fCebueJn" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8mh63vX6WYOW5FBbLWiSVJyTCd7OBvOcWtQkluRTKCuO9D-yhA" alt="">
+							</div>
+						</section>
+					</div>
+					<div id="menu1" class="tab-pane fade">
+						<section id="photos">
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTHw1cy-26nob8gURHk6duEatsXrRWw_n88tHFmcTA0fCebueJn" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8mh63vX6WYOW5FBbLWiSVJyTCd7OBvOcWtQkluRTKCuO9D-yhA" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://food.fnr.sndimg.com/content/dam/images/food/fullset/2012/10/26/0/FNK_Healthy-Marbled-Banana-Bread_s4x3.jpg.rend.hgtvcom.966.725.suffix/1382541976528.jpeg" alt="">
+							</div>
+						</section>
+					</div>
+					<div id="menu2" class="tab-pane fade">
+						<section id="photos">
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://abeautifulmess.typepad.com/.a/6a00d8358081ff69e2017d3f869848970c-800wi" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://www.bbcgoodfood.com/sites/default/files/styles/category_retina/public/recipe-collections/collection-image/2016/11/healthy-casserole-stew-collection.jpg?itok=CvUxCE-P" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://cook.fnr.sndimg.com/content/dam/images/cook/fullset/2012/1/4/0/CCHGL_Hungry-Mac-Bella-Stack-Burger_s4x3.jpg.rend.hgtvcom.966.725.suffix/1368542234684.jpeg" alt="">
+							</div>
+						</section>
+					</div>
+					<div id="menu3" class="tab-pane fade">
+						<section id="photos">
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://abeautifulmess.typepad.com/.a/6a00d8358081ff69e2017d3f869848970c-800wi" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMQyVvSthkVjlJXlBXLsaLG4XZHwqx4glRmaM8L1NakraNQEolQ" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMQyVvSthkVjlJXlBXLsaLG4XZHwqx4glRmaM8L1NakraNQEolQ" alt="">
+							</div>
+						</section>
+					</div>
+					<div id="menu4" class="tab-pane fade">
+						<section id="photos">
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://hips.hearstapps.com/del.h-cdn.co/assets/17/51/1600x800/landscape-1513895273-delish-greek-stuffed-chicken-3.jpg?resize=480:*" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMMQyVvSthkVjlJXlBXLsaLG4XZHwqx4glRmaM8L1NakraNQEolQ" alt="">
+							</div>
+							<div class="image-hover-menu">
+								<div class="bg-color-menu"></div>
+								<div class="grup-menu-hover">
+									<h3>Sayur Koll</h3>
+									<p>Rp 30.000,-</p>
+									<a href="#!" data-toggle="modal" data-target="#myModal">Pesan</a>
+								</div>
+								<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSX8mh63vX6WYOW5FBbLWiSVJyTCd7OBvOcWtQkluRTKCuO9D-yhA" alt="">
+							</div>
+						</section>
+					</div>
+				</div>
+				
+			</div>
+
+		</div>
+
+		<!-- Modal -->
+		<div id="myModal" class="modal fade" role="dialog">
+			<div class="modal-dialog modal-sm">
+
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">Healthy Food - Keranjang</h4>
+					</div>
+					<div class="modal-body">
+						<form action="" class="pesan-menu">
+							<input type="number" min="1" name="">
+							<button><i class="fa fa-shopping-bag" aria-hidden="true"></i></button>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+
+	</div>
+
+
+
+	<footer>
+
+		<div class="image-one-footer">
+			<img src="images/lm.png" alt="">
+		</div>
+		<div class="image-two-footer">
+			<img src="images/Path 5.png" alt="">
+		</div>
+
+		<div class="grup-footer-data">
+
+			<div class="menu-list-footer">
+				<div class="col-sm-4 col-md-4 menu-li-footer">
+					<ul>
+						<li>Contact Us</li>
+						<li><a href="#!">++44 354 343 434</a></li>
+						<li><a href="#!">Healtyfood@food.com</a></li>
+						<li><a href="#!">Find a Store</a></li>
+					</ul>
+				</div>
+
+				<div class="col-sm-4 col-md-4 menu-li-footer">
+					<ul>
+						<li>Customer service</li>
+						<li><a href="#!">Contact Us</a></li>
+						<li><a href="#!">Ordering & Payment</a></li>
+						<li><a href="#!">Shipping</a></li>
+						<li><a href="#!">Returns</a></li>
+						<li><a href="#!">FAQ</a></li>
+					</ul>
+				</div>
+
+				<div class="col-sm-4 col-md-4 menu-li-footer">
+					<ul>
+						<li>Information</li>
+						<li><a href="#!">About Healthy</a></li>
+						<li><a href="#!">Healt With Us</a></li>
+						<li><a href="#!">Privacy Policy</a></li>
+						<li><a href="#!">Terms & Condition</a></li>
+						<li><a href="#!">Proces Enquiries</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="sosmed-footer">
+				<ul>
+					<li><a href="#!"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					<li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="copyright-healthy">
+			<p>Copyright©2019-All Rights Reserved <a href="https://www.instagram.com/fetux.id/" target="_blank">Fetux.id</a></p>
+		</div>
+
+	</footer>
+
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/javascript.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+
+	<script type="text/javascript">
+		var swiper = new Swiper('.swiper-container', {
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			autoplay: {
+				delay: 2500,
+				disableOnInteraction: false,
+			},
+		});
+	</script>
+
+
+</body>
+</html>

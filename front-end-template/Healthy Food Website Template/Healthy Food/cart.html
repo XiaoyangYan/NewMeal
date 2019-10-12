@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Healthy Food -  Keranjang</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/swiper.min.css">
+	
+</head>
+<body>
+
+	<div class="bg-sidebar-all"></div>
+
+	<div class="navigasi-healty no-absolite">
+		<div class="title-healty"><a href="index.html">Healthy</a></div>
+		<div class="menu-healty hidden-xs">
+			<ul>
+				<li><a href="index.html">Beranda</a></li>
+				<li><a href="menu.html">Menu</a></li>
+				<li><a href="artikel.html">Artikel</a></li>
+				<li><a href="tentang.html">Tentang Kami</a></li>
+			</ul>
+		</div>
+		<div class="menu-healty cart hidden-xs">
+			<ul>
+				<li><a href="cart.html"><i class="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+				<li>
+					<form action="" class="input-search">
+						<input type="text" name="search">
+						<button type="button" class="button-serch"><i class="fa fa-search" aria-hidden="true"></i></button>
+					</form>
+				</li>
+			</ul>
+		</div>
+		<div class="navigasi-sm hidden-sm hidden-md hidden-lg">
+			<span onclick="openNav()">&#9776;</span>
+		</div>
+	</div>
+
+	<!-- navigasi nav -->
+	<div id="mySidenav" class="sidenav">
+		<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+		<div class="search-sm">
+			<form action="">
+				<input type="text">
+				<button class="button-serch"><i class="fa fa-search" aria-hidden="true"></i></button>
+			</form>
+			<a href="cart.html">Cart <i class="fa fa-shopping-bag" aria-hidden="true"></i></a>
+		</div>
+		<div class="navigasi-mb-sm">
+			<a href="index.html">Beranda</a>
+			<a href="menu.html">Menu</a>
+			<a href="artikel.html">Artikel</a>
+			<a href="tentang.html">Tentang Kami</a>
+		</div>
+	</div>
+	<!-- end navigasi nav -->
+
+	<div class="content-healty-food">
+
+		<div class="grup-cart-table">
+
+			<div class="image-part-cart">
+				<img src="images/Path 38.png" alt="">
+			</div>
+
+			<div class="table-responsive table-data-cart">
+				<div class="informasi-table">
+					<p>Keterangan Anda</p>
+				</div>
+
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>Nama</th>
+							<th>Harga</th>
+							<th>Kalori</th>
+							<th>Tanggal Pesanan</th>
+							<th>Tanggal Buat</th>
+							<th>Score Kesehatan</th>
+						</tr>
+					</thead>
+					<tbody>
+
+
+						<tr>
+							<td>1</td>
+							<td>Pie Susu</td>
+							<td>Rp 500.000</td>
+							<td>13.4545</td>
+							<td>15 Feb 2019</td>
+							<td>16 Feb 2019</td>
+							<td>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+									aria-valuemin="0" aria-valuemax="100" style="width:60%"> 60% </div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>2</td>
+							<td>Pie Susu</td>
+							<td>Rp 500.000</td>
+							<td>13.4545</td>
+							<td>15 Feb 2019</td>
+							<td>16 Feb 2019</td>
+							<td>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+									aria-valuemin="0" aria-valuemax="100" style="width:60%"> 60% </div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>3</td>
+							<td>Pie Susu</td>
+							<td>Rp 500.000</td>
+							<td>13.4545</td>
+							<td>15 Feb 2019</td>
+							<td>16 Feb 2019</td>
+							<td>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+									aria-valuemin="0" aria-valuemax="100" style="width:60%"> 60% </div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>4</td>
+							<td>Pie Susu</td>
+							<td>Rp 500.000</td>
+							<td>13.4545</td>
+							<td>15 Feb 2019</td>
+							<td>16 Feb 2019</td>
+							<td>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+									aria-valuemin="0" aria-valuemax="100" style="width:60%"> 60% </div>
+								</div>
+							</td>
+						</tr>
+
+						<tr>
+							<td>5</td>
+							<td>Pie Susu</td>
+							<td>Rp 500.000</td>
+							<td>13.4545</td>
+							<td>15 Feb 2019</td>
+							<td>16 Feb 2019</td>
+							<td>
+								<div class="progress">
+									<div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60"
+									aria-valuemin="0" aria-valuemax="100" style="width:60%"> 60% </div>
+								</div>
+							</td>
+						</tr>
+
+
+					</tbody>
+				</table>
+			</div>
+
+			<div class="button-bayar">
+				<a href="#!" data-toggle="modal" data-target="#myModal">Bayar</a>
+			</div>		
+
+		</div>
+
+	</div>
+
+	<!-- Modal -->
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+
+			<!-- Modal content-->
+			<div class="modal-content mod-model-bayar">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+				</div>
+				<div class="modal-body list-bayar">
+					<p>Pilih Metode Pembayaran</p>
+					<a href="#!">Gopay</a>
+					<a href="#!">Transfer</a>
+					<a href="#!">M-Banking</a>
+					<a href="#!">COD</a>
+				</div>
+				<div class="modal-footer footer-bayar">
+					<a href="index.html">Healthy</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+	<footer>
+
+		<div class="image-one-footer">
+			<img src="images/lm.png" alt="">
+		</div>
+		<div class="image-two-footer">
+			<img src="images/Path 5.png" alt="">
+		</div>
+
+		<div class="grup-footer-data">
+
+			<div class="menu-list-footer">
+				<div class="col-sm-4 col-md-4 menu-li-footer">
+					<ul>
+						<li>Contact Us</li>
+						<li><a href="#!">++44 354 343 434</a></li>
+						<li><a href="#!">Healtyfood@food.com</a></li>
+						<li><a href="#!">Find a Store</a></li>
+					</ul>
+				</div>
+
+				<div class="col-sm-4 col-md-4 menu-li-footer">
+					<ul>
+						<li>Customer service</li>
+						<li><a href="#!">Contact Us</a></li>
+						<li><a href="#!">Ordering & Payment</a></li>
+						<li><a href="#!">Shipping</a></li>
+						<li><a href="#!">Returns</a></li>
+						<li><a href="#!">FAQ</a></li>
+					</ul>
+				</div>
+
+				<div class="col-sm-4 col-md-4 menu-li-footer">
+					<ul>
+						<li>Information</li>
+						<li><a href="#!">About Healthy</a></li>
+						<li><a href="#!">Healt With Us</a></li>
+						<li><a href="#!">Privacy Policy</a></li>
+						<li><a href="#!">Terms & Condition</a></li>
+						<li><a href="#!">Proces Enquiries</a></li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="sosmed-footer">
+				<ul>
+					<li><a href="#!"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+					<li><a href="#!"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+					<li><a href="#!"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+
+		</div>
+
+		<div class="copyright-healthy">
+			<p>Copyright©2019-All Rights Reserved <a href="https://www.instagram.com/fetux.id/" target="_blank">Fetux.id</a></p>
+		</div>
+
+	</footer>
+
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/javascript.js"></script>
+	<script type="text/javascript" src="js/swiper.min.js"></script>
+
+	<script type="text/javascript">
+
+		var widthdata = $(window).width();
+
+		$('.bxslider').bxSlider({
+			pager: false,
+			slideWidth: widthdata
+		});
+
+	</script>
+</body>
+</html>
