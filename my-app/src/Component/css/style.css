@@ -1,0 +1,28 @@
+a,a:hover{
+	text-decoration:none;
+}
+
+@font-face {
+	font-family: Nunito;
+	src: url('../fonts/Nunito-Regular.ttf');
+}
+
+@font-face {
+	font-family: Dopestyle;
+	src: url('../fonts/Dopestyle.ttf');
+}
+.no-absolite{
+	position: relative !important;
+	display: inline-block !important;
+	width: 100% !important;
+}
+.fixed {
+	position: fixed !important;
+	top: 0 !important;
+	z-index: 3 !important;
+	padding: 1% 2% !important;
+	/*background-color: #ffe753;*/
+	color: white !important;
+	background-color: #689eb1;
+	box-shadow: 2px 0 8px #9a9a9a;
+}
