@@ -12,7 +12,7 @@ const SideDrawer = props => {
                         <div className="search-sm">
                                 <form action="">
                                         <input type="text" />
-                                        <button className="button-serch"><i className="fa fa-search" aria-hidden="true"></i></button>
+                                        <button className="button-search"><i className="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                                 <a href="cart.html">Cart <i className="fa fa-shopping-bag" aria-hidden="true"></i></a>
                         </div>

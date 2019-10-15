@@ -33,7 +33,7 @@ public class Customer implements java.io.Serializable {
 	private String zipcode;
 	private String password;
 	private Date registerDate;
-	private Set reviews = new HashSet(0);
+	private Set<Review> reviews = new HashSet<>();
 	private Set recipeOrders = new HashSet(0);
 
 	public Customer() {

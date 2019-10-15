@@ -2,7 +2,8 @@ import React from "react";
 import logo from "./logo.svg";
 import "./App.css";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
-import NavBar from "./Component/NavBar"
+import NavBar from "./Component/NavBar";
+import DashBoard from "./Component/DashBoard";
 function App() {
 	return (
 		<div className="App">
@@ -10,7 +11,7 @@ function App() {
 				<>
 					<NavBar/>
 					<Switch>
-						<Route page="/"></Route>
+						<Route page="/" exact component={DashBoard}></Route>
 					</Switch>
 				</>
 			</Router>

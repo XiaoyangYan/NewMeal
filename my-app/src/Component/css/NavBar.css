@@ -1,3 +1,5 @@
+
+
 @font-face {
         font-family: Nunito;
         src: url('../fonts/Nunito-Regular.ttf');
@@ -6,6 +8,21 @@
 @font-face {
         font-family: Dopestyle;
 	src: url('../fonts/Dopestyle.ttf');
+}
+.no-absolite{
+	position: relative !important;
+	display: inline-block !important;
+	width: 100% !important;
+}
+.fixed {
+	position: fixed !important;
+	top: 0 !important;
+	z-index: 3 !important;
+	padding: 1% 2% !important;
+	/*background-color: #ffe753;*/
+	color: white !important;
+	background-color: #689eb1;
+	box-shadow: 2px 0 8px #9a9a9a;
 }
 .bg-sidebar-all {
         position: fixed;
@@ -23,25 +40,11 @@
         opacity:1!important;
         display:block!important;
 }
-
-.bg-header-healty{
-	position: relative;
-	background-color: #edf5f7;
-	width: 100%;
-	height: 100%;
-}
-.image-bacgrount{
-	position: absolute;
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-}
-.image-bacgrount img{
-	width: 100%;
-	height: auto;
-}
 .navigasi-healty{
-	position: absolute;
+
+	max-width: 1440px;
+        position: absolute;
+        overflow: hidden;
 	top: 0;
 	z-index: 1;
 	transition: .5s;
@@ -222,19 +225,4 @@
 
 @media  (max-width: 768px) {
         .hidden-xs {display: none!important;}
-}
-/* slider */
-.slider-show-grup{
-	height: 550px;
-	padding: 3% 12%;
-	overflow: hidden;
-}
-
-.swiper-slide img{
-	height: auto !important;
-	min-height: 100%;
-}
-img {
-	width: 100%;
-	height: 100%;
 }
