@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 /**
@@ -13,8 +15,19 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users", catalog = "mymeal")
+@NamedQueries({
+	@NamedQuery(name="Users.findAll", query="SELECT u FROM Users u ORDER BY u.fullName"),
+	@NamedQuery(name = "Users.findByEmail", query="SELECT u from Users u WHERE u.email = :email"),
+	@NamedQuery(name = "Users.countAll", query="SELECT COUNT(u) FROM Users u"),
+
+	@NamedQuery(name = "Users.checkLogin", query = "SELECT u FROM Users u WHERE u.email = :email AND u.password = :password")
+})
 public class Users implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer userId;
 	private String email;
 	private String password;

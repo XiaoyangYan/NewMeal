@@ -40,51 +40,52 @@
         opacity:1!important;
         display:block!important;
 }
-.navigasi-healty{
-
-	max-width: 1440px;
+.navigation-healthy{
         position: absolute;
         overflow: hidden;
 	top: 0;
 	z-index: 1;
 	transition: .5s;
 }
-.title-healty{
+.title-healthy{
 	display: inline-block;
 }
-.menu-healty{
+.menu-healthy{
+        left: 5%;
+        position: relative;
 	display:inline-block;
 }
-.menu-healty ul{
+.menu-healthy ul{
 	list-style: none;
 	padding: 0;
 	margin: 0;
 }
-.menu-healty ul li{
+.menu-healthy ul li{
 	display:inline-block;
-	padding: 0 15px;
+	padding: 0 25px;
 }
 
-.menu-healty ul li a{
+.menu-healthy ul li a{
 	text-decoration: none;
 	color: inherit;
 	font-size: 16px;
-	font-weight: 600;
+        font-weight:600;
+        color:#333333;
 }
-.navigasi-healty{
+.navigation-healthy{
 	width: 100%;
 	padding: 2% 2%;
 	text-align: center;
 }
 
-.title-healty{
+.title-healthy{
 	float: left;
 }
 
-.title-healty{
+.title-healthy{
 	float: left;
 }
-.title-healty a,.title-healty a{
+.title-healthy a,.title-healthy a{
 	color: white;
 	font-size: 23px;
 	text-shadow: 2px 2px 8px #616161;
@@ -92,11 +93,35 @@
 	font-family: Dopestyle;
 }
 
-.menu-healty{
+.menu-healthy{
 	display: inline-block;
 }
-.menu-healty:nth-child(1){
+.menu-healthy:nth-child(1){
 	padding-right: 40px;
+}
+.menu-healthy ul li  a:hover{
+        color: black;
+}
+.menu-healthy ul li a:after {
+        display: block;
+        right: 0;
+        left: 0;
+        bottom: -10px;
+        position: relative;
+        content:'';
+        width: 0;
+        height: 2px;
+        margin: 0 auto;
+        background-color: #2eca7f;
+        -webkit-transition: all 0.15s ease-in-out;
+        -moz-transition: all 0.15s ease-in-out;
+        -o-transition: all 0.15s ease-in-out;
+        -ms-transition: all 0.15s ease-in-out;
+        transition: all 0.15s ease-in-out;
+    }
+
+.menu-healthy ul li  a:hover:after, .menu-healthy ul li.active  a:after{
+        width: 35px;
 }
 .cart{
 	padding-left: 30px;
@@ -126,14 +151,14 @@
 }
 
 
-.navigasi-sm{
+.navigation-sm{
 	display: inline-block;
 	float: right;
 	background-color: #efdb23;
 	color: #333333;
 	padding: 0 5px;
 }
-.navigasi-sm span{
+.navigation-sm span{
 	font-size:23px;
 	cursor:pointer;
 }
@@ -187,7 +212,7 @@
 	color: black;
 	text-decoration: none;
 }
-.navigasi-mb-sm a{
+.navigation-mb-sm a{
 	display: inline-block;
 	width: 100%;
 	text-align: left;
@@ -196,7 +221,7 @@
 	color: black;
 	text-decoration: none;
 }
-.navigasi-mb-sm a:hover{
+.navigation-mb-sm a:hover{
 	color: black;
 	text-decoration: none;
 }

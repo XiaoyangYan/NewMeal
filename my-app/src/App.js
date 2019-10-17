@@ -1,9 +1,9 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import NavBar from "./Component/NavBar";
 import DashBoard from "./Component/DashBoard";
+import Login from "./Component/Login";
 function App() {
 	return (
 		<div className="App">
@@ -11,7 +11,8 @@ function App() {
 				<>
 					<NavBar/>
 					<Switch>
-						<Route page="/" exact component={DashBoard}></Route>
+						{/* <Route page="/" exact component={Login}></Route> */}
+						<Route page="/main" exact component={DashBoard}></Route>
 					</Switch>
 				</>
 			</Router>

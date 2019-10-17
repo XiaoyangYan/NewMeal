@@ -16,7 +16,7 @@ const SideDrawer = props => {
                                 </form>
                                 <a href="cart.html">Cart <i className="fa fa-shopping-bag" aria-hidden="true"></i></a>
                         </div>
-                        <div className="navigasi-mb-sm">
+                        <div className="navigation-mb-sm">
                                 <a href="">Recipe</a>
                                 <a href="">Menu</a>
                                 <a href="">Favourite</a>

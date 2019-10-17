@@ -13,14 +13,11 @@ class NavBar extends React.Component {
         }
         componentDidMount(){
                 setInterval(() => {
-                        
                         var navHeight = document.getElementById('navbar').scrollHeight- 10;
-                        console.log(navHeight);
-                        console.log(window.scrollY)
                         if (window.scrollY > navHeight){
-                                document.getElementById('navbar').className = "navigasi-healty fixed";
+                                document.getElementById('navbar').className = "navigation-healthy fixed";
                         }  else {
-                                document.getElementById('navbar').className = "navigasi-healty";
+                                document.getElementById('navbar').className = "navigation-healthy";
                         }
                 }, 10);
         }
@@ -35,9 +32,9 @@ class NavBar extends React.Component {
         render() {
                 return (
                         <>
-                                <div className="navigasi-healty" id="navbar">
-                                        <div className="title-healty"><a href="#">Healthy</a></div>
-                                        <div className="menu-healty hidden-xs">
+                                <div className="navigation-healthy" id="navbar">
+                                        <div className="title-healthy"><a href="/">Healthy</a></div>
+                                        <div className="menu-healthy hidden-xs">
                                                 <ul>
                                                         <li><a href="/recipe">Recipe</a></li>
                                                         <li><a href="/menu">Menu</a></li>
@@ -46,7 +43,7 @@ class NavBar extends React.Component {
                                                         <li><a href="/aboutus">About Us</a></li>
                                                 </ul>
                                         </div>
-                                        <div className="menu-healty cart hidden-xs">
+                                        <div className="menu-healthy cart hidden-xs">
                                                 <ul>
                                                         <li><a href="#"><i className="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
                                                         <li>
@@ -58,7 +55,7 @@ class NavBar extends React.Component {
                                                 </ul>
                                         </div>
 
-                                        <div className="navigasi-sm hidden-sm hidden-md hidden-lg">
+                                        <div className="navigation-sm hidden-sm hidden-md hidden-lg">
                                                 <span onClick={this.openNav}>&#9776;</span>
                                         </div>
                                         <SideDrawer show={this.state.openState} onNav={this.openNav} />

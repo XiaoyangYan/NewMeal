@@ -1,0 +1,300 @@
+* {
+	font-family: 'Microsoft Yahei';
+}
+body{
+	margin:0;
+	color:#6a6f8c;
+	background:#c8c8c8;
+	font:600 16px/18px 'Microsoft Yahei',sans-serif;
+}
+*,:after,:before{box-sizing:border-box}
+.clearfix:after,.clearfix:before{content:'';display:table}
+.clearfix:after{clear:both;display:block}
+a{color:inherit;text-decoration:none;}
+input, button {
+  outline: none;
+  border: none;
+}
+#msg {
+        width: 100%;
+        line-height: 40px;
+        font-size: 14px;
+        text-align: center;
+}
+.login-wrap{
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        position: absolute;
+        top: 120px;
+	width:100%;
+	max-width:1200px;
+	min-height: 1000px;
+        background:url(../images/all.jpg) center;
+        background-size: cover;
+        box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+}
+.login-html{
+	width:100%;
+	height:100%;
+	position:absolute;
+	padding:90px 70px 50px 70px;
+	background:rgba(40,57,101,.9);
+}
+.login-html .sign-in-htm,
+.login-html .sign-up-htm{
+	top:0;
+	left:0;
+	right:0;
+	bottom:0;
+	position:absolute;
+	-webkit-transform:rotateY(180deg);
+	        transform:rotateY(180deg);
+	-webkit-backface-visibility:hidden;
+	        backface-visibility:hidden;
+	-webkit-transition:all .4s linear;
+	        transition:all .4s linear;
+}
+.login-html .sign-in,
+.login-html .sign-up,
+.login-form .group .check{
+	display:none;
+}
+.login-html .tab,
+.login-form .group .label,
+.login-form .group .button{
+	text-transform:uppercase;
+}
+.login-html .tab{
+	font-size:22px;
+	padding-bottom:5px;
+	margin:0 15px 10px 0;
+	display:inline-block;
+	border-bottom:2px solid transparent;
+}
+.login-html .sign-in:checked + .tab,
+.login-html .sign-up:checked + .tab{
+	color:#fff;
+	border-color:#1161ee;
+}
+.login-form{
+	min-height:345px;
+	position:relative;
+	-webkit-perspective:1000px;
+	        perspective:1000px;
+	-webkit-transform-style:preserve-3d;
+	        transform-style:preserve-3d;
+}
+.login-form .group{
+	margin-bottom:15px;
+}
+.login-form .group .label,
+.login-form .group .input,
+.login-form .group .button{
+        width:60%;
+        margin: 20px auto;
+	color:#fff;
+	display:block;
+}
+.login-form .group .input,
+.login-form .group .button{
+	border:none;
+	padding:15px 20px;
+	border-radius:25px;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group input[data-type="password"]{
+	-webkit-text-security:circle;
+}
+.login-form .group .label{
+	color:#aaa;
+	font-size:12px;
+}
+.login-form .group .button{
+	background:#1161ee;
+}
+.login-form .group label .icon{
+	width:15px;
+	height:15px;
+	border-radius:2px;
+	position:relative;
+	display:inline-block;
+	background:rgba(255,255,255,.1);
+}
+.login-form .group label .icon:before,
+.login-form .group label .icon:after{
+	content:'';
+	width:10px;
+	height:2px;
+	background:#fff;
+	position:absolute;
+	-webkit-transition:all .2s ease-in-out 0s;
+	        transition:all .2s ease-in-out 0s;
+}
+.login-form .group label .icon:before{
+	left:3px;
+	width:5px;
+	bottom:6px;
+	-webkit-transform:scale(0) rotate(0);
+	    -ms-transform:scale(0) rotate(0);
+	        transform:scale(0) rotate(0);
+}
+.login-form .group label .icon:after{
+	top:6px;
+	right:0;
+	-webkit-transform:scale(0) rotate(0);
+	    -ms-transform:scale(0) rotate(0);
+	        transform:scale(0) rotate(0);
+}
+.login-form .group .check:checked + label{
+	color:#fff;
+}
+.login-form .group .check:checked + label .icon{
+	background:#1161ee;
+}
+.login-form .group .check:checked + label .icon:before{
+	-webkit-transform:scale(1) rotate(45deg);
+	    -ms-transform:scale(1) rotate(45deg);
+	        transform:scale(1) rotate(45deg);
+}
+.login-form .group .check:checked + label .icon:after{
+	-webkit-transform:scale(1) rotate(-45deg);
+	    -ms-transform:scale(1) rotate(-45deg);
+	        transform:scale(1) rotate(-45deg);
+}
+.login-html .sign-in:checked + .tab + .sign-up + .tab + .login-form .sign-in-htm{
+	-webkit-transform:rotate(0);
+	    -ms-transform:rotate(0);
+	        transform:rotate(0);
+}
+.login-html .sign-up:checked + .tab + .login-form .sign-up-htm{
+	-webkit-transform:rotate(0);
+	    -ms-transform:rotate(0);
+	        transform:rotate(0);
+}
+
+.hr{
+	height:2px;
+	margin:60px 0 50px 0;
+	background:rgba(255,255,255,.2);
+}
+.foot-lnk{
+	text-align:center;
+}
+
+.block {
+	position: absolute;
+	left: 0;
+	top: 0;
+      }
+      
+      .sliderContainer {
+	position: relative;
+	text-align: center;
+	width: 310px;
+	height: 40px;
+	line-height: 40px;
+	margin-top: 15px;
+	background: #f7f9fa;
+	color: #45494c;
+	border: 1px solid #e4e7eb;
+      }
+      
+      .sliderContainer_active .slider {
+	height: 38px;
+	top: -1px;
+	border: 1px solid #1991FA;
+      }
+      
+      .sliderContainer_active .sliderMask {
+	height: 38px;
+	border-width: 1px;
+      }
+      
+      .sliderContainer_success .slider {
+	height: 38px;
+	top: -1px;
+	border: 1px solid #52CCBA;
+	background-color: #52CCBA !important;
+      }
+      
+      .sliderContainer_success .sliderMask {
+	height: 38px;
+	border: 1px solid #52CCBA;
+	background-color: #D2F4EF;
+      }
+      
+      .sliderContainer_success .sliderIcon {
+	background-position: 0 0 !important;
+      }
+      
+      .sliderContainer_fail .slider {
+	height: 38px;
+	top: -1px;
+	border: 1px solid #f57a7a;
+	background-color: #f57a7a !important;
+      }
+      
+      .sliderContainer_fail .sliderMask {
+	height: 38px;
+	border: 1px solid #f57a7a;
+	background-color: #fce1e1;
+      }
+      
+      .sliderContainer_fail .sliderIcon {
+	background-position: 0 -83px !important;
+      }
+      .sliderContainer_active .sliderText, .sliderContainer_success .sliderText, .sliderContainer_fail .sliderText {
+	display: none;
+      }
+      
+      .sliderMask {
+	position: absolute;
+	left: 0;
+	top: 0;
+	height: 40px;
+	border: 0 solid #1991FA;
+	background: #D1E9FE;
+      }
+      
+      .slider {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 40px;
+	height: 40px;
+	background: #fff;
+	box-shadow: 0 0 3px rgba(0, 0, 0, 0.3);
+	cursor: pointer;
+	transition: background 0.2s linear;
+      }
+      
+      .slider:hover {
+	background: #1991FA;
+      }
+      
+      .slider:hover .sliderIcon {
+	background-position: 0 -13px;
+      }
+      
+      .sliderIcon {
+	position: absolute;
+	top: 15px;
+	left: 13px;
+	width: 14px;
+	height: 10px;
+	background: url(../images/icon_light.f13cff3.png) 0 -26px;
+	background-size: 34px 471px;
+      }
+      
+      .refreshIcon {
+	position: absolute;
+	right: 0;
+	top: 0;
+	width: 34px;
+	height: 34px;
+	cursor: pointer;
+	background: url(../images/icon_light.f13cff3.png) 0 -437px;
+	background-size: 34px 471px;
+      }
+      
