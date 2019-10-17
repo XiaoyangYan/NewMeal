@@ -1,5 +1,5 @@
 package com.unsw.web.entity;
-// Generated 2019-10-15 13:07:32 by Hibernate Tools 5.2.12.Final
+// Generated 2019-10-17 16:45:33 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
 import javax.persistence.Column;
@@ -22,8 +22,8 @@ import javax.persistence.TemporalType;
 public class Review implements java.io.Serializable {
 
 	private Integer reviewId;
-	private Customer customer;
 	private Recipe recipe;
+	private Users users;
 	private int rating;
 	private String headline;
 	private String comment;
@@ -32,9 +32,9 @@ public class Review implements java.io.Serializable {
 	public Review() {
 	}
 
-	public Review(Customer customer, Recipe recipe, int rating, String headline, String comment, Date reviewTime) {
-		this.customer = customer;
+	public Review(Recipe recipe, Users users, int rating, String headline, String comment, Date reviewTime) {
 		this.recipe = recipe;
+		this.users = users;
 		this.rating = rating;
 		this.headline = headline;
 		this.comment = comment;
@@ -54,16 +54,6 @@ public class Review implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer_id", nullable = false)
-	public Customer getCustomer() {
-		return this.customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "recipe_id", nullable = false)
 	public Recipe getRecipe() {
 		return this.recipe;
@@ -71,6 +61,16 @@ public class Review implements java.io.Serializable {
 
 	public void setRecipe(Recipe recipe) {
 		this.recipe = recipe;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "user_id", nullable = false)
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
 	}
 
 	@Column(name = "rating", nullable = false)

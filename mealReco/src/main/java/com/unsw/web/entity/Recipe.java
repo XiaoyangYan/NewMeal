@@ -1,5 +1,5 @@
 package com.unsw.web.entity;
-// Generated 2019-10-15 13:07:32 by Hibernate Tools 5.2.12.Final
+// Generated 2019-10-17 16:45:33 by Hibernate Tools 5.2.12.Final
 
 import java.math.BigDecimal;
 import java.util.Date;
@@ -40,6 +40,7 @@ public class Recipe implements java.io.Serializable {
 	private int categoryId;
 	private Set orderDetails = new HashSet(0);
 	private Set reviews = new HashSet(0);
+	private Set saveDetails = new HashSet(0);
 
 	public Recipe() {
 	}
@@ -64,7 +65,7 @@ public class Recipe implements java.io.Serializable {
 
 	public Recipe(String label, BigDecimal calories, BigDecimal fat, String mealType, String dishType, BigDecimal sugar,
 			BigDecimal protein, String carbs, String description, String image, Date publishDate, Date lastUpdateTime,
-			int categoryId, Set orderDetails, Set reviews) {
+			int categoryId, Set orderDetails, Set reviews, Set saveDetails) {
 		this.label = label;
 		this.calories = calories;
 		this.fat = fat;
@@ -80,6 +81,7 @@ public class Recipe implements java.io.Serializable {
 		this.categoryId = categoryId;
 		this.orderDetails = orderDetails;
 		this.reviews = reviews;
+		this.saveDetails = saveDetails;
 	}
 
 	@Id
@@ -229,6 +231,15 @@ public class Recipe implements java.io.Serializable {
 
 	public void setReviews(Set reviews) {
 		this.reviews = reviews;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "recipe")
+	public Set getSaveDetails() {
+		return this.saveDetails;
+	}
+
+	public void setSaveDetails(Set saveDetails) {
+		this.saveDetails = saveDetails;
 	}
 
 }

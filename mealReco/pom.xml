@@ -51,7 +51,6 @@
             <artifactId>slf4j-nop</artifactId>
             </dependency>
  
-        <!-- 添加javassist -->
         <dependency>
             <groupId>javassist</groupId>
             <artifactId>javassist</artifactId>

@@ -1,13 +1,15 @@
 package com.unsw.web.entity;
-// Generated 2019-10-15 13:07:32 by Hibernate Tools 5.2.12.Final
+// Generated 2019-10-17 16:45:33 by Hibernate Tools 5.2.12.Final
 
+import java.util.HashSet;
+import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -15,23 +17,14 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "users", catalog = "mymeal")
-@NamedQueries({
-	@NamedQuery(name="Users.findAll", query="SELECT u FROM Users u ORDER BY u.fullName"),
-	@NamedQuery(name = "Users.findByEmail", query="SELECT u from Users u WHERE u.email = :email"),
-	@NamedQuery(name = "Users.countAll", query="SELECT COUNT(u) FROM Users u"),
-
-	@NamedQuery(name = "Users.checkLogin", query = "SELECT u FROM Users u WHERE u.email = :email AND u.password = :password")
-})
 public class Users implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer userId;
 	private String email;
 	private String password;
 	private String fullName;
+	private Set reviews = new HashSet(0);
+	private Set saveDetails = new HashSet(0);
 
 	public Users() {
 	}
@@ -40,6 +33,14 @@ public class Users implements java.io.Serializable {
 		this.email = email;
 		this.password = password;
 		this.fullName = fullName;
+	}
+
+	public Users(String email, String password, String fullName, Set reviews, Set saveDetails) {
+		this.email = email;
+		this.password = password;
+		this.fullName = fullName;
+		this.reviews = reviews;
+		this.saveDetails = saveDetails;
 	}
 
 	@Id
@@ -79,6 +80,24 @@ public class Users implements java.io.Serializable {
 
 	public void setFullName(String fullName) {
 		this.fullName = fullName;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	public Set getReviews() {
+		return this.reviews;
+	}
+
+	public void setReviews(Set reviews) {
+		this.reviews = reviews;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "users")
+	public Set getSaveDetails() {
+		return this.saveDetails;
+	}
+
+	public void setSaveDetails(Set saveDetails) {
+		this.saveDetails = saveDetails;
 	}
 
 }

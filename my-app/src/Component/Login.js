@@ -65,7 +65,7 @@ class Login extends React.Component {
     }
     render() {
         return (
-            <div className="container" style={{paddingTop: '100px'}}>
+            <div className="container" >
                 <div className="login-wrap">
                     <div className="login-html">
                         <input id="tab-1" type="radio" name={this.state.tab1} className="sign-in"  checked={this.state.checkedRadio1} onChange={this.onChangeRadio}/><label htmlFor="tab-1" className="tab">Login</label>

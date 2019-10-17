@@ -25,10 +25,8 @@ input, button {
         left: 0;
         right: 0;
         margin: 0 auto;
-        position: absolute;
-        top: 120px;
+	position: absolute;
 	width:100%;
-	max-width:1200px;
 	min-height: 1000px;
         background:url(../images/all.jpg) center;
         background-size: cover;
@@ -38,8 +36,8 @@ input, button {
 	width:100%;
 	height:100%;
 	position:absolute;
-	padding:90px 70px 50px 70px;
-	background:rgba(40,57,101,.9);
+	padding:180px 150px 170px 100px;
+	background:rgba(41, 66, 143, 0.9);
 }
 .login-html .sign-in-htm,
 .login-html .sign-up-htm{
@@ -92,7 +90,7 @@ input, button {
 .login-form .group .input,
 .login-form .group .button{
         width:60%;
-        margin: 20px auto;
+        margin: 30px auto;
 	color:#fff;
 	display:block;
 }

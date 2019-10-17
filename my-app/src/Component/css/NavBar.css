@@ -63,14 +63,13 @@
 .menu-healthy ul li{
 	display:inline-block;
 	padding: 0 25px;
+	color: yellow;
 }
 
 .menu-healthy ul li a{
 	text-decoration: none;
-	color: inherit;
 	font-size: 16px;
         font-weight:600;
-        color:#333333;
 }
 .navigation-healthy{
 	width: 100%;
@@ -136,20 +135,22 @@
 	outline-style: none;
 	border: 1px solid #d2e7ec;
 	transition: .5s;
-	color: #689eb1;
+	color: #84ec22;
 }
 
 .input-search button{
 	border: none;
 	background-color: transparent;
 	font-size: 15px;
+	color: yellow;
 }
-
-.input-search:hover input{
+.input-search:hover button{
+	color: black;
+}
+.input-search:hover input, .input-search:active input{
 	width: 160px;
 	opacity: 1;
 }
-
 
 .navigation-sm{
 	display: inline-block;
