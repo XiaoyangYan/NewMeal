@@ -245,10 +245,10 @@
 	.sidenav a {font-size: 18px;}
 }
 
-@media  (min-width: 768px) {
+@media  (min-width: 968px) {
         .hidden-sm {display: none!important;}
 }
 
-@media  (max-width: 768px) {
+@media  (max-width: 968px) {
         .hidden-xs {display: none!important;}
 }

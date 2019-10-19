@@ -1,16 +1,12 @@
-package com.unsw.web.entity;
-// Generated 2019-10-17 16:45:33 by Hibernate Tools 5.2.12.Final
+package com.unsw.web.mealReco.entity;
+// Generated 2019-10-18 17:39:37 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -24,45 +20,30 @@ import javax.persistence.UniqueConstraint;
 public class Customer implements java.io.Serializable {
 
 	private Integer customerId;
-	private String email;
-	private String fullname;
 	private String address;
 	private String city;
 	private String country;
-	private String phone;
-	private String zipcode;
+	private String email;
+	private String fullname;
 	private String password;
+	private String phone;
 	private Date registerDate;
-	private Set recipeOrders = new HashSet(0);
+	private String zipcode;
 
 	public Customer() {
 	}
 
-	public Customer(String email, String fullname, String address, String city, String country, String phone,
-			String zipcode, String password, Date registerDate) {
-		this.email = email;
-		this.fullname = fullname;
+	public Customer(String address, String city, String country, String email, String fullname, String password,
+			String phone, Date registerDate, String zipcode) {
 		this.address = address;
 		this.city = city;
 		this.country = country;
-		this.phone = phone;
-		this.zipcode = zipcode;
-		this.password = password;
-		this.registerDate = registerDate;
-	}
-
-	public Customer(String email, String fullname, String address, String city, String country, String phone,
-			String zipcode, String password, Date registerDate, Set recipeOrders) {
 		this.email = email;
 		this.fullname = fullname;
-		this.address = address;
-		this.city = city;
-		this.country = country;
-		this.phone = phone;
-		this.zipcode = zipcode;
 		this.password = password;
+		this.phone = phone;
 		this.registerDate = registerDate;
-		this.recipeOrders = recipeOrders;
+		this.zipcode = zipcode;
 	}
 
 	@Id
@@ -75,24 +56,6 @@ public class Customer implements java.io.Serializable {
 
 	public void setCustomerId(Integer customerId) {
 		this.customerId = customerId;
-	}
-
-	@Column(name = "email", unique = true, nullable = false, length = 64)
-	public String getEmail() {
-		return this.email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	@Column(name = "fullname", nullable = false, length = 30)
-	public String getFullname() {
-		return this.fullname;
-	}
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
 	}
 
 	@Column(name = "address", nullable = false, length = 128)
@@ -122,22 +85,22 @@ public class Customer implements java.io.Serializable {
 		this.country = country;
 	}
 
-	@Column(name = "phone", nullable = false, length = 15)
-	public String getPhone() {
-		return this.phone;
+	@Column(name = "email", unique = true, nullable = false, length = 64)
+	public String getEmail() {
+		return this.email;
 	}
 
-	public void setPhone(String phone) {
-		this.phone = phone;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
-	@Column(name = "zipcode", nullable = false, length = 24)
-	public String getZipcode() {
-		return this.zipcode;
+	@Column(name = "fullname", nullable = false, length = 30)
+	public String getFullname() {
+		return this.fullname;
 	}
 
-	public void setZipcode(String zipcode) {
-		this.zipcode = zipcode;
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 
 	@Column(name = "password", nullable = false, length = 16)
@@ -147,6 +110,15 @@ public class Customer implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Column(name = "phone", nullable = false, length = 15)
+	public String getPhone() {
+		return this.phone;
+	}
+
+	public void setPhone(String phone) {
+		this.phone = phone;
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
@@ -159,13 +131,13 @@ public class Customer implements java.io.Serializable {
 		this.registerDate = registerDate;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "customer")
-	public Set getRecipeOrders() {
-		return this.recipeOrders;
+	@Column(name = "zipcode", nullable = false, length = 24)
+	public String getZipcode() {
+		return this.zipcode;
 	}
 
-	public void setRecipeOrders(Set recipeOrders) {
-		this.recipeOrders = recipeOrders;
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
 	}
 
 }

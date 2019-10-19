@@ -20,13 +20,13 @@ const SignUp = (props) => {
                                         <div style={{ color: 'red' }}> {props.validator.message('registerPassword', props.registerPassword, 'required', '', {
                                                 required: 'password cannot be null'
                                         })}</div>
-                                        {(props.passwordValid) && <div style={{ color: 'red' }}>password doesn't match</div>}
+                                        {(!props.passwordValid) && <div style={{ color: 'red' }}>password doesn't match</div>}
                                 </div>
                                 <div className="group">
                                         <label htmlFor="pass" className="label">Reassure Password</label>
                                         <input id="passs" type="password" className="input" data-type="password" name="registerPasswordAssure"
                                                 placeholder="Please retype your password" value={props.registerPasswordAssure} onChange={props.onChange} />
-                                        {(props.passwordValid) && <div style={{ color: 'red' }}>password doesn't match</div>}
+                                        {(!props.passwordValid) && <div style={{ color: 'red' }}>password doesn't match</div>}
                                 </div>
                                 <div className="group">
                                         <label htmlFor="pass" className="label">Email</label>

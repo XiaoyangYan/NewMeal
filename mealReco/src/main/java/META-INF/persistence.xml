@@ -5,7 +5,7 @@
           http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd"
 	version="2.1">
 
-	<persistence-unit name="mydb">
+	<persistence-unit name="MyMeal">
 		<properties>
 			<property name="javax.persistence.jdbc.url"
 				value="jdbc:mysql://localhost:3306/mymeal?autoReconnect=true" />

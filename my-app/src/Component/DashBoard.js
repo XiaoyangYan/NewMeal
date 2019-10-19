@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Data from '../API/Data'
 import './css/Loading.min.css'
 import './css/DashBoard.css';
-
+import {withRouter} from 'react-router-dom'
 class DashBoard extends React.Component {
         constructor(props) {
                 super(props);
@@ -69,4 +69,4 @@ class DashBoard extends React.Component {
         }
 }
 
-export default DashBoard;
+export default withRouter(DashBoard);

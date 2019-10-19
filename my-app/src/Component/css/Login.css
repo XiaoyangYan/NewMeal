@@ -27,6 +27,7 @@ input, button {
         margin: 0 auto;
 	position: absolute;
 	width:100%;
+	text-align:center;
 	min-height: 1000px;
         background:url(../images/all.jpg) center;
         background-size: cover;

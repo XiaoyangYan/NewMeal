@@ -1,18 +1,12 @@
-package com.unsw.web.entity;
-// Generated 2019-10-17 16:45:33 by Hibernate Tools 5.2.12.Final
+package com.unsw.web.mealReco.entity;
+// Generated 2019-10-18 17:39:37 by Hibernate Tools 5.2.12.Final
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -25,39 +19,26 @@ import javax.persistence.TemporalType;
 public class RecipeOrder implements java.io.Serializable {
 
 	private Integer orderId;
-	private Customer customer;
 	private Date orderDate;
+	private String paymentMethod;
 	private String recipientName;
 	private String recipientPhone;
-	private String paymentMethod;
-	private float total;
 	private String status;
-	private Set orderDetails = new HashSet(0);
+	private float total;
+	private int customerId;
 
 	public RecipeOrder() {
 	}
 
-	public RecipeOrder(Customer customer, Date orderDate, String recipientName, String recipientPhone,
-			String paymentMethod, float total, String status) {
-		this.customer = customer;
+	public RecipeOrder(Date orderDate, String paymentMethod, String recipientName, String recipientPhone, String status,
+			float total, int customerId) {
 		this.orderDate = orderDate;
+		this.paymentMethod = paymentMethod;
 		this.recipientName = recipientName;
 		this.recipientPhone = recipientPhone;
-		this.paymentMethod = paymentMethod;
-		this.total = total;
 		this.status = status;
-	}
-
-	public RecipeOrder(Customer customer, Date orderDate, String recipientName, String recipientPhone,
-			String paymentMethod, float total, String status, Set orderDetails) {
-		this.customer = customer;
-		this.orderDate = orderDate;
-		this.recipientName = recipientName;
-		this.recipientPhone = recipientPhone;
-		this.paymentMethod = paymentMethod;
 		this.total = total;
-		this.status = status;
-		this.orderDetails = orderDetails;
+		this.customerId = customerId;
 	}
 
 	@Id
@@ -72,16 +53,6 @@ public class RecipeOrder implements java.io.Serializable {
 		this.orderId = orderId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer_id", nullable = false)
-	public Customer getCustomer() {
-		return this.customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "order_date", nullable = false, length = 19)
 	public Date getOrderDate() {
@@ -90,6 +61,15 @@ public class RecipeOrder implements java.io.Serializable {
 
 	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
+	}
+
+	@Column(name = "payment_method", nullable = false, length = 20)
+	public String getPaymentMethod() {
+		return this.paymentMethod;
+	}
+
+	public void setPaymentMethod(String paymentMethod) {
+		this.paymentMethod = paymentMethod;
 	}
 
 	@Column(name = "recipient_name", nullable = false, length = 30)
@@ -110,13 +90,13 @@ public class RecipeOrder implements java.io.Serializable {
 		this.recipientPhone = recipientPhone;
 	}
 
-	@Column(name = "payment_method", nullable = false, length = 20)
-	public String getPaymentMethod() {
-		return this.paymentMethod;
+	@Column(name = "status", nullable = false, length = 20)
+	public String getStatus() {
+		return this.status;
 	}
 
-	public void setPaymentMethod(String paymentMethod) {
-		this.paymentMethod = paymentMethod;
+	public void setStatus(String status) {
+		this.status = status;
 	}
 
 	@Column(name = "total", nullable = false, precision = 12, scale = 0)
@@ -128,22 +108,13 @@ public class RecipeOrder implements java.io.Serializable {
 		this.total = total;
 	}
 
-	@Column(name = "status", nullable = false, length = 20)
-	public String getStatus() {
-		return this.status;
+	@Column(name = "customer_id", nullable = false)
+	public int getCustomerId() {
+		return this.customerId;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "recipeOrder")
-	public Set getOrderDetails() {
-		return this.orderDetails;
-	}
-
-	public void setOrderDetails(Set orderDetails) {
-		this.orderDetails = orderDetails;
+	public void setCustomerId(int customerId) {
+		this.customerId = customerId;
 	}
 
 }
