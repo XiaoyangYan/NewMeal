@@ -3,7 +3,8 @@
 	background-color: #edf5f7;
 	width: 60%;
         height: 350px;
-        margin: 10px auto;
+	margin: 10px auto;
+	text-align: center;
 }
 .bg-header-healthy:nth-child(1){
         margin-top: 100px;

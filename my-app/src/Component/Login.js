@@ -2,7 +2,9 @@ import React from 'react';
 import "./css/Login.css";
 import ReactValidator from "./Service/FormErrors"
 import SignIn from "./SignIn";
-import SignUp from "./SignUp"
+import SignUp from "./SignUp";
+import AjaxServiceSignForm from './Service/AjaxServiceSignForm';
+import {withRouter, matchPath} from "react-router-dom";
 class Login extends React.Component {
 
     constructor(props){
@@ -30,20 +32,30 @@ class Login extends React.Component {
 
     }
     
-    submitFormRegister = (e) => {
-        e.preventDefault();
-        if (this.state.password !== "" || this.state.password === this.state.registerPassword){
-            this.setState({
-                passwordValid: true,
-            })
-        }
-        if( this.validator.allValid() && (this.state.password === this.state.registerPassword) ){
-          alert('You submitted the form and stuff!');
-        } else {
-          this.validator.showMessages();
-          this.forceUpdate();
-        }
-      };
+	submitFormRegister = e => {
+		e.preventDefault();
+		if (this.state.password !== "" || this.state.registerPasswordAssure === this.state.registerPassword) {
+			this.setState({
+				passwordValid: true,
+			})
+		}
+		if (this.validator.allValid() && (this.state.registerPasswordAssure === this.state.registerPassword)) {
+			console.log("arrived");
+			const Users = {
+				fullName: this.state.registerName,
+				password: this.state.registerPassword,
+				email: this.state.email
+			}
+			AjaxServiceSignForm.registerNewUser(Users).then(
+				() => {
+					this.props.history.push(`/dash/${Users.fullName}`);
+					console.log(this.props);
+				});
+		} else {
+			this.validator.showMessages();
+			this.forceUpdate();
+		}
+	};
     onChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
@@ -74,7 +86,7 @@ class Login extends React.Component {
                             <SignIn username={this.state.username} password={this.state.password} onChange={this.onChange} />
                             <SignUp registerName={this.state.registerName} registerPassword={this.state.registerPassword}  
                                 registerPasswordAssure={this.state.registerPasswordAssure} email={this.state.email}    onChange={this.onChange}
-                                submitFormRegister={this.submitFormRegister} validator={this.validator} passwordValid={this.state.password}/>
+                                submitFormRegister={this.submitFormRegister} validator={this.validator} passwordValid={this.state.registerPasswordAssure === this.state.registerPassword}/>
                         </div>
                     </div>
                 </div>
@@ -83,4 +95,4 @@ class Login extends React.Component {
     }
 }
 
-export default Login;
+export default withRouter(Login);

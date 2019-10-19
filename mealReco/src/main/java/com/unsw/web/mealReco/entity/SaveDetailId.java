@@ -1,5 +1,5 @@
-package com.unsw.web.entity;
-// Generated 2019-10-17 16:45:33 by Hibernate Tools 5.2.12.Final
+package com.unsw.web.mealReco.entity;
+// Generated 2019-10-18 17:39:37 by Hibernate Tools 5.2.12.Final
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

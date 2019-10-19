@@ -1,9 +1,7 @@
 
-
 export const  AUTHENTICATED_USER =  "authenticatedUser";
+
 class AuthenticationService {
-
-
         registerSuccessfulLogin(username, password){
                 sessionStorage.setItem(AUTHENTICATED_USER, username);
         }
