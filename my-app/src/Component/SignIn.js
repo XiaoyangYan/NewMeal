@@ -5,9 +5,9 @@ const SignIn = (props) => {
                 <form>
                 <div className="sign-in-htm">
                     <div className="group">
-                        <label htmlFor="user" className="label">Username</label>
-                        <input id="username" name="username"  type="text" className="input"
-                         placeholder="Please type your username"  value={props.username}
+                        <label htmlFor="email" className="label">Email</label>
+                        <input id="email" name="email"  type="text" className="input"
+                         placeholder="Please type your email"  value={props.email}
                                onChange = {props.onChange}/>
                     </div>
                     <div className="group">
@@ -27,9 +27,10 @@ const SignIn = (props) => {
                         <label htmlFor="check"><span className="icon"></span> Keep Login</label>
                     </div>
                     <div className="group">
-                        <input type="button" className="button" value="Login" onClick={props.sub} 
+                        <input type="button" className="button" value="Login" onClick={props.submitFormLogin} 
                         style={{letterSpacing: '4px', width: '30%'}}/>
                     </div>
+                    {(!props.userValid) && <div style={{ color: 'red' }}>Invalid User</div>}
                     <div className="hr"></div>
                     <div className="foot-lnk">
                         <a href="#forgot">Forget Password?</a>

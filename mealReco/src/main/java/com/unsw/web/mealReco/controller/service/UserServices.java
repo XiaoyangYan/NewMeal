@@ -27,4 +27,17 @@ public class UserServices {
 		}
 		return existUser;
 	}
+	
+	public String loginUser(String email, String password) {
+		boolean loginResult = userDAO.checkLogin(email, password);
+		Users user = userDAO.findByEmail(email);
+		if (user == null) {
+			System.out.println("user");
+		}
+		if (loginResult) {
+			return "valid";
+		} else {
+			return "invalid";
+		}
+	}
 }

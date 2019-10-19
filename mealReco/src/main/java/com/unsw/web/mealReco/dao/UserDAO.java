@@ -57,7 +57,7 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 	public long count() {
 		return super.countWithNamedQuery("Users.countAll");
 	}
-	
+	@Transactional
 	public Users findByEmail(String email) {
 		List<Users> listUsers = super.findWithNamedQuery("Users.findByEmail", "email", email);
 		if (listUsers != null && listUsers.size() > 0) {
@@ -65,12 +65,13 @@ public class UserDAO extends JpaDAO<Users> implements GenericDAO<Users> {
 		}
 		return null;
 	}
-	
+	@Transactional
 	public boolean checkLogin(String email, String password) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("email", email);
 		parameters.put("password", password);
 		List<Users> listUsers = super.findWithNamedQuery("Users.checkLogin",parameters);
+		System.out.println(listUsers.size());
 		if (listUsers.size() == 1) {
 			return true;
 		}

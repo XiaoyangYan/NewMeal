@@ -297,3 +297,9 @@ input, button {
 	background-size: 34px 471px;
       }
       
+      @media  (min-width: 968px) {
+        	.login-html {
+			padding-left: 220px;
+			padding-right: 220px;
+		}
+	}

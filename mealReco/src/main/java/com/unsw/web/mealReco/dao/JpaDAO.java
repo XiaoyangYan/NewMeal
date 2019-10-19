@@ -70,6 +70,7 @@ public class JpaDAO<T> {
 		Query query = entityManager.createNamedQuery(queryName);
 		Set<Entry<String, Object>> rawParameters = parameters.entrySet();
 		for (Entry<String, Object> entry: rawParameters) {
+			System.out.println(entry.getKey()+" "+entry.getValue());
 			query.setParameter(entry.getKey(), entry.getValue());
 		}
 		return query.getResultList();

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Data from '../API/Data'
 import './css/Loading.min.css'
 import './css/DashBoard.css';
-import {withRouter} from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 class DashBoard extends React.Component {
         constructor(props) {
                 super(props);
@@ -40,14 +40,14 @@ class DashBoard extends React.Component {
         }
         render() {
                 if (!this.state.isLoading) {
-                        const {hits} = this.state;
+                        const { hits } = this.state;
                         return (
                                 <div>
                                         {
                                                 hits.map((items, index) =>
                                                         <div className="bg-header-healthy" key={index}>
                                                                 <div className="image-background">
-                                                                        <img src={items.recipe.image} alt="alt.img" style={{opacity: 0.6}}/>
+                                                                        <img src={items.recipe.image} alt="alt.img" style={{ opacity: 0.6 }} />
                                                                 </div>
                                                                 <div className="group-healthy-food">
                                                                         <h2>{items.recipe.label}</h2>
@@ -62,8 +62,8 @@ class DashBoard extends React.Component {
                         );
                 } else {
                         return (
-                               <div></div>
-                                );
+                                <div></div>
+                        );
                 }
 
         }
