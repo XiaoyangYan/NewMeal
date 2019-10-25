@@ -40,4 +40,8 @@ public class UserServices {
 			return "invalid";
 		}
 	}
+	
+	public String getUserName(String email) {
+		return userDAO.findByEmail(email).getFullName();
+	}
 }

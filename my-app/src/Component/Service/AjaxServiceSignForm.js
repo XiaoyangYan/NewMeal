@@ -6,9 +6,10 @@ class AjaxServiceSignForm {
         }
 
         loginExistUser(email, password){
-                console.log(email);
-                console.log(password);
                 return axios.get(`http://localhost:8080/login/${email}/${password}`);
+        }
+        getUserName(email){
+                return axios.get(`http://localhost/8080/username/${email}`);
         }
 }
 

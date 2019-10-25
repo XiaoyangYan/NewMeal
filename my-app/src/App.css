@@ -30,3 +30,6 @@
 a,a:hover{
 	text-decoration:none;
 }
+a, a *, a:hover, a:hover *, button, input.inp-btn, div.btn input, input.checkbox, input.checkbox, div.checkbox input, div.checkbox label, input.radio, label.radio, .radio-selection input, .radio-selection label, select{
+  cursor:pointer
+}

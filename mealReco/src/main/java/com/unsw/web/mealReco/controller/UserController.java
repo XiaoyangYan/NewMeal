@@ -39,9 +39,20 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public ResponseEntity<?> loginUser(@PathVariable String email, 
 			@PathVariable String password ) {
+		email = email.trim();
+		password = password.trim();
 		System.out.println(email);
 		String userMessage = this.userService.loginUser(email, password);
 		return ResponseEntity.ok(userMessage);
 	}
-
+	@GetMapping(path="/username/{email}")
+	@ResponseBody
+	public ResponseEntity<?> getUserName(@PathVariable String email){
+		String userName = this.userService.getUserName(email);
+		if (userName != null) {
+			return ResponseEntity.ok(userName);
+		} else {
+			return ResponseEntity.ok("NULL");
+		}
+	}
 }

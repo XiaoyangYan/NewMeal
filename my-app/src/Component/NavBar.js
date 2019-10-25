@@ -1,14 +1,15 @@
 import React from 'react';
-import { Container, Row, Col, Button } from 'react-bootstrap';
 import "./css/style.css"
 import "./css/NavBar.css"
 import SideDrawer from "./SideDrawer";
-
+import AuthenticationService from './Service/AuthenticationService';
+import {Link} from "react-router-dom"
 class NavBar extends React.Component {
         constructor() {
                 super();
                 this.state = {
                         openState: false,
+                        userName:" ",
                 }
         }
         componentDidMount(){
@@ -36,10 +37,9 @@ class NavBar extends React.Component {
                                         <div className="title-healthy"><a href="/">Healthy</a></div>
                                         <div className="menu-healthy hidden-xs">
                                                 <ul>
-                                                        <li><a href="/recipe">Recipe</a></li>
-                                                        <li><a href="/menu">Menu</a></li>
+                                                        <li><Link to="/dash">Main</Link></li>
                                                         <li><a href="/favorite">Favorite</a></li>
-                                                        <li><a href="/catelogue">Catelogue</a></li>
+                                                        <li><a href="/plan">Self-Planner</a></li>
                                                         <li><a href="/aboutus">About Us</a></li>
                                                 </ul>
                                         </div>
@@ -52,6 +52,8 @@ class NavBar extends React.Component {
                                                                         <button type="button" className="button-search"><i className="fa fa-search" aria-hidden="true"></i></button>
                                                                 </form>
                                                         </li>
+                                                        <li>{!AuthenticationService.isUserLoggedIn() && < Link to="/login"  className="logged-button">Sign In</Link>}</li>
+                                                        <li>{AuthenticationService.isUserLoggedIn() && <Link to="/login" className="logged-button" >Logged Out</Link>}</li>
                                                 </ul>
                                         </div>
 
@@ -59,12 +61,9 @@ class NavBar extends React.Component {
                                                 <span onClick={this.openNav}>&#9776;</span>
                                         </div>
                                         <SideDrawer show={this.state.openState} onNav={this.openNav} />
-
-
                                 </div>
                         </>
                 );
         }
 }
-
 export default NavBar;
