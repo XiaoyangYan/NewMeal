@@ -31,6 +31,7 @@ public class Users implements java.io.Serializable {
 	private String email;
 	private String fullName;
 	private String password;
+	private byte[] image;
 
 	public Users() {
 	}
@@ -39,6 +40,12 @@ public class Users implements java.io.Serializable {
 		this.email = email;
 		this.fullName = fullName;
 		this.password = password;
+	}
+	public Users(String email, String fullName, String password, byte[] image) {
+		this.email = email;
+		this.fullName = fullName;
+		this.password = password;
+		this.image = image;
 	}
 
 	@Id
@@ -79,5 +86,12 @@ public class Users implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	@Column(name = "image")
+	public byte[] getImage() {
+		return this.image;
+	}
 
+	public void setImage(byte[] image) {
+		this.image = image;
+	}
 }

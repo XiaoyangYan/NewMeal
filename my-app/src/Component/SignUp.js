@@ -8,9 +8,9 @@ const SignUp = (props) => {
                                         <label htmlFor="user" className="label">Username</label>
                                         <input id="users" type="text" className="input" name="registerName" placeholder="Please type your username"
                                                 value={props.registerName} onChange={props.onChange} />
-                                        <div style={{ color: 'red' }}>{props.validator.message('registerName', props.registerName, 'required', '', {
+                                        {props.checkRadio2 && <div style={{ color: 'red' }}>{props.validator.message('registerName', props.registerName, 'required', '', {
                                                 required: 'username cannot be null'
-                                        })}</div>
+                                        })}</div>}
 
                                 </div>
                                 <div className="group">
@@ -32,10 +32,10 @@ const SignUp = (props) => {
                                         <label htmlFor="pass" className="label">Email</label>
                                         <input id="pass" type="text" className="input" name="email"
                                                 placeholder="Please type your email" value={props.email} onChange={props.onChange} />
-                                        <div style={{ color: 'red' }}>{props.validator.message('email', props.email, 'required|email', '', {
+                                       { props.checkRadio2 &&<div style={{ color: 'red' }}>{props.validator.message('email', props.email, 'required|email', '', {
                                                 required: 'email cannot be empty',
                                                 email: 'the format of email is not correct'
-                                        })}</div>
+                                        })}</div>}
                                 </div>
                                 <div className="group">
                                         <a href="/"><input type="submit" className="button" value="Register" style={{ letterSpacing: '4px', width: '30%' }}

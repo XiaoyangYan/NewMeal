@@ -1,0 +1,108 @@
+.bookmark-btn{
+        display:none;
+        position:absolute;
+        left: 7px;
+        top: 7px;
+        z-index:30;
+        text-align: center;
+}
+.bookmark-btn Link{
+        height: 28px;
+        min-width: 0px;
+        line-height: 28px;
+        padding:0px;
+        border:0px;
+        -webkit-border-radius: 3px;
+}
+.cardList > li:hover .bookmark-btn{
+        display: block;
+}
+.bookmark-btn span{
+        background-position: 5px -36px;
+        display: inline-block;
+        padding: 0px 10px 0px 28px;
+        background: url("https://api.edamam.com/images/set-icons-bookmark-btns.png") no-repeat;
+        background-color:#7C0;
+}
+.box{
+        width: 250px;
+        padding: 4px;
+        border: 1px solid #e6e6e6;
+        background: linear-gradient(to bottom,white, 60%, #f7f7f7, 100%);
+}
+.box .object{
+        margin-bottom: 10px;
+}
+.card-image{
+        width: 220px;
+        height: 240px;
+        display:block;
+        margin-right: auto;
+        margin-left: auto;
+        margin-bottom:10px;
+}
+.inner .object{
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+}
+.card-title{
+        height: 34px;
+        overflow:hidden;
+        margin: 0px 10px;
+        font: normal 0.6em Arial;
+        text-align:center;
+        text-shadow: 1px 1px 0px #FFF;
+}
+.card-data{
+        padding: 10px 0px 8px 0px;
+        margin: 0px 10px;
+        text-align: center;
+        display:flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-around;
+        background: url('https://api.edamam.com/images/line-h.gif');
+        list-style: none;
+}
+.card-cal{
+        border-right: 1px solid #D9D9D9;
+        width: 80px;
+        float:left;
+        white-space: nowrap;
+}
+.card-ing{
+        border-left: 1px solid #FFF;
+        padding-left:10px;
+}
+.cf{
+        zoom: 1;
+}
+.card-num{
+        font: normal 12px Arial;
+        text-shadow: 1px 1px 0px #FFF;
+        color: #7C0;
+        display:inline;
+}
+.card-lbl{
+        display:inline;
+        margin-left:3px;
+        font:normal 10px Arial;
+        text-transform: uppercase;
+        text-shadow: 1px 1px 0px #FFF;
+        color: #666;
+}
+.card-source{
+        background: url("https://api.edamam.com/images/line-h.gif");
+        padding-left: 20px;
+        margin: 0px 10px;
+        white-space: nowrap;
+        overflow:hidden;
+        height: 26px;
+}
+.card-source p{
+        font: bold 12px/26px Arial;
+        text-shadow: 1px 1px 0px #FFF;
+        color: #999;
+        margin-bottom: 5px;
+}

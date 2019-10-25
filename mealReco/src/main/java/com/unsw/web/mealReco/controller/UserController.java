@@ -6,6 +6,8 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,16 +31,28 @@ public class UserController extends BaseController {
 	@PostMapping(path="/register")
 	@ResponseBody
 	public ResponseEntity<Users>  registerUser(@RequestBody Users user){
-//			@RequestParam(value="username")
-//	String myUsername,@RequestParam(value="password") String myPassword,
-//			@RequestParam(value="email") String myEmail
-		System.out.println("fullname: "+user.getFullName());
-		System.out.println("email: "+user.getEmail());
-		System.out.println("password: "+user.getPassword());
 		Users newUser = this.userService.registerUser(user.getFullName(), user.getPassword(), user.getEmail());
-//		URI uri = ServletUriComponentsBuilder.fromCurrentContextPath()
-//					.path("/{id}").buildAndExpand(newUser.getUserId()).toUri();
 		return new ResponseEntity<Users>(newUser, HttpStatus.OK);
 	}
-
+	
+	@GetMapping(path="/login/{email}/{password}")
+	@ResponseBody
+	public ResponseEntity<?> loginUser(@PathVariable String email, 
+			@PathVariable String password ) {
+		email = email.trim();
+		password = password.trim();
+		System.out.println(email);
+		String userMessage = this.userService.loginUser(email, password);
+		return ResponseEntity.ok(userMessage);
+	}
+	@GetMapping(path="/username/{email}")
+	@ResponseBody
+	public ResponseEntity<?> getUserName(@PathVariable String email){
+		String userName = this.userService.getUserName(email);
+		if (userName != null) {
+			return ResponseEntity.ok(userName);
+		} else {
+			return ResponseEntity.ok("NULL");
+		}
+	}
 }

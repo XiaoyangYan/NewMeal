@@ -18,9 +18,8 @@ const SideDrawer = props => {
                         </div>
                         <div className="navigation-mb-sm">
                                 <a href="">Recipe</a>
-                                <a href="">Menu</a>
                                 <a href="">Favourite</a>
-                                <a href="">Catelogue</a>
+                                <a href="/plan">Self-Planner</a>
                                 <a href="">About Us</a>
                         </div>
                 </div>
