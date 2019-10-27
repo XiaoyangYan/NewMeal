@@ -42,7 +42,7 @@ public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 	}
 	@Transactional
 	public Recipe findByLabel(String label) {
-		List<Recipe> result = super.findWithNamedQuery("Book.findByLabel", "label", label);
+		List<Recipe> result = super.findWithNamedQuery("Recipe.findByLabel", "label", label);
 		if (!result.isEmpty() && result.size()>0) {
 			return result.get(0);
 		}
