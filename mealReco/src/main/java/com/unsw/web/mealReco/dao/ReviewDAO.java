@@ -1,12 +1,14 @@
 package com.unsw.web.mealReco.dao;
 
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import com.unsw.web.mealReco.entity.Review;
-import com.unsw.web.mealReco.entity.Users;
 
 public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 
@@ -17,6 +19,7 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 	@Override
 	@Transactional
 	public Review create(Review review) {
+		review.setReviewTime(new Date());
 		return super.create(review);
 	}
 	
@@ -51,5 +54,40 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 		return super.countWithNamedQuery("Review.countAll");
 	}
 	
+	public Review findByUserAndRecipe(int userId, int recipeId) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("userId", userId);
+		parameters.put("recipeId", recipeId);
+		
+		List<Review> result = super.findWithNamedQuery("Review.findByUserAndRecipe", parameters);
+		
+		if (!result.isEmpty()) {
+			return result.get(0);
+		}
+		return null;
+	}
+	
+	public List<Review> findByUser(int userId) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("userId", userId);
+		List<Review> result = super.findWithNamedQuery("Review.findByUser", parameters);
+		
+		if (!result.isEmpty()) {
+			return result;
+		}
+		return null;
+	}
+	
+	
+	public List<Review> findByRecipe(int recipeId) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("recipeId", recipeId);
+		List<Review> result = super.findWithNamedQuery("Review.findByRecipe", parameters);
+		
+		if (!result.isEmpty()) {
+			return result;
+		}
+		return null;
+	}
 
 }

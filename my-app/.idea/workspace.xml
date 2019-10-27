@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="74967b12-219b-4a03-baba-e99e5e4c7f6c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/Login.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/NavBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/NavBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/SideDrawer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/SideDrawer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/css/DashBoard.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/css/DashBoard.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Component/css/NavBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Component/css/NavBar.css" afterDir="false" />
-    </list>
+    <list default="true" id="74967b12-219b-4a03-baba-e99e5e4c7f6c" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +45,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1571197841287</updated>
-      <workItem from="1571197843242" duration="1322000" />
+      <workItem from="1571197843242" duration="1903000" />
     </task>
     <servers />
   </component>

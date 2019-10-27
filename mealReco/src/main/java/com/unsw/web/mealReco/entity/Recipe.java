@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -17,6 +19,11 @@ import javax.persistence.UniqueConstraint;
  */
 @Entity
 @Table(name = "recipe", catalog = "mymeal", uniqueConstraints = @UniqueConstraint(columnNames = "label"))
+@NamedQueries({
+	@NamedQuery(name = "Recipe.findAll", query = "SELECT r FROM Recipe r ORDER BY r.recipeId"),
+	@NamedQuery(name = "Recipe.findByLabel", query = "SELECT r FROM Recipe r WHERE r.label = :label"),
+	@NamedQuery(name = "Recipe.countAll", query = "SELECT COUNT(r) FROM Recipe r")
+})
 public class Recipe implements java.io.Serializable {
 
 	private Integer recipeId;

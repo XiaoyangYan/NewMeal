@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -16,8 +18,21 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "mymeal")
+@NamedQueries({
+	@NamedQuery(name = "Review.listAll", query="SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
+	@NamedQuery(name = "Review.countAll", query="SELECT COUNT(r) FROM Review r"),
+	@NamedQuery(name = "Review.findByUserAndRecipe", 
+	query="SELECT r FROM Review r WHERE r.userId = :userId"+" AND r.recipeId = :recipeId"),
+	@NamedQuery(name = "Review.findByUser", query = "SELECT r FROM Review r WHERE r.userId = :userId"),
+	@NamedQuery(name = "Review.findByRecipe", query = "SELECT r from Review r WHERE r.recipeId = :recipeId")
+	
+})
 public class Review implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer reviewId;
 	private String comment;
 	private String headline;

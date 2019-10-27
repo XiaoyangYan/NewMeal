@@ -1,6 +1,5 @@
 import {combineReducers} from "redux";
-import errorReuducers from "./errorReuducers";
-
+import users from "./users"
 export default combineReducers({
-        errors: errorReuducers
+        users
 });
