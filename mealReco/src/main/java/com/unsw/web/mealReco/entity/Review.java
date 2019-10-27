@@ -25,7 +25,6 @@ import javax.persistence.TemporalType;
 	query="SELECT r FROM Review r WHERE r.userId = :userId"+" AND r.recipeId = :recipeId"),
 	@NamedQuery(name = "Review.findByUser", query = "SELECT r FROM Review r WHERE r.userId = :userId"),
 	@NamedQuery(name = "Review.findByRecipe", query = "SELECT r from Review r WHERE r.recipeId = :recipeId")
-	
 })
 public class Review implements java.io.Serializable {
 

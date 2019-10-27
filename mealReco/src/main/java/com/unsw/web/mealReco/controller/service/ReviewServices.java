@@ -1,5 +1,6 @@
 package com.unsw.web.mealReco.controller.service;
 
+
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -17,6 +18,7 @@ public class ReviewServices {
 	
 	public ReviewServices(EntityManager entityManager) {
 		reviewDAO = new ReviewDAO(entityManager);
+
 	}
 
 }

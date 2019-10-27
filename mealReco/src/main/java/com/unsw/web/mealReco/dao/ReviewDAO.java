@@ -10,10 +10,16 @@ import javax.transaction.Transactional;
 
 import com.unsw.web.mealReco.entity.Review;
 
+import org.springframework.stereotype.Service;
+
+import com.unsw.web.mealReco.entity.Review;
+@Transactional
+@Service
 public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 
 	public ReviewDAO(EntityManager entityManager) {
 		super(entityManager);
+
 	}
 
 	@Override
@@ -54,13 +60,14 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 		return super.countWithNamedQuery("Review.countAll");
 	}
 	
+
+	@Transactional
 	public Review findByUserAndRecipe(int userId, int recipeId) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("userId", userId);
 		parameters.put("recipeId", recipeId);
 		
 		List<Review> result = super.findWithNamedQuery("Review.findByUserAndRecipe", parameters);
-		
 		if (!result.isEmpty()) {
 			return result.get(0);
 		}
