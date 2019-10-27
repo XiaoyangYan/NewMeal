@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.unsw.web.mealReco.controller.service.RecipeServices;
 import com.unsw.web.mealReco.controller.service.UserServices;
 @Transactional
 @Service
@@ -22,7 +23,8 @@ public class BaseController {
 	protected EntityManager entityManager = entityManagerFactory.createEntityManager();
 	@Autowired
 	protected UserServices userService = new UserServices(this.entityManager);
-
+	@Autowired
+	protected RecipeServices recipeService = new RecipeServices(this.entityManager);
 	public void destroy() {
 		entityManager.close();
 		entityManagerFactory.close();

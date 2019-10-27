@@ -346,3 +346,31 @@ display:block;
   text-overflow: ellipsis;
   padding: 7px 0 14px;
 }
+
+.bookmark-btn{
+  display:none;
+  position:absolute;
+  left: 7px;
+  top: 7px;
+  z-index:30;
+  text-align: center;
+}
+.bookmark-btn Link{
+  height: 28px;
+  min-width: 0px;
+  line-height: 28px;
+  padding:0px;
+  border:0px;
+  -webkit-border-radius: 3px;
+}
+.bookmark-btn span{
+  background-position: 5px -36px;
+  display: inline-block;
+  padding: 0px 10px 0px 28px;
+  background: url("https://api.edamam.com/images/set-icons-bookmark-btns.png") no-repeat;
+  background-color:#7C0;
+}
+.image-change-page:hover  .bookmark-btn{
+  display:block;
+}
+

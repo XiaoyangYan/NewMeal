@@ -44,4 +44,8 @@ public class UserServices {
 	public String getUserName(String email) {
 		return userDAO.findByEmail(email).getFullName();
 	}
+	
+	public Users getUsers(String email) {
+		return userDAO.findByEmail(email);
+	}
 }

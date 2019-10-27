@@ -19,20 +19,11 @@ ul {
       .flex-rw {
         display: flex;
         flex-flow: row wrap;
-      }
-      //This main is mostly to push the footer to the bottom and for demo purposes.
-      main {
-        flex: 1 1 auto; //For IE11
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font: 10em "Oswald", sans-serif;
-        color: rgb(155,155,155);
-        line-height: 1
-      }
+        top: 20px;
+      } 
       footer {
         background: rgb(55,55,55);
-        margin-top: auto;
+        margin-top: 20px;
         width: 100%
       }
       .footer-list-top {
