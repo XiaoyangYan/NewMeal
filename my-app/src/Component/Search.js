@@ -76,9 +76,9 @@ class Search extends React.Component{
                 liFood[this.state.currentDishIndex].className = "styled-Category active-word";
         }
         componentWillMount() {
-                window.addEventListener('scroll', () =>
-                  console.log(document.body.scrollTop || document.documentElement.scrollTop)
-                )
+                // window.addEventListener('scroll', () =>
+                //   console.log(document.body.scrollTop || document.documentElement.scrollTop)
+                // )
         }
         componentDidMount(){
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import Data from '../API/Data'
 import './css/Loading.min.css';
 import ReactLoading from 'react-loading';
@@ -12,8 +12,11 @@ const ViewList = (props) => {
                         <ul className="view-list gclearfix" >
                                 {
                                         props.savedData.map((items, index) =>
-                                                <li key={index}>
-                                                        <a href="/food_intro" title={items.recipe.label} >
+                                                <li key={index} className="image-change-page">
+                                                         <div className="bookmark-btn">
+                                                                        <Link to={{pathname:'/card', state:{label:`${items.recipe.label}`}}} className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
+                                                        </div>
+                                                        <a href="/" title={items.recipe.label} >
                                                                 <img src={items.recipe.image} alt={items.recipe.label} style={{ opacity: 1 }} />
                                                                 <span className="name">{items.recipe.label}</span><span className="mask"></span>
                                                         </a>

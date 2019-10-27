@@ -2,8 +2,8 @@
 export const  AUTHENTICATED_USER =  "authenticatedUser";
 export const AUTHENTICATED_EMAIL = "authenticatedEmail"
 class AuthenticationService {
-        registerSuccessfulLogin(username, password){
-                sessionStorage.setItem(AUTHENTICATED_USER, username);
+        registerSuccessfulLogin(email, password){
+                sessionStorage.setItem(AUTHENTICATED_EMAIL, email);
         }
 
         recordLogin( email){
@@ -16,6 +16,7 @@ class AuthenticationService {
 
         isUserLoggedIn(){
                 let email = sessionStorage.getItem(AUTHENTICATED_EMAIL);
+                console.log(email);
                 if (email == null) return false;
                 return true;
         }

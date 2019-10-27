@@ -7,7 +7,6 @@ class FetchData {
         async getRecipeFromAPI(){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=Special&diet=balanced&from=0&to=5`);
         }
-
         async getRecipeFromAPIByDifferentCategory(diet){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q&diet=${diet}&from=0&to=10`);
         }
@@ -19,6 +18,9 @@ class FetchData {
         }
         async getRecipeByHealthAndDiet(dishType, health, query){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&health=${health}&dishType=${dishType}&from=0&to=100`);
+         }
+         async getSpecialRecipe(query){
+                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&from=0&to=10`);
          }
         getDataFromAPIByBalanced() {
                 return {
