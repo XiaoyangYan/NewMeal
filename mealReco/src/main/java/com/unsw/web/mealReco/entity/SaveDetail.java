@@ -21,6 +21,9 @@ import javax.persistence.Table;
 @NamedQueries({
 	@NamedQuery(name="SaveDetail.userSaving", query="Select sd.recipe From SaveDetail sd Where sd.users.userId=:userId " +
 			"Order By sd.recipe.publishDate DESC"),
+	@NamedQuery(name = "SaveDetail.findByUserAndRecipe", 
+	query="SELECT r FROM SaveDetail r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId")
+	
 })
 public class SaveDetail implements java.io.Serializable {
 

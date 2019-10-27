@@ -24,13 +24,19 @@ public class RecipeServices {
 	
 	public int createRecipe(Recipe recipe,Users user) {
 		//readRecipeDate(recipe);
-		Recipe createRecipe = recipeDAO.create(recipe);
-		SaveDetail sd = new SaveDetail();
-		sd.setRecipe(recipe);
-		sd.setUsers(user);
-		createRecipe.getSavedDetails().add(sd);
-		this.saveDetailDAO.create(sd);
-		return createRecipe.getRecipeId();
+		System.out.println(recipe.getLabel());
+		Recipe newRecipe = recipeDAO.findByLabel(recipe.getLabel());
+//		SaveDetail newSavedDetail = this.saveDetailDAO.findByUserAndRecipe(user.getUserId(), newRecipe.getRecipeId());
+		if (newRecipe == null) {
+			Recipe createRecipe = recipeDAO.create(recipe);
+			SaveDetail sd = new SaveDetail();
+			sd.setRecipe(recipe);
+			sd.setUsers(user);
+			createRecipe.getSavedDetails().add(sd);
+			this.saveDetailDAO.create(sd);
+			return createRecipe.getRecipeId();
+		}
+		return 0;
 	}
 	
 //	public void readRecipeDate(Recipe recipe) {

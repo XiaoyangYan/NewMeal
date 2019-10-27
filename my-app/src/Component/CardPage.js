@@ -24,7 +24,8 @@ class CardPage extends React.Component {
                        image: this.state.currentData.recipe.image,
                        label: this.state.currentData.recipe.label,
                        lastUpdateTime:new Date(),
-                       publishDate:new Date()
+                       publishDate:new Date(),
+                       ratings: 0
                 }
                 const email = AuthenticationService.getEmail();
                 if (AuthenticationService.isUserLoggedIn()){
@@ -34,6 +35,7 @@ class CardPage extends React.Component {
                                 this.setState({saved:true});
                                 }
                         )
+                        console.log(this.state.saved);
                 }
                 
         }
@@ -71,9 +73,9 @@ class CardPage extends React.Component {
                                                                 <img className="recipe-image" src={currentData.recipe.image} alt=""></img>
                                                                 <div className="right-intro">
                                                                         <h2 className="recipe-title">{currentData.recipe.label}</h2>
-                                                                        <p className="recipe-source">See full recipe on:<a href="/">{currentData.recipe.source}</a></p>
+                                                                        <p className="recipe-source">See full recipe on:<a href={currentData.recipe.url}>{currentData.recipe.source}</a></p>
                                                                         <div className="bookmark-options"><button className="save-button" onClick={this.saveRecipe}><span>Save</span></button></div>
-                                                                        <p className="save-details"></p>
+                                                                        <div className="save-details">{AuthenticationService.isUserLoggedIn() && this.state.saved &&<p>Saved Food Success</p>}</div>
                                                                 </div>
                                                         </div>
                                                         <div className="recipe-details">
@@ -90,7 +92,7 @@ class CardPage extends React.Component {
                                                                         </div>
                                                                         <div className="recipe-preparation">
                                                                                 <h4>Preparation</h4>
-                                                                                {AuthenticationService.isUserLoggedIn() && this.state.saved &&<p>Saved Food</p>}
+                                                                                
                                                                         </div>
                                                                 </div>
                                                                 <div className="recipe-nutrition" itemProp="nutrition" itemScope=""
@@ -100,6 +102,11 @@ class CardPage extends React.Component {
                                                                                 <ul className="recipe-diet-labels">
                                                                                         {
                                                                                                 currentData.recipe.dietLabels.map((items, index) =>
+                                                                                                        <li key={index}><strong>{items}</strong></li>
+                                                                                                )
+                                                                                        }
+                                                                                          {
+                                                                                                currentData.recipe.healthLabels.map((items, index) =>
                                                                                                         <li key={index}><strong>{items}</strong></li>
                                                                                                 )
                                                                                         }
