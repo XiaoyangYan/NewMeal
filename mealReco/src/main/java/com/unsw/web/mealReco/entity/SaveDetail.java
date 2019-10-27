@@ -6,6 +6,9 @@ import javax.persistence.AttributeOverrides;
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -15,20 +18,37 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "save_detail", catalog = "mymeal")
+@NamedQueries({
+	@NamedQuery(name="SaveDetail.userSaving", query="Select sd.recipe From SaveDetail sd Where sd.users.userId=:userId " +
+			"Order By sd.recipe.publishDate DESC"),
+	@NamedQuery(name = "SaveDetail.findByUserAndRecipe", 
+	query="SELECT r FROM SaveDetail r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId")
+	
+})
 public class SaveDetail implements java.io.Serializable {
 
-	private SaveDetailId id;
-
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private SaveDetailId id =  new SaveDetailId();
+	private Recipe recipe;
+	private Users user;
+	
 	public SaveDetail() {
 	}
 
 	public SaveDetail(SaveDetailId id) {
 		this.id = id;
 	}
-
+	
+	public SaveDetail(SaveDetailId id, Recipe recipe, Users user) {
+		this.id = id;
+		this.recipe = recipe;
+		this.user = user;
+	}
 	@EmbeddedId
-
-	@AttributeOverrides({ @AttributeOverride(name = "recipeId", column = @Column(name = "recipe_id", nullable = false)),
+	@AttributeOverrides({ @AttributeOverride(name = "recipeId",column = @Column(name = "recipe_id", nullable = false)),
 			@AttributeOverride(name = "userId", column = @Column(name = "user_id", nullable = false)) })
 	public SaveDetailId getId() {
 		return this.id;
@@ -37,5 +57,24 @@ public class SaveDetail implements java.io.Serializable {
 	public void setId(SaveDetailId id) {
 		this.id = id;
 	}
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name="user_id", insertable = false, updatable = false, nullable = false)
+	public Users getUsers() {
+		return this.user;
+	}
+	
+	public void setUsers(Users user) {
+		this.user = user;
+		this.id.setUsers(user);
+	}
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "recipe_id", insertable = false, updatable = false, nullable = false)
+	public Recipe getRecipe() {
+		return this.recipe;
+	}
 
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+		this.id.setRecipe(recipe);
+	}
 }

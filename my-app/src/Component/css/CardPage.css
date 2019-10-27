@@ -1,0 +1,273 @@
+.total-data{
+        padding: 56px 26px 15px 50px;
+        max-width: 80%;
+        max-height: 2400px;
+        margin:0 auto;
+        display: flex;
+        justify-content: flex-start;
+        justify-content: center;
+        margin-bottom: 200px;
+}
+.mean-list > li:hover .bookmark-btn{
+        display: block;
+}
+.cf{
+        zoom: 1;
+}
+.total-data .side-bar{
+        width: 400px;
+        position: relative !important;
+        left: 0px;
+        top: 150px;
+        z-index: 2;
+        float:right;
+        padding-bottom: 0;
+}
+.total-data .side-bar .try-also{
+        margin-bottom: 10px;
+        color: #666;
+        margin-left: 1.3rem;
+        text-shadow: 1px 1px 0px #fff;
+        font: normal 24px Georgia;
+        display: block;
+}
+.mean-list{
+        max-height: 100%;
+        overflow-y:scroll;
+        overflow-x:hidden;
+        display: flex;
+        flex-direction: row;
+        flex-wrap:wrap;
+        width: 100%;
+        position: relative;
+        list-style: none;
+}
+.mean-list > li {
+        left: 2%;
+        right: 2%;
+       top: 20px;
+        margin-bottom: 40px;
+        position: relative;
+        cursor:pointer;
+        list-style: none;
+}
+.recipe-data{
+        top: 150px;
+        padding-right:0px;
+        position: relative;
+        width: 80%;
+}
+.recipe-data .upper-introduction{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        border-top: 1px solid #F3F3F3;
+        border-left: 1px solid #F3F3F3;
+        margin-right:0px;
+        right:0px;
+        position: relative;
+        padding: 20px;
+}
+.upper-introduction .right-intro{
+        padding-left:100px;
+        width: 100%;
+        position: relative;
+        float:left;
+}
+.upper-introduction .recipe-title{
+        padding-left: 10px;
+        max-height: 120px;
+        overflow:hidden;
+        color: #333;
+        font: normal 33px Arial;
+        text-align: center;
+}
+.recipe-source{
+        height:26px;
+        overflow: hidden;
+        position: relative;
+        text-align:center;
+        z-index:2;
+        margin-top: 15px;
+}
+.bookmark-options{
+        width: 100%;
+        position: absolute;
+        left:20px;
+        right:0px;
+        bottom: 50px;
+        text-align: center;
+}
+.bookmark-options .save-button{
+        display: inline-block;
+        height: 40px;
+        min-width: 0px;
+        background: linear-gradient(to bottom, #77f7f7 0%, #ed7ded 100%);
+        font:normal 13px/36px Arial;
+        text-shadow: 1px solid #BFBFBF;
+        text-align:center;
+        border-radius: 10px;
+}
+.bookmark-options .save-button span {
+        background-position: -5px -30px;
+        display:inline-block;
+        background: url("https://api.edamam.com/images/set-icons-bookmark-btns.png") no-repeat 0px 0px;
+        padding-left:35px;
+        font-size:20px;
+}
+.bookmark-options .save-button span:hover{
+        color: #333;
+        font-weight:800;
+}
+.recipe-details{
+        top: 20px;
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        overflow:hidden;
+        justify-content: space-around;
+        width: 100%;
+}
+.recipe-p-i{
+        display: flex;
+        flex-direction: column;
+        align-items:flex-start;
+}
+.recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4{
+        display: block;
+        margin-bottom:15px;
+        border-bottom: 1px solid #D9D9D9;
+        line-height: 35px;
+        padding-bottom: 10px;
+        font: normal 35px Georgia;
+}
+.recipe-ingredients  li{
+        font-size: 1.2rem;
+        letter-spacing: 0.5px;
+        padding-top:10px;
+        padding-bottom:10px;
+}
+.recipe-nutrition{
+        width: 47%;
+        float:right;
+}
+.nutrition-details{
+        padding-top: 5px;
+        margin-top: -5px;
+}
+.recipe-diet-labels{
+        width:100%;
+        display: flex;
+        flex-direction: row;
+        align-content: space-between;
+        flex-wrap:wrap;
+        text-transform: capitalize;
+        color:#666;
+        font:normal 20px Arial;
+        text-align:center;
+        font-size:14px;
+}
+.recipe-diet-labels li{
+        width:25%;
+        height: 25px;
+        line-height: 25px;
+        margin: 10px 10px;
+        overflow:hidden;
+        background: #BFBFBF;
+}
+.recipe-diet-labels li:hover{
+        color: green;
+}
+.nutrition-bar{
+        width: 200px;
+        margin:0 auto;
+        margin-left: 150px;
+        -webkit-border-radius: 20px;
+}
+.bar-cf{
+        zoom:1;
+        margin-right:-3px;
+        height:16px;
+}
+.red-part, .yellow-part, .green-part{
+        display:inline-block;
+        height:16px;
+}
+.red-part{
+        background:linear-gradient(to bottom, #ffab61, #d83800 100%);
+}
+.yellow-part{
+        background: linear-gradient(to bottom, #ffd86c 0%,#ffba00 100%);
+}
+.green-part{
+        background: linear-gradient(to bottom, #8cd921 0%,#75b916 100%);
+}
+.nutrition-list{
+        color: #999;
+        font:16px Arial, Helvetica, sans-serif;
+        margin-top: 20px;
+        display:flex;
+        flex-direction: column;
+}
+.nutrition-list li {
+        height: 50px;
+        line-height:50px;
+        display: flex;
+        top: 20px;
+        bottom: 10px;
+        flex-direction:row;
+        position: relative;
+        border-bottom: 1px #666;
+}
+.nutrition-list h2{
+        font-size:25px;
+        line-height: 25px;
+}
+.nutrition-list span {
+        width: 56px;
+        left: 70%;
+        line-height: 25px;
+        position:absolute;
+        color: #666;
+        text-align: right;
+        float:right;
+        letter-spacing: 2px;
+        text-transform: none;
+}
+@media screen and  (max-width: 1225px){
+        .recipe-p-i{
+                display:none;
+        }
+        .upper-introduction, .recipe-details{
+                display:flex;
+                flex-direction: column!important;
+                position: relative!important;
+                width: 500px!important;
+        }
+        .right-intro{
+                padding-left:0!important;
+                height: 250px!important;
+        }
+        .right-intro .bookmark-options{
+                padding-right:40px;
+        }
+        .recipe-nutrition{
+                width: 100%;
+        }
+}
+@media screen and (max-width: 925px){
+        .side-bar{
+                display:none!important;
+        }
+}
+.nutrition-list li:nth-child(1) {
+        color: red;
+}
+.nutrition-list li:nth-child(2) {
+        color: orange;
+}
+.nutrition-list li:nth-child(3) {
+        color: green;
+}

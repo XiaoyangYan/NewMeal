@@ -81,4 +81,13 @@ public class JpaDAO<T> {
 		query.setParameter(paramName, paramValue);
 		return query.getResultList();
 	}
+	 @Transactional
+	 public List<Object[]> findWithNamedQueryObjects(String queryName, int firstResult, int maxResult) {
+		 Query query = entityManager.createNamedQuery(queryName);		
+		 query.setFirstResult(firstResult);
+		 query.setMaxResults(maxResult);
+		 List<Object[]> result = query.getResultList();
+		 return result;
+	}
+
 }

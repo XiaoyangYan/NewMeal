@@ -1,12 +1,17 @@
 package com.unsw.web.mealReco.entity;
 // Generated 2019-10-18 17:39:37 by Hibernate Tools 5.2.12.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
@@ -22,9 +27,8 @@ import javax.persistence.TemporalType;
 	@NamedQuery(name = "Review.listAll", query="SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
 	@NamedQuery(name = "Review.countAll", query="SELECT COUNT(r) FROM Review r"),
 	@NamedQuery(name = "Review.findByUserAndRecipe", 
-	query="SELECT r FROM Review r WHERE r.userId = :userId"+" AND r.recipeId = :recipeId"),
-	@NamedQuery(name = "Review.findByUser", query = "SELECT r FROM Review r WHERE r.userId = :userId"),
-	@NamedQuery(name = "Review.findByRecipe", query = "SELECT r from Review r WHERE r.recipeId = :recipeId")
+	query="SELECT r FROM Review r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId")
+	
 })
 public class Review implements java.io.Serializable {
 
@@ -37,19 +41,19 @@ public class Review implements java.io.Serializable {
 	private String headline;
 	private int rating;
 	private Date reviewTime;
-	private int recipeId;
-	private int userId;
+	private Recipe recipe;
+	private Users user;
 
 	public Review() {
 	}
 
-	public Review(String comment, String headline, int rating, Date reviewTime, int recipeId, int userId) {
+	public Review(String comment, String headline, int rating, Date reviewTime, Recipe recipe, Users user) {
 		this.comment = comment;
 		this.headline = headline;
 		this.rating = rating;
 		this.reviewTime = reviewTime;
-		this.recipeId = recipeId;
-		this.userId = userId;
+		this.recipe = recipe;
+		this.user = user;
 	}
 
 	@Id
@@ -101,22 +105,23 @@ public class Review implements java.io.Serializable {
 		this.reviewTime = reviewTime;
 	}
 
-	@Column(name = "recipe_id", nullable = false)
-	public int getRecipeId() {
-		return this.recipeId;
+	@ManyToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name="recipe_id", nullable=false)
+	public Recipe getRecipe(){
+		return this.recipe;
+	}
+	public void setRecipe(Recipe recipe) {
+		this.recipe = recipe;
+	}
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id", nullable = false)
+	public Users getUsers() {
+		return this.user;
 	}
 
-	public void setRecipeId(int recipeId) {
-		this.recipeId = recipeId;
-	}
-
-	@Column(name = "user_id", nullable = false)
-	public int getUserId() {
-		return this.userId;
-	}
-
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUsers(Users customer) {
+		this.user = customer;
 	}
 
 }

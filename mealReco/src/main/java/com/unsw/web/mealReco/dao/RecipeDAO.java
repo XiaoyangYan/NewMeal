@@ -10,6 +10,10 @@ import javax.transaction.Transactional;
 
 import com.unsw.web.mealReco.entity.Recipe;
 
+import org.springframework.stereotype.Service;
+
+@Transactional
+@Service
 public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 
 	public RecipeDAO(EntityManager entityManager) {
@@ -52,7 +56,7 @@ public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 		return super.countWithNamedQuery("Recipe.countAll");
 	}
 	
-
+	@Transactional
 	public List<Recipe> listByLabel(String label) {
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("label", label);
@@ -62,6 +66,22 @@ public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 			return result;
 		}
 		return null;
+
+	}
+	@Transactional
+	public Recipe findByLabel(String label) {
+		List<Recipe> result = super.findWithNamedQuery("Recipe.findByLabel", "label", label);
+		if (!result.isEmpty() && result.size()>0) {
+			return result.get(0);
+		}
+		return null;
+	}
+	
+	@Transactional
+	public List<Recipe> listSavedRecipe(int userId){
+		List<Recipe> savedRecipe = super.findWithNamedQuery("SaveDetail.userSaving", 
+				"userId", userId);
+		return savedRecipe;
 	}
 
 }

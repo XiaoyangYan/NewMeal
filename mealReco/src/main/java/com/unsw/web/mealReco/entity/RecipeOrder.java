@@ -18,6 +18,10 @@ import javax.persistence.TemporalType;
 @Table(name = "recipe_order", catalog = "mymeal")
 public class RecipeOrder implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer orderId;
 	private Date orderDate;
 	private String paymentMethod;

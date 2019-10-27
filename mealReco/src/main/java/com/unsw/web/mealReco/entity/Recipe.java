@@ -1,14 +1,22 @@
 package com.unsw.web.mealReco.entity;
 // Generated 2019-10-18 17:39:37 by Hibernate Tools 5.2.12.Final
 
+import static javax.persistence.GenerationType.IDENTITY;
+
+import java.util.Comparator;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -22,44 +30,52 @@ import javax.persistence.UniqueConstraint;
 @NamedQueries({
 	@NamedQuery(name = "Recipe.findAll", query = "SELECT r FROM Recipe r ORDER BY r.recipeId"),
 	@NamedQuery(name = "Recipe.findByLabel", query = "SELECT r FROM Recipe r WHERE r.label = :label"),
-	@NamedQuery(name = "Recipe.countAll", query = "SELECT COUNT(r) FROM Recipe r")
+	@NamedQuery(name="Recipe.countAll", query="SELECT COUNT(r) FROM Recipe r"),
 })
 public class Recipe implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer recipeId;
-	private long calories;
-	private String carbs;
-	private int categoryId;
-	private String description;
-	private String dishType;
-	private long fat;
 	private String image;
 	private String label;
 	private Date lastUpdateTime;
-	private String mealType;
-	private long protein;
 	private Date publishDate;
-	private long sugar;
-
+	private float ratings;
+	
+	private Set<SaveDetail> savedDetails = new HashSet<SaveDetail>(0);
+	private Set<Review> reviews = new HashSet<Review>(0);
+	
 	public Recipe() {
 	}
 
-	public Recipe(long calories, String carbs, int categoryId, String description, String dishType, long fat,
-			String image, String label, Date lastUpdateTime, String mealType, long protein, Date publishDate,
-			long sugar) {
-		this.calories = calories;
-		this.carbs = carbs;
-		this.categoryId = categoryId;
-		this.description = description;
-		this.dishType = dishType;
-		this.fat = fat;
+	public Recipe(
+			String image, String label, Date lastUpdateTime, Date publishDate) {
 		this.image = image;
 		this.label = label;
 		this.lastUpdateTime = lastUpdateTime;
-		this.mealType = mealType;
-		this.protein = protein;
 		this.publishDate = publishDate;
-		this.sugar = sugar;
+	}
+	public Recipe(
+			String image, String label, Date lastUpdateTime, Date publishDate, float ratings) {
+		this.image = image;
+		this.label = label;
+		this.lastUpdateTime = lastUpdateTime;
+		this.publishDate = publishDate;
+		this.ratings = ratings;
+	}
+	
+	public Recipe(
+			String image, String label, Date lastUpdateTime, Date publishDate,float ratings, Set<Review> reviews, Set<SaveDetail> saveDetails) {
+		this.image = image;
+		this.label = label;
+		this.lastUpdateTime = lastUpdateTime;
+		this.publishDate = publishDate;
+		this.ratings = ratings;
+		this.reviews = reviews;
+		this.savedDetails = saveDetails;
 	}
 
 	@Id
@@ -74,60 +90,6 @@ public class Recipe implements java.io.Serializable {
 		this.recipeId = recipeId;
 	}
 
-	@Column(name = "calories", nullable = false, precision = 10, scale = 0)
-	public long getCalories() {
-		return this.calories;
-	}
-
-	public void setCalories(long calories) {
-		this.calories = calories;
-	}
-
-	@Column(name = "carbs", nullable = false, length = 10)
-	public String getCarbs() {
-		return this.carbs;
-	}
-
-	public void setCarbs(String carbs) {
-		this.carbs = carbs;
-	}
-
-	@Column(name = "category_id", nullable = false)
-	public int getCategoryId() {
-		return this.categoryId;
-	}
-
-	public void setCategoryId(int categoryId) {
-		this.categoryId = categoryId;
-	}
-
-	@Column(name = "description", nullable = false)
-	public String getDescription() {
-		return this.description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	@Column(name = "dish_type", nullable = false, length = 100)
-	public String getDishType() {
-		return this.dishType;
-	}
-
-	public void setDishType(String dishType) {
-		this.dishType = dishType;
-	}
-
-	@Column(name = "fat", nullable = false, precision = 10, scale = 0)
-	public long getFat() {
-		return this.fat;
-	}
-
-	public void setFat(long fat) {
-		this.fat = fat;
-	}
-
 	@Column(name = "image", nullable = false, length = 1000)
 	public String getImage() {
 		return this.image;
@@ -137,7 +99,7 @@ public class Recipe implements java.io.Serializable {
 		this.image = image;
 	}
 
-	@Column(name = "label", unique = true, nullable = false, length = 128)
+	@Column(name = "label", unique = true, nullable = false, length = 1000)
 	public String getLabel() {
 		return this.label;
 	}
@@ -156,24 +118,6 @@ public class Recipe implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 	}
 
-	@Column(name = "meal_type", nullable = false, length = 100)
-	public String getMealType() {
-		return this.mealType;
-	}
-
-	public void setMealType(String mealType) {
-		this.mealType = mealType;
-	}
-
-	@Column(name = "protein", nullable = false, precision = 10, scale = 0)
-	public long getProtein() {
-		return this.protein;
-	}
-
-	public void setProtein(long protein) {
-		this.protein = protein;
-	}
-
 	@Temporal(TemporalType.DATE)
 	@Column(name = "publish_date", nullable = false, length = 10)
 	public Date getPublishDate() {
@@ -183,14 +127,84 @@ public class Recipe implements java.io.Serializable {
 	public void setPublishDate(Date publishDate) {
 		this.publishDate = publishDate;
 	}
-
-	@Column(name = "sugar", nullable = false, precision = 10, scale = 0)
-	public long getSugar() {
-		return this.sugar;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
+	public Set<Review> getReviews() {
+		TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
+			@Override
+			public int compare(Review review1, Review review2) {
+				return review2.getReviewTime().compareTo(review1.getReviewTime());
+			}
+		});
+		sortedReviews.addAll(reviews);
+		return sortedReviews;
+	}
+	public void setReviews(Set<Review> reviews) {
+		this.reviews = reviews;
+	}
+	@OneToMany(fetch=FetchType.LAZY, mappedBy="recipe")
+	public Set<SaveDetail> getSavedDetails(){
+		return this.savedDetails;
+	}
+	
+	public void setSavedDetails(Set<SaveDetail> saveDetails) {
+		this.savedDetails = saveDetails;
+	}
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((image == null) ? 0 : image.hashCode());
+		result = prime * result + ((label == null) ? 0 : label.hashCode());
+		result = prime * result + ((lastUpdateTime == null) ? 0 : lastUpdateTime.hashCode());
+		result = prime * result + ((publishDate == null) ? 0 : publishDate.hashCode());
+		result = prime * result + ((recipeId == null) ? 0 : recipeId.hashCode());
+		return result;
 	}
 
-	public void setSugar(long sugar) {
-		this.sugar = sugar;
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Recipe other = (Recipe) obj;
+		if (image == null) {
+			if (other.image != null)
+				return false;
+		} else if (!image.equals(other.image))
+			return false;
+		if (label == null) {
+			if (other.label != null)
+				return false;
+		} else if (!label.equals(other.label))
+			return false;
+		if (lastUpdateTime == null) {
+			if (other.lastUpdateTime != null)
+				return false;
+		} else if (!lastUpdateTime.equals(other.lastUpdateTime))
+			return false;
+		if (publishDate == null) {
+			if (other.publishDate != null)
+				return false;
+		} else if (!publishDate.equals(other.publishDate))
+			return false;
+		if (recipeId == null) {
+			if (other.recipeId != null)
+				return false;
+		} else if (!recipeId.equals(other.recipeId))
+			return false;
+		return true;
+	}
+	
+	@Column(name = "ratings", nullable = false, precision = 12, scale = 0)
+	public float getRatings() {
+		return this.ratings;
 	}
 
+	public void setRatings(float ratings) {
+		this.ratings = ratings;
+	}
 }
