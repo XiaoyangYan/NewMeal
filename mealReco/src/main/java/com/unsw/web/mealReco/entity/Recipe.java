@@ -43,6 +43,7 @@ public class Recipe implements java.io.Serializable {
 	private String label;
 	private Date lastUpdateTime;
 	private Date publishDate;
+	private float ratings;
 	
 	private Set<SaveDetail> savedDetails = new HashSet<SaveDetail>(0);
 	private Set<Review> reviews = new HashSet<Review>(0);
@@ -51,21 +52,28 @@ public class Recipe implements java.io.Serializable {
 	}
 
 	public Recipe(
-			String image, String label, Date lastUpdateTime, Date publishDate,
-			long sugar) {
+			String image, String label, Date lastUpdateTime, Date publishDate) {
 		this.image = image;
 		this.label = label;
 		this.lastUpdateTime = lastUpdateTime;
 		this.publishDate = publishDate;
 	}
-	
 	public Recipe(
-			String image, String label, Date lastUpdateTime, Date publishDate,
-			long sugar, Set<Review> reviews, Set<SaveDetail> saveDetails) {
+			String image, String label, Date lastUpdateTime, Date publishDate, float ratings) {
 		this.image = image;
 		this.label = label;
 		this.lastUpdateTime = lastUpdateTime;
 		this.publishDate = publishDate;
+		this.ratings = ratings;
+	}
+	
+	public Recipe(
+			String image, String label, Date lastUpdateTime, Date publishDate,float ratings, Set<Review> reviews, Set<SaveDetail> saveDetails) {
+		this.image = image;
+		this.label = label;
+		this.lastUpdateTime = lastUpdateTime;
+		this.publishDate = publishDate;
+		this.ratings = ratings;
 		this.reviews = reviews;
 		this.savedDetails = saveDetails;
 	}
@@ -190,5 +198,13 @@ public class Recipe implements java.io.Serializable {
 			return false;
 		return true;
 	}
+	
+	@Column(name = "ratings", nullable = false, precision = 12, scale = 0)
+	public float getRatings() {
+		return this.ratings;
+	}
 
+	public void setRatings(float ratings) {
+		this.ratings = ratings;
+	}
 }
