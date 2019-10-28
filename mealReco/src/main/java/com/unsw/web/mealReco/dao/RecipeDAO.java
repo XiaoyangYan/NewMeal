@@ -62,7 +62,7 @@ public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 		parameters.put("label", label);
 		List<Recipe> result = super.findWithNamedQuery("Review.findByLabel", parameters);
 		
-		if (!result.isEmpty()) {
+		if (!result.isEmpty() && result.size() > 0) {
 			return result;
 		}
 		return null;
