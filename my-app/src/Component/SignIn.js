@@ -6,7 +6,7 @@ const SignIn = (props) => {
                 <div className="sign-in-htm">
                     <div className="group">
                         <label htmlFor="email" className="label">Email</label>
-                        <input id="email" name="email"  type="text" className="input"
+                        <input id="email" name="email"  type="text" className="input" 
                          placeholder="Please type your email"  value={props.email}
                                onChange = {props.onChange}/>
                     </div>

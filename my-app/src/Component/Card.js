@@ -12,7 +12,7 @@ class Card extends React.Component{
                 return(
                         <>
                         <div className="bookmark-btn">
-                                <Link to={{pathname:'/card', state:{label:`${this.props.title}`}}} className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
+                                <Link to={{pathname:`/card/${this.props.title}`, state:{label:`${this.props.title}`}}} exact="true" className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
                         </div>
                         <div className="box">
                                 <div className="inner" itemScope itemType="http://schema.org/Recipe">

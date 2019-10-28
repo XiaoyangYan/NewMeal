@@ -18,7 +18,7 @@
         width: 400px;
         position: relative !important;
         left: 0px;
-        top: 150px;
+        top: 130px;
         z-index: 2;
         float:right;
         padding-bottom: 0;
@@ -52,7 +52,7 @@
         list-style: none;
 }
 .recipe-data{
-        top: 150px;
+        top: 130px;
         padding-right:0px;
         position: relative;
         width: 80%;
@@ -76,7 +76,6 @@
         float:left;
 }
 .upper-introduction .recipe-title{
-        padding-left: 10px;
         max-height: 120px;
         overflow:hidden;
         color: #333;
@@ -94,10 +93,26 @@
 .bookmark-options{
         width: 100%;
         position: absolute;
-        left:20px;
+        margin-left:20px;
         right:0px;
-        bottom: 50px;
+        bottom: 100px;
         text-align: center;
+}
+@font-face {
+  font-family: Nunito;
+  src: url('../fonts/Nunito-Regular.ttf');
+}
+.upper-introduction .right-intro .save-details{
+        width: 40%;
+        left:36%;
+        right:0;
+        bottom: 5px;
+        position:absolute;
+        font-size:20px;
+        line-height:20px;
+        font-family:Nunito;
+        font-weight:800;
+        color: #db6b10;
 }
 .bookmark-options .save-button{
         display: inline-block;
@@ -134,6 +149,7 @@
         display: flex;
         flex-direction: column;
         align-items:flex-start;
+        width:40%;
 }
 .recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4{
         display: block;
@@ -142,6 +158,7 @@
         line-height: 35px;
         padding-bottom: 10px;
         font: normal 35px Georgia;
+        width: 60%;
 }
 .recipe-ingredients  li{
         font-size: 1.2rem;
@@ -150,7 +167,7 @@
         padding-bottom:10px;
 }
 .recipe-nutrition{
-        width: 47%;
+        width: 50%;
         float:right;
 }
 .nutrition-details{
@@ -183,7 +200,6 @@
 .nutrition-bar{
         width: 200px;
         margin:0 auto;
-        margin-left: 150px;
         -webkit-border-radius: 20px;
 }
 .bar-cf{
@@ -210,6 +226,8 @@
         margin-top: 20px;
         display:flex;
         flex-direction: column;
+        flex-wrap: wrap;
+        overflow: hidden;
 }
 .nutrition-list li {
         height: 50px;
@@ -222,8 +240,9 @@
         border-bottom: 1px #666;
 }
 .nutrition-list h2{
-        font-size:25px;
+        font-size:20px;
         line-height: 25px;
+        margin-right:10px;
 }
 .nutrition-list span {
         width: 56px;

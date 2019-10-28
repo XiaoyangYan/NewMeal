@@ -14,7 +14,7 @@ const ViewList = (props) => {
                                         props.savedData.map((items, index) =>
                                                 <li key={index} className="image-change-page">
                                                          <div className="bookmark-btn">
-                                                                        <Link to={{pathname:'/card', state:{label:`${items.recipe.label}`}}} className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
+                                                                        <Link to={{pathname:`/card/${items.recipe.label}`, state:{label:`${items.recipe.label}`}}} className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
                                                         </div>
                                                         <a href="/" title={items.recipe.label} >
                                                                 <img src={items.recipe.image} alt={items.recipe.label} style={{ opacity: 1 }} />
@@ -114,7 +114,7 @@ class DashBoard extends React.Component {
                                                 </ul>
                                                 <span className="more" target="_blank"><a href="#search" >More</a></span>
                                         </div>
-                                        <div className="mod-bd">
+                                        <div className="mod-bd" id="search">
                                                 <ul className="views" id="views">
                                                         <li className="view-item active" >
                                                                 <ViewList savedData={balancedHits}/>
