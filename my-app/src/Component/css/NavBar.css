@@ -172,7 +172,7 @@
 	height: 100%;
         max-width: 250px;
 	position: fixed;
-	z-index: 3;
+	z-index: 13;
 	top: 0;
 	right: 0;
 	background-color: #ffe753;
