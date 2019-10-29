@@ -14,10 +14,6 @@ class App extends React.Component {
 			userName: "",
 		}
 	}
-	componentDidMount(){
-		
-	}
-
 	render() {
 		return (
 			<Router >
@@ -27,7 +23,7 @@ class App extends React.Component {
 						<Route  path="/" exact component={Login}></Route>
 						<Route path="/dash" ><DashBoard/></Route>
 						<Route path="/dash/:name" ><DashBoard/></Route>
-						<Route path="/card" component={CardPage}></Route>
+						<Route path="/card/:label" exact component={CardPage}></Route>
 						<Route path="/login"  component={Login}></Route>
 						<Route path="/footer"  component={Footer}></Route>
 						<Route component={ErrorPage}></Route>

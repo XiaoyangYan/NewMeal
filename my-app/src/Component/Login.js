@@ -39,9 +39,9 @@ class Login extends React.Component {
 		const message = await AjaxServiceSignForm.loginExistUser(this.state.email, this.state.password);
 		if (message.data === "valid"){
 			this.props.LoginUser({email: this.state.email, password:this.state.password});
-			const userName = await AjaxServiceSignForm.getUserName(this.state.email);
-			this.props.GetUserName({email: this.state.email, username:userName});
-			this.props.history.push(`/dash/${this.state}`);
+			// const userName = await AjaxServiceSignForm.getUserName(this.state.email);
+			// this.props.GetUserName({email: this.state.email, username:userName});
+			this.props.history.push(`/dash/${this.state.email}`);
 		} else if (message.data === "invalid"){
 			this.setState({
 				userValid: false

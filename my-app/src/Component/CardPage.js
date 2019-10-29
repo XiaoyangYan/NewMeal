@@ -17,6 +17,7 @@ class CardPage extends React.Component {
                         successData:"",
                         saved: false,
                 }
+                this.handleData = this.handleData.bind(this);
         }
         saveRecipe= (e) =>{
                 e.preventDefault();
@@ -31,16 +32,24 @@ class CardPage extends React.Component {
                 if (AuthenticationService.isUserLoggedIn()){
                         AjaxServiceRecipeForm.saveNewFood(Recipe, email).then(
                                 res=>{
-                                console.log(res);   
-                                this.setState({saved:true});
+                                        console.log(res);   
+                                        this.setState({saved:true});
+                                        console.log(this.state.saved);
                                 }
                         )
-                        console.log(this.state.saved);
                 }
-                
         }
-        async  componentDidMount() {
-                const currentLabel = this.props.location.state.label;
+       
+        async componentWillReceiveProps(nextProps){
+                if (this.state.currentData.recipe.label !== nextProps.match.params.label){
+                        if ( nextProps.match.params.label){
+                               await  this.handleData();
+                        }
+                }
+        }
+       async handleData(){
+                console.log(this.props);
+                const currentLabel = this.props.match.params.label;
                 console.log(currentLabel);
                 this.setState({ isLoading: true });
                 const data = await Data.getSpecialRecipe(currentLabel);
@@ -49,21 +58,17 @@ class CardPage extends React.Component {
                         totalData: data.data.hits,
                         isLoading: false,
                 })
-                this.state.totalData.shift();
+                this.state.totalData.shift(0);
                 console.log(this.state.currentData);
+        }
+         async  componentDidMount() {
+              await this.handleData();
         }
         render() {
                 if (this.state.isLoading) {
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
                 } else {
                         const { currentData, totalData } = this.state;
-                        totalData.shift(0);
-                        var num = 0;
-                        var average = 0;
-                        for (var item in  currentData.recipe.digest){
-                                num += item.daily;
-                        }
-                        average = num/currentData.recipe.digest.length;
                         console.log(currentData.dietLabels);
                         return (
                                 <>
@@ -75,7 +80,7 @@ class CardPage extends React.Component {
                                                                         <h2 className="recipe-title">{currentData.recipe.label}</h2>
                                                                         <p className="recipe-source">See full recipe on:<a href={currentData.recipe.url}>{currentData.recipe.source}</a></p>
                                                                         <div className="bookmark-options"><button className="save-button" onClick={this.saveRecipe}><span>Save</span></button></div>
-                                                                        <div className="save-details">{AuthenticationService.isUserLoggedIn() && this.state.saved &&<p>Saved Food Success</p>}</div>
+                                                                        <div className="save-details">{AuthenticationService.isUserLoggedIn() && this.state.saved &&<p>Saved Food Success!</p>}</div>
                                                                 </div>
                                                         </div>
                                                         <div className="recipe-details">
@@ -113,9 +118,9 @@ class CardPage extends React.Component {
                                                                                 </ul>
                                                                                 <div className="nutrition-bar">
                                                                                         <div className="bar-cf">
-                                                                                                <span className="red-part" style={{width:currentData.recipe.digest[0].daily*2}}></span>
-                                                                                                 <span className="yellow-part"  style={{width:currentData.recipe.digest[1].daily*2}}></span>
-                                                                                                 <span className="green-part"  style={{width:currentData.recipe.digest[2].daily*2}}></span>
+                                                                                                <span className="red-part" style={{width:currentData.recipe.digest[0].daily/2}}></span>
+                                                                                                 <span className="yellow-part"  style={{width:currentData.recipe.digest[1].daily/2}}></span>
+                                                                                                 <span className="green-part"  style={{width:currentData.recipe.digest[2].daily/2}}></span>
                                                                                         </div>
                                                                                 </div>
                                                                                 <ul className="nutrition-list">
@@ -137,7 +142,9 @@ class CardPage extends React.Component {
                                                                 {
                                                                         totalData.map((items, index) =>
                                                                                 <li key={index}><Card calories={items.recipe.calories} ingredientsLength={items.recipe.ingredients.length}
-                                                                                        backgroundImage={items.recipe.image} title={items.recipe.label} source={items.recipe.source} /></li>
+                                                                                        backgroundImage={items.recipe.image} title={items.recipe.label} source={items.recipe.source} 
+                                                                                       props={this.props}
+                                                                                        /></li>
                                                                         )
                                                                 }
                                                         </ul>

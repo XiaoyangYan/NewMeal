@@ -67,6 +67,18 @@ public class SaveDetailDAO extends JpaDAO<SaveDetail> implements GenericDAO<Save
 		}
 		return null;
 	}
+	
+	@Transactional
+	public List<SaveDetail> userSaving(int userId) {
+		Map<String, Object> parameters = new HashMap<>();
+		parameters.put("userId", userId);
+		
+		List<SaveDetail> result = super.findWithNamedQuery("SaveDetail.userSaving", parameters);
+		if (!result.isEmpty()) {
+			return result;
+		}
+		return null;
+	}
 
 
 }
