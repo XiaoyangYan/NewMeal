@@ -11,6 +11,9 @@
   padding: 15px;
   padding-bottom: 0;
 }
+ul{
+  padding-left:0;
+}
 @font-face {
   font-family: Nunito;
   src: url('../fonts/Nunito-Regular.ttf');

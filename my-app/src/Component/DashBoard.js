@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Data from '../API/Data'
 import './css/Loading.min.css';
 import ReactLoading from 'react-loading';
