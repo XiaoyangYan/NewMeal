@@ -36,6 +36,7 @@ public class UserDAOTest {
 		entitymanager.getTransaction().begin();
 		user = userdao.create(user);
 		entitymanager.getTransaction().commit();
+
 		
 		assertTrue(user.getUserId() > 0);
 		

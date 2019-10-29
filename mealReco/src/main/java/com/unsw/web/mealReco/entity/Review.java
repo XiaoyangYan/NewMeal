@@ -23,8 +23,8 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "review", catalog = "mymeal")
-@NamedQueries({
-	@NamedQuery(name = "Review.listAll", query="SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
+@NamedQueries({//change
+	@NamedQuery(name = "Review.findAll", query="SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
 	@NamedQuery(name = "Review.countAll", query="SELECT COUNT(r) FROM Review r"),
 	@NamedQuery(name = "Review.findByUserAndRecipe", 
 	query="SELECT r FROM Review r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId")
