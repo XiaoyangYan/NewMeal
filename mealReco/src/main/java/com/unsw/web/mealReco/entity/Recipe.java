@@ -28,9 +28,9 @@ import javax.persistence.UniqueConstraint;
 @Entity
 @Table(name = "recipe", catalog = "mymeal", uniqueConstraints = @UniqueConstraint(columnNames = "label"))
 @NamedQueries({
-	@NamedQuery(name="Recipe.findAll",query="SELECT r FROM Recipe r"),
+	@NamedQuery(name = "Recipe.findAll", query = "SELECT r FROM Recipe r ORDER BY r.recipeId"),
+	@NamedQuery(name = "Recipe.findByLabel", query = "SELECT r FROM Recipe r WHERE r.label = :label"),
 	@NamedQuery(name="Recipe.countAll", query="SELECT COUNT(r) FROM Recipe r"),
-	@NamedQuery(name="Recipe.findByLabel", query="SELECT r FROM Recipe r WHERE r.label= :label")
 })
 public class Recipe implements java.io.Serializable {
 
