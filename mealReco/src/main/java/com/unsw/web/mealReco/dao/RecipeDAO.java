@@ -56,18 +56,7 @@ public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 		return super.countWithNamedQuery("Recipe.countAll");
 	}
 	
-	@Transactional
-	public List<Recipe> listByLabel(String label) {
-		Map<String, Object> parameters = new HashMap<>();
-		parameters.put("label", label);
-		List<Recipe> result = super.findWithNamedQuery("Review.findByLabel", parameters);
-		
-		if (!result.isEmpty() && result.size() > 0) {
-			return result;
-		}
-		return null;
 
-	}
 	@Transactional
 	public Recipe findByLabel(String label) {
 		List<Recipe> result = super.findWithNamedQuery("Recipe.findByLabel", "label", label);
