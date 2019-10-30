@@ -1,12 +1,12 @@
 import React from "react";
-import StarItem from "./StarItems";
 import Data from "../API/Data";
 import Card from "./Card";
 import ReactLoading from 'react-loading';
 import "./css/CardPage.css";
-import AjaxServiceRecipeFrom from "./Service/AjaxServiceRecipeForm"
 import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
 import AuthenticationService from "./Service/AuthenticationService";
+import Reviews from "./Reviews";
+import StarItem from "./StarItems"
 class CardPage extends React.Component {
         constructor(props) {
                 super(props);
@@ -97,7 +97,10 @@ class CardPage extends React.Component {
                                                                         </div>
                                                                         <div className="recipe-preparation">
                                                                                 <h4>Preparation</h4>
-                                                                                
+                                                                        </div>
+                                                                        <div className="recipe-review">
+                                                                                <h4>Reviews</h4>
+                                                                                <Reviews label={currentData.recipe.label}/>
                                                                         </div>
                                                                 </div>
                                                                 <div className="recipe-nutrition" itemProp="nutrition" itemScope=""

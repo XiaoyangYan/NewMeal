@@ -20,5 +20,13 @@ public class ReviewServices {
 		reviewDAO = new ReviewDAO(entityManager);
 
 	}
-
+	
+	public void createReview(Review review) {
+		System.out.println(review.getComment());
+		reviewDAO.create(review);
+	}
+	
+	public List<Review> listReview(){
+		return this.reviewDAO.listAll();
+	}
 }

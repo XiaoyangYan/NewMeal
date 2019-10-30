@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.unsw.web.mealReco.controller.service.RecipeServices;
+import com.unsw.web.mealReco.controller.service.ReviewServices;
 import com.unsw.web.mealReco.controller.service.UserServices;
 @Transactional
 @Service
@@ -25,6 +26,8 @@ public class BaseController {
 	protected UserServices userService = new UserServices(this.entityManager);
 	@Autowired
 	protected RecipeServices recipeService = new RecipeServices(this.entityManager);
+	@Autowired
+	protected ReviewServices reviewService = new ReviewServices(this.entityManager);
 	public void destroy() {
 		entityManager.close();
 		entityManagerFactory.close();

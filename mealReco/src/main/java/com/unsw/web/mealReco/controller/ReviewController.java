@@ -1,5 +1,7 @@
 package com.unsw.web.mealReco.controller;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -14,22 +16,29 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.unsw.web.mealReco.entity.Recipe;
+import com.unsw.web.mealReco.entity.Review;
 import com.unsw.web.mealReco.entity.Users;
 
 @CrossOrigin(origins = "http://localhost:4200")
 @Transactional
 @RestController
 @EnableAutoConfiguration
-@RequestMapping("/recipe")
-public class RecipeController extends BaseController{
+@RequestMapping("/review")
+public class ReviewController extends BaseController {
 
-	@PostMapping(path="/create/{email}")
+	@PostMapping(path="/create/{email}/{label}")
 	@ResponseBody
-	public ResponseEntity<?> createNewRecipe(@RequestBody Recipe recipe, @PathVariable String email){
-		System.out.println(recipe.getLabel()+" "+recipe.getPublishDate());
+	public ResponseEntity<List<Review>> createNewReview(@RequestBody Review review,
+					@PathVariable String email, @PathVariable String label){
+		System.out.println(label);
 		Users user = this.userService.getUsers(email);
-		Integer recipeId = this.recipeService.createRecipe(recipe, user);
-		return new ResponseEntity<String>(recipeId.toString(), HttpStatus.OK);
+		Recipe recipe = this.recipeService.getRecipe(label);
+		System.out.println(recipe.getLabel());
+		review.setRecipe(recipe);
+		review.setUsers(user);
+	    this.reviewService.createReview(review);
+	    List<Review> results = this.reviewService.listReview();
+		return new ResponseEntity<List<Review>>(results, HttpStatus.OK);
 	}
 
 }

@@ -32,13 +32,15 @@ public class RecipeServices {
 			SaveDetail sd = new SaveDetail();
 			sd.setRecipe(recipe);
 			sd.setUsers(user);
-			createRecipe.getSavedDetails().add(sd);
 			this.saveDetailDAO.create(sd);
 			return createRecipe.getRecipeId();
 		}
 		return 0;
 	}
 	
+	public Recipe getRecipe(String label) {
+		return recipeDAO.findByLabel(label);
+	}
 //	public void readRecipeDate(Recipe recipe) {
 //		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
 //		Date publishDate = null;
