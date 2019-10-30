@@ -15,10 +15,12 @@ class Reviews extends React.Component{
                         rating: 0,
                         validator: new ReactValidator(),
                         reviews: this.props.totalReview,
+                        savedRecipe:"",
                 }
                 console.log(this.props.totalReview);
         }
         submitForm = (e) =>{
+                e.preventDefault();
                 const Review = {
                         comment: this.state.message,
                         headline: this.state.headline,
@@ -30,8 +32,14 @@ class Reviews extends React.Component{
                 if (AuthenticationService.isUserLoggedIn()){
                         AjaxServiceReviewForm.saveNewReview(Review, email, label).then(
                                 res => {
-                                         this.setState({reviews: res.data});
-                                         console.log(this.state.reviews);
+                                        console.log(res.data);
+                                        if (typeof res.data == 'string'){
+                                                console.log(res.data);
+                                                this.setState({savedRecipe:res.data});
+                                        } else {
+                                                this.setState({reviews: res.data, savedRecipe:""});
+                                                console.log(this.state.reviews);
+                                        }
                                 }
                         )
                 }
@@ -80,12 +88,13 @@ class Reviews extends React.Component{
                                 </div>
                         </form>
                         <ul className = "comment-show">
+                        <h4>{this.state.savedRecipe}</h4>
                                {
                                        this.state.reviews.map((items, index) => 
                                                 <li key={index}>
                                                         <div className="comment-except-picture">
                                                                <div className="comment-show-item">
-                                                                       <a href="#" className="comment-name">{items.users.fullName}:</a>
+                                                                       <span  className="comment-name">{items.users.fullName}:</span>
                                                                        <span className="comment-headline">{items.headline}</span>
                                                                        <StarItem star={items.rating+1}/>
                                                                </div>

@@ -78,6 +78,12 @@ class CardPage extends React.Component {
                 } else {
                         const { currentData, totalData } = this.state;
                         totalData.shift(0);
+                        const threeNum = currentData.recipe.digest[0].daily +  currentData.recipe.digest[1].daily
+                                + currentData.recipe.digest[2].daily;
+                        const widthOne = (currentData.recipe.digest[0].daily*100/threeNum).toLocaleString() + "%";
+                        const widthTwo = (currentData.recipe.digest[1].daily*100/threeNum).toLocaleString() + "%";
+                         const widthThree = (currentData.recipe.digest[2].daily*100/threeNum).toLocaleString() + "%";
+                         console.log(widthOne);
                         return (
                                 <>
                                         <section className="total-data cf">
@@ -129,9 +135,9 @@ class CardPage extends React.Component {
                                                                                 </ul>
                                                                                 <div className="nutrition-bar">
                                                                                         <div className="bar-cf">
-                                                                                                <span className="red-part" style={{width:currentData.recipe.digest[0].daily/2}}></span>
-                                                                                                 <span className="yellow-part"  style={{width:currentData.recipe.digest[1].daily/2}}></span>
-                                                                                                 <span className="green-part"  style={{width:currentData.recipe.digest[2].daily/2}}></span>
+                                                                                                <span className="red-part" style={{width:widthOne}}></span>
+                                                                                                 <span className="yellow-part"  style={{width:widthTwo}}></span>
+                                                                                                 <span className="green-part"  style={{width:widthThree}}></span>
                                                                                         </div>
                                                                                 </div>
                                                                                 <ul className="nutrition-list">

@@ -30,11 +30,14 @@ public class ReviewController extends BaseController {
 
 	@PostMapping(path="/create/{email}/{label}")
 	@ResponseBody
-	public ResponseEntity<List<Review>> createNewReview(@RequestBody Review review,
+	public ResponseEntity<?> createNewReview(@RequestBody Review review,
 					@PathVariable String email, @PathVariable String label){
 		System.out.println(label);
 		Users user = this.userService.getUsers(email);
 		Recipe recipe = this.recipeService.getRecipe(label);
+		if (recipe == null) {
+			return new ResponseEntity<String>("Please save your recipe and then comment", HttpStatus.OK);
+		}
 		System.out.println(recipe.getLabel());
 		review.setRecipe(recipe);
 		review.setUsers(user);

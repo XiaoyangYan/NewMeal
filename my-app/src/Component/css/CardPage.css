@@ -18,7 +18,7 @@
         width: 400px;
         position: relative !important;
         left: 0px;
-        top: 130px;
+        top: 50px;
         z-index: 2;
         float:right;
         padding-bottom: 0;
@@ -53,7 +53,7 @@
         list-style: none;
 }
 .recipe-data{
-        top: 130px;
+        top: 70px;
         padding-right:0px;
         position: relative;
         width: 80%;
@@ -160,6 +160,9 @@
 }
 .recipe-preparation{
         width: 85%;
+}
+.recipe-review{
+        width:85%;
 }
 .recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4, .recipe-review h4{
         display: block;
@@ -289,7 +292,7 @@
                 width: 100%;
         }
 }
-@media screen and (max-width: 925px){
+@media screen and (max-width: 1120px){
         .side-bar{
                 display:none!important;
         }

@@ -79,9 +79,7 @@ form {
 }
 .comment-show > li{
         width: 100%;
-        min-height: 100px;
         margin:20px 20px;
-        border-top: 1px solid #EDEDED;
         padding: 10px 0;
         zoom: 1;
 }
@@ -89,6 +87,8 @@ form {
         width: 85%;
         margin-left: 3%;
         float:left !important;
+        border-top: 2px solid #EDEDED;
+        padding-bottom:10px;
 }
 .comment-show-item{
         width: 100%;
@@ -104,6 +104,7 @@ form {
 }
 .comment-headline{
         padding-left: 10px;
+        padding-right:10px;
         font-size: 12px;
         color: #8b8b8b;
         width: 100%;
