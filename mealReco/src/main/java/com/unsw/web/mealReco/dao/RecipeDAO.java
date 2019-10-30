@@ -1,10 +1,8 @@
 package com.unsw.web.mealReco.dao;
 
 
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -71,6 +69,20 @@ public class RecipeDAO extends JpaDAO<Recipe> implements GenericDAO<Recipe>{
 		List<Recipe> savedRecipe = super.findWithNamedQuery("SaveDetail.userSaving", 
 				"userId", userId);
 		return savedRecipe;
+	}
+	
+	@Transactional
+	public List<Recipe> listMostFavoredRecipes(){
+		List<Recipe> mostFavoredRecipes = new ArrayList<>();
+		
+		List<Object[]> result = super.findWithNamedQueryObjects("Review.mostFavoredRecipe", 0, 10);
+		if (!result.isEmpty()) {
+			for(Object[] elements: result) {
+				Recipe recipe = (Recipe)elements[0];
+				mostFavoredRecipes.add(recipe);
+			}
+		}
+		return mostFavoredRecipes;
 	}
 
 }

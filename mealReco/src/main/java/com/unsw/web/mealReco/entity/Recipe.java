@@ -3,20 +3,13 @@ package com.unsw.web.mealReco.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-import java.util.Comparator;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -45,9 +38,6 @@ public class Recipe implements java.io.Serializable {
 	private Date publishDate;
 	private float ratings;
 	
-	private Set<SaveDetail> savedDetails = new HashSet<SaveDetail>(0);
-	private Set<Review> reviews = new HashSet<Review>(0);
-	
 	public Recipe() {
 	}
 
@@ -65,17 +55,6 @@ public class Recipe implements java.io.Serializable {
 		this.lastUpdateTime = lastUpdateTime;
 		this.publishDate = publishDate;
 		this.ratings = ratings;
-	}
-	
-	public Recipe(
-			String image, String label, Date lastUpdateTime, Date publishDate,float ratings, Set<Review> reviews, Set<SaveDetail> saveDetails) {
-		this.image = image;
-		this.label = label;
-		this.lastUpdateTime = lastUpdateTime;
-		this.publishDate = publishDate;
-		this.ratings = ratings;
-		this.reviews = reviews;
-		this.savedDetails = saveDetails;
 	}
 
 	@Id
@@ -128,28 +107,6 @@ public class Recipe implements java.io.Serializable {
 		this.publishDate = publishDate;
 	}
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "recipe")
-	public Set<Review> getReviews() {
-		TreeSet<Review> sortedReviews = new TreeSet<>(new Comparator<Review>() {
-			@Override
-			public int compare(Review review1, Review review2) {
-				return review2.getReviewTime().compareTo(review1.getReviewTime());
-			}
-		});
-		sortedReviews.addAll(reviews);
-		return sortedReviews;
-	}
-	public void setReviews(Set<Review> reviews) {
-		this.reviews = reviews;
-	}
-	@OneToMany(fetch=FetchType.LAZY, mappedBy="recipe")
-	public Set<SaveDetail> getSavedDetails(){
-		return this.savedDetails;
-	}
-	
-	public void setSavedDetails(Set<SaveDetail> saveDetails) {
-		this.savedDetails = saveDetails;
-	}
 	@Override
 	public int hashCode() {
 		final int prime = 31;

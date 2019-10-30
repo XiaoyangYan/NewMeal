@@ -27,8 +27,11 @@ import javax.persistence.TemporalType;
 	@NamedQuery(name = "Review.findAll", query="SELECT r FROM Review r ORDER BY r.reviewTime DESC"),
 	@NamedQuery(name = "Review.countAll", query="SELECT COUNT(r) FROM Review r"),
 	@NamedQuery(name = "Review.findByUserAndRecipe", 
-	query="SELECT r FROM Review r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId")
-	
+	query="SELECT r FROM Review r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId"),
+	@NamedQuery(name="Review.findByUser", query="SELECT r From Review r where r.users.userId = :userId"),
+	@NamedQuery(name="Review.findByRecipe", query="SELECT r From Review r where r.recipe.recipeId = :recipeId"),
+	@NamedQuery(name="Review.mostFavoredRecipe", query="SELECT r.recipe.recipeId, COUNT(r.recipe.recipeId) AS ReviewCount, AVG(r.rating) as AvgRating FROM Review r"
+		+" Group By r.recipe.recipeId Having AVG(r.rating) >= 4.0"+"ORDER BY ReviewCount DESC, AvgRating DESC")
 })
 public class Review implements java.io.Serializable {
 
@@ -46,7 +49,13 @@ public class Review implements java.io.Serializable {
 
 	public Review() {
 	}
-
+	
+	public Review(String comment, String headline, int rating, Date reviewTime) {
+		this.comment = comment;
+		this.headline = headline;
+		this.rating = rating;
+		this.reviewTime = reviewTime;
+	}
 	public Review(String comment, String headline, int rating, Date reviewTime, Recipe recipe, Users user) {
 		this.comment = comment;
 		this.headline = headline;
@@ -106,7 +115,7 @@ public class Review implements java.io.Serializable {
 	}
 
 	@ManyToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name="recipe_id", nullable=false)
+	@JoinColumn(name="recipe_id")
 	public Recipe getRecipe(){
 		return this.recipe;
 	}
@@ -115,7 +124,7 @@ public class Review implements java.io.Serializable {
 	}
 	
 	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id", nullable = false)
+	@JoinColumn(name = "user_id")
 	public Users getUsers() {
 		return this.user;
 	}

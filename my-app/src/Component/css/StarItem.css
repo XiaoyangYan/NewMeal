@@ -1,0 +1,18 @@
+.star{
+    display: inline-block;
+}
+.star>span{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-size: 20px 20px;
+}
+.star0{
+    background-image: url(../images/star.svg);
+}
+.star1{
+    background-image: url(../images/starHalf.png);
+}
+.star2{
+    background-image: url(../images/staryellow.svg);
+}

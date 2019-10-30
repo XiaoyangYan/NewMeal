@@ -1,0 +1,128 @@
+body,div,h2,h3,h4,h6,ul,li,p{margin:0;padding:0;}
+a{text-decoration:none;}
+a:hover{text-decoration:underline;}
+ul{list-style-type:none;}
+form {
+        position: relative;
+}
+#my-review div{
+        position: relative;
+        color: #999;
+        margin-top: 10px;
+}
+.header-text{
+        height: 25px;
+}
+.header-text, .review-text{
+        color:#777;
+        border: 1px solid #d0d0d0;
+        border-radius: 6px;
+        background:white;
+        padding: 3px 5px;
+        font: 14px/1.5 Arial;
+}
+.review-text{
+        width: 400px;
+        resize: none;
+        height: 75px;
+        overflow: auto;
+}
+.left-word-p{
+        position: relative;
+        color: #999;
+        margin-top: 15px;
+        overflow:hidden;
+        zoom:1;
+}
+.left-word-p{
+        float: right;
+        line-height: 30px;
+}
+.left-word-p p{
+        float:right;
+        line-height:30px;
+}
+.maxNum{
+        font: 26px/29px Georgia, Tahoma, Arial;
+        padding: 0 5px;
+}
+.send-review-button{
+        border:0;
+        width:72px;
+        height: 30px;
+        cursor: pointer;
+        margin-left:10px;
+        border: 0px 0px 1px 1px rgba(12,120,200,6);
+        box-shadow: 0  1px rgba(2,165,209,29);
+        background-color: #7db343;
+        border-radius: 10%;
+        position: relative;
+}
+.send-review-button:hover{
+        box-shadow: 0 3px ;
+        background-color: #2f904d;
+        box-shadow: 3px 5px 8px rgba(187,194,220,6);
+        text-decoration: none;
+}
+.comment-show{
+        position:relative;
+        min-width:300px;
+        top:20px;
+        float: left;
+        width:100%;
+        max-height:1000px;
+        overflow-y:scroll;
+        overflow-x:hidden;
+}
+.comment-show > li{
+        width: 100%;
+        min-height: 80px;
+        margin:20px 20px;
+        border-top: 1px solid #EDEDED;
+        padding: 10px 0;
+        zoom: 1;
+}
+.comment-except-picture{
+        width: 85%;
+        margin-left: 3%;
+        float:left !important;
+}
+.comment-show-item{
+        width: 100%;
+        margin-top:7px;
+        margin-bottom:10px;
+        word-wrap:break-word;
+        overflow:hidden;
+        zoom:1;
+}
+.comment-show-item .comment-name{
+        font-size: 12px;
+        color: #339b53;
+}
+.comment-headline{
+        padding-left: 10px;
+        font-size: 12px;
+        color: #8b8b8b;
+        width: 100%;
+}
+.comment-main-area{
+        font-size: 14px;
+        color: black;
+        margin-bottom:10px;
+        font-weight: 600;
+        display:block;
+        width:80%;
+        margin:0 auto;
+        position: relative;
+        text-align:center;
+}
+.comment-date{
+        width: 100%;
+        float:left;
+}
+.comment-date-left{
+        padding-top:7px;
+        font-size: 12px;
+        color: #8b8b8b;
+        display: block;
+}

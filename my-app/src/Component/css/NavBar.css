@@ -4,7 +4,10 @@
         font-family: Nunito;
         src: url('../fonts/Nunito-Regular.ttf');
 }
-
+@font-face{
+	font-family: woff;
+	src:url('../fonts//fontawesome-webfont.woff')
+}
 @font-face {
         font-family: Dopestyle;
 	src: url('../fonts/Dopestyle.ttf');
@@ -19,7 +22,6 @@
 	top: 0 !important;
 	z-index: 3 !important;
 	padding: 1% 2% !important;
-	/*background-color: #ffe753;*/
 	color: white !important;
 	background-color: #689eb1;
 	box-shadow: 2px 0 8px #9a9a9a;
@@ -54,6 +56,8 @@
         left: 5%;
         position: relative;
 	display:inline-block;
+	font-size:1.2rem;
+	font-family: woff;
 }
 .menu-healthy ul{
 	list-style: none;
@@ -64,13 +68,13 @@
 	display:inline-block;
 	padding: 0 25px;
 	color: #2eca7f;
-	z-index: 10;
+	z-index: 12;
 }
 
 .menu-healthy ul li a{
 	text-decoration: none;
-	font-size: 16px;
-        font-weight:600;
+	font-size: 19px;
+        font-weight:800;
 	background:transparent;
 }
 .cart ul li a{
@@ -89,9 +93,9 @@
 .title-healthy{
 	float: left;
 }
-.title-healthy a,.title-healthy a{
+.title-healthy a{
 	color: white;
-	font-size: 23px;
+	font-size: 25px;
 	text-shadow: 2px 2px 8px #616161;
 	text-decoration: none;
 	font-family: Dopestyle;

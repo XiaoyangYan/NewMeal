@@ -1,7 +1,7 @@
 .total-data{
         padding: 56px 26px 15px 50px;
         max-width: 80%;
-        max-height: 2400px;
+        max-height: 3000px;
         margin:0 auto;
         display: flex;
         justify-content: flex-start;
@@ -32,8 +32,9 @@
         display: block;
 }
 .mean-list{
-        max-height: 100%;
+        max-height:2400px;
         overflow-y:scroll;
+        overflow-x:hidden;
         overflow-x:hidden;
         display: flex;
         flex-direction: row;
@@ -76,26 +77,28 @@
         float:left;
 }
 .upper-introduction .recipe-title{
-        max-height: 120px;
-        overflow:hidden;
+        max-height: 300px;
+        overflow:hidden!important;
         color: #333;
-        font: normal 33px Arial;
+        font: normal 42px Arial;
+        position: relative;
         text-align: center;
+        overflow: visible;
 }
 .recipe-source{
-        height:26px;
+        height:36px;
         overflow: hidden;
         position: relative;
         text-align:center;
         z-index:2;
-        margin-top: 15px;
+        margin-top: 45px;
 }
 .bookmark-options{
         width: 100%;
-        position: absolute;
-        margin-left:20px;
+        position: relative;
         right:0px;
-        bottom: 100px;
+        top: 40px;
+        bottom: 20px;
         text-align: center;
 }
 @font-face {
@@ -103,7 +106,7 @@
   src: url('../fonts/Nunito-Regular.ttf');
 }
 .upper-introduction .right-intro .save-details{
-        width: 40%;
+        width: 50%;
         left:36%;
         right:0;
         bottom: 5px;
@@ -140,25 +143,29 @@
         position: relative;
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+        flex-wrap: wrap;
         overflow:hidden;
-        justify-content: space-around;
+        justify-content: flex-start;
         width: 100%;
+}
+.recipe-image{
+        width:800px;
+        height:400px;
 }
 .recipe-p-i{
         display: flex;
         flex-direction: column;
         align-items:flex-start;
-        width:40%;
+        width:50%;
 }
-.recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4{
+.recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4, .recipe-review h4{
         display: block;
         margin-bottom:15px;
         border-bottom: 1px solid #D9D9D9;
-        line-height: 35px;
+        line-height: 30px;
         padding-bottom: 10px;
-        font: normal 35px Georgia;
-        width: 60%;
+        font: normal 30px Georgia;
+        width: 70%;
 }
 .recipe-ingredients  li{
         font-size: 1.2rem;
@@ -226,6 +233,7 @@
         margin-top: 20px;
         display:flex;
         flex-direction: column;
+        justify-content:center;
         flex-wrap: wrap;
         overflow: hidden;
 }
@@ -241,13 +249,15 @@
 }
 .nutrition-list h2{
         font-size:20px;
-        line-height: 25px;
+        line-height: 22px;
         margin-right:10px;
 }
 .nutrition-list span {
         width: 56px;
         left: 70%;
-        line-height: 25px;
+         font-size:13px;
+        line-height: 20px;
+        padding-left: 15px;
         position:absolute;
         color: #666;
         text-align: right;
