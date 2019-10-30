@@ -9,6 +9,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.unsw.web.mealReco.dao.ReviewDAO;
+import com.unsw.web.mealReco.entity.Recipe;
 import com.unsw.web.mealReco.entity.Review;
 
 @Transactional
@@ -22,11 +23,16 @@ public class ReviewServices {
 	}
 	
 	public void createReview(Review review) {
-		System.out.println(review.getComment());
 		reviewDAO.create(review);
 	}
 	
 	public List<Review> listReview(){
 		return this.reviewDAO.listAll();
+	}
+	
+	public List<Review> listRecipeReview(Recipe recipe){
+		System.out.println(recipe.getRecipeId());
+		List<Review> results = this.reviewDAO.findByRecipe(recipe.getRecipeId());
+		return results;
 	}
 }

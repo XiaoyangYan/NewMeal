@@ -1,6 +1,6 @@
 .total-data{
         padding: 56px 26px 15px 50px;
-        max-width: 80%;
+        max-width: 85%;
         max-height: 3000px;
         margin:0 auto;
         display: flex;
@@ -158,6 +158,9 @@
         align-items:flex-start;
         width:50%;
 }
+.recipe-preparation{
+        width: 85%;
+}
 .recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4, .recipe-review h4{
         display: block;
         margin-bottom:15px;
@@ -165,7 +168,7 @@
         line-height: 30px;
         padding-bottom: 10px;
         font: normal 30px Georgia;
-        width: 70%;
+        width: 80%;
 }
 .recipe-ingredients  li{
         font-size: 1.2rem;
