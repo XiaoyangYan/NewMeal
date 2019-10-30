@@ -12,6 +12,8 @@
 {
     display: table-cell;
     vertical-align: middle;
+    line-height:50px;
+    overflow: visible;
 }
 #text, .class-search
 {
@@ -27,17 +29,16 @@
     left: 0;
     right: 0;
     padding: 25px;
-    padding-top:10px;
     margin: 23px auto 0 auto;
     background-color: #ffda75;
     border-radius: 20px;
-    box-shadow: 0 10px 40px #af19bd, 0 0 0 20px #ffffffeb;
+    box-shadow: 0 5px 10px #af19bd, 0 0 0 10px #ffffffeb;
     transform: scale(0.6);
 }
 #text {
     width: 100%;
-    font-size: 50px;
-    line-height: 1.2em;
+    font-size: 45px;
+    line-height: 1.3em;
     color: #fff;
     font-family: Nunito;
     padding: 0px;
@@ -46,7 +47,7 @@
     background-color: transparent;
 }
 #text::placeholder{
-        line-height: 1.2;
+        line-height: 1.4em;
         color: #e16868;
         outline: none;
 }

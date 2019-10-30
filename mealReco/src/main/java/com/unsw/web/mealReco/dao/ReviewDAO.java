@@ -1,5 +1,6 @@
 package com.unsw.web.mealReco.dao;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -90,11 +91,11 @@ public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("recipeId", recipeId);
 		List<Review> result = super.findWithNamedQuery("Review.findByRecipe", parameters);
-		
+
 		if (!result.isEmpty()) {
 			return result;
 		}
-		return null;
+		return new ArrayList<Review>();
 	}
 
 }

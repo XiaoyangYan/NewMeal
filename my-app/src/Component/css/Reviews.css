@@ -5,13 +5,14 @@ ul{list-style-type:none;}
 form {
         position: relative;
 }
-#my-review div{
+#my-review > div{
         position: relative;
         color: #999;
         margin-top: 10px;
 }
+
 .header-text{
-        height: 25px;
+        display:inline;
 }
 .header-text, .review-text{
         color:#777;
@@ -19,12 +20,13 @@ form {
         border-radius: 6px;
         background:white;
         padding: 3px 5px;
-        font: 14px/1.5 Arial;
+        font: 15px/1.5 Arial;
 }
 .review-text{
         width: 400px;
         resize: none;
-        height: 75px;
+        height: 125px;
+        font-size:18px;
         overflow: auto;
 }
 .left-word-p{
@@ -36,11 +38,11 @@ form {
 }
 .left-word-p{
         float: right;
-        line-height: 30px;
+        line-height: 40px;
 }
 .left-word-p p{
         float:right;
-        line-height:30px;
+        line-height:40px;
 }
 .maxNum{
         font: 26px/29px Georgia, Tahoma, Arial;
@@ -50,6 +52,7 @@ form {
         border:0;
         width:72px;
         height: 30px;
+        line-height: 30px;
         cursor: pointer;
         margin-left:10px;
         border: 0px 0px 1px 1px rgba(12,120,200,6);
@@ -76,7 +79,7 @@ form {
 }
 .comment-show > li{
         width: 100%;
-        min-height: 80px;
+        min-height: 100px;
         margin:20px 20px;
         border-top: 1px solid #EDEDED;
         padding: 10px 0;
@@ -108,11 +111,11 @@ form {
 .comment-main-area{
         font-size: 14px;
         color: black;
-        margin-bottom:10px;
+        margin-top:20px;
+        margin-bottom:20px;
         font-weight: 600;
         display:block;
         width:80%;
-        margin:0 auto;
         position: relative;
         text-align:center;
 }

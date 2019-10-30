@@ -3,8 +3,8 @@ import "./css/Reviews.css";
 import ReactValidator  from "./Service/FormErrors";
 import AuthenticationService from "./Service/AuthenticationService";
 import AjaxServiceReviewForm from "./Service/AjaxServiceReviewForm";
-import { thisTypeAnnotation } from "@babel/types";
 import StarItem from "./StarItems";
+import StarRatings from 'react-star-ratings';
 class Reviews extends React.Component{
         constructor(props){
                 super(props);
@@ -14,11 +14,11 @@ class Reviews extends React.Component{
                         comment:"",
                         rating: 0,
                         validator: new ReactValidator(),
-                        reviews: [],
+                        reviews: this.props.totalReview,
                 }
+                console.log(this.props.totalReview);
         }
         submitForm = (e) =>{
-                e.preventDefault();
                 const Review = {
                         comment: this.state.message,
                         headline: this.state.headline,
@@ -36,12 +36,17 @@ class Reviews extends React.Component{
                         )
                 }
         }
-
+        
         handleChange = (e) => {
                 this.setState({[e.target.name]:e.target.value});
         }
         handleTextAreaChange = (e) => {
                 this.setState({message: e.target.value});
+        }
+        changeRating = (newRating, name) => {
+                this.setState({
+                        rating: newRating
+                })
         }
         render(){
                 return(
@@ -53,6 +58,8 @@ class Reviews extends React.Component{
                                                 required: 'headline cannot be null',
                                                 max:'should at most 20 words'
                                         })}</div>
+                                        <StarRatings rating={this.state.rating} starRatedColor="gold" changeRating={this.changeRating}
+                                                       className="starItem" numOfStars={5} name='rating' starDimension={'20px'}/>
                                 </div>
                                 <div className="group">
                                         <textarea class="review-text comment-input" name="messge" placeholder="Please enter a comment&hellip;"  autoComplete="off"
@@ -62,7 +69,6 @@ class Reviews extends React.Component{
                                                         min:'should at least 25 words',
                                                         max:'should at most 200 words'
                                                 })}</div>
-                                                
                                 </div>
                                 <div className="left-word-p">
                                         <p>
@@ -81,7 +87,7 @@ class Reviews extends React.Component{
                                                                <div className="comment-show-item">
                                                                        <a href="#" className="comment-name">{items.users.fullName}:</a>
                                                                        <span className="comment-headline">{items.headline}</span>
-                                                                       <StarItem star={items.rating}/>
+                                                                       <StarItem star={items.rating+1}/>
                                                                </div>
                                                                <div className="comment-main-area">{items.comment}</div>
                                                                <div className="comment-date">

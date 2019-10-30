@@ -4,9 +4,10 @@ import Card from "./Card";
 import ReactLoading from 'react-loading';
 import "./css/CardPage.css";
 import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
+import AjaxServiceReviewForm from "./Service/AjaxServiceReviewForm";
 import AuthenticationService from "./Service/AuthenticationService";
 import Reviews from "./Reviews";
-import StarItem from "./StarItems"
+
 class CardPage extends React.Component {
         constructor(props) {
                 super(props);
@@ -16,6 +17,7 @@ class CardPage extends React.Component {
                         totalData: [],
                         successData:"",
                         saved: false,
+                        totalReview:[],
                 }
                 this.handleData = this.handleData.bind(this);
         }
@@ -24,8 +26,8 @@ class CardPage extends React.Component {
                 const Recipe = {
                        image: this.state.currentData.recipe.image,
                        label: this.state.currentData.recipe.label,
-                       lastUpdateTime:new Date(),
-                       publishDate:new Date(),
+                       lastUpdateTime: new Date(),
+                       publishDate: new Date(),
                        ratings: 0
                 }
                 const email = AuthenticationService.getEmail();
@@ -48,7 +50,6 @@ class CardPage extends React.Component {
                 }
         }
        async handleData(){
-                console.log(this.props);
                 const currentLabel = this.props.match.params.label;
                 console.log(currentLabel);
                 this.setState({ isLoading: true });
@@ -56,20 +57,27 @@ class CardPage extends React.Component {
                 this.setState({
                         currentData: data.data.hits[0],
                         totalData: data.data.hits,
-                        isLoading: false,
                 })
-                this.state.totalData.shift(0);
-                console.log(this.state.currentData);
+                this.state.totalData.shift(); 
+                const label = this.state.currentData.recipe.label;
+                AjaxServiceReviewForm.getRecipeReview(label).then(res =>{
+                         this.setState({
+                                 totalReview: res.data,
+                                isLoading: false
+                        });
+                         console.log(this.state.totalReview);
+                })
         }
          async  componentDidMount() {
-              await this.handleData();
+                await this.handleData();
+                
         }
         render() {
                 if (this.state.isLoading) {
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
                 } else {
                         const { currentData, totalData } = this.state;
-                        console.log(currentData.dietLabels);
+                        totalData.shift(0);
                         return (
                                 <>
                                         <section className="total-data cf">
@@ -100,7 +108,7 @@ class CardPage extends React.Component {
                                                                         </div>
                                                                         <div className="recipe-review">
                                                                                 <h4>Reviews</h4>
-                                                                                <Reviews label={currentData.recipe.label}/>
+                                                                                <Reviews label={currentData.recipe.label} totalReview={this.state.totalReview}/>
                                                                         </div>
                                                                 </div>
                                                                 <div className="recipe-nutrition" itemProp="nutrition" itemScope=""
