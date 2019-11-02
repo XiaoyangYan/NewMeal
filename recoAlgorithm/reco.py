@@ -27,7 +27,7 @@ def get_data_from_frontend():
             json_text = r
             with open("recipes.json", 'w', encoding='utf-8') as f:
                 json.dump(json_text, f, ensure_ascii=False, indent=4)
-            return "rrrr" 
+            return  parse_data_to_dataframe()
 
 def parse_data_to_dataframe():
     with open('recipes.json', 'r') as f:
@@ -64,7 +64,7 @@ def dl():
 server.run(port=7000, debug=True)
 
 if __name__ == "__main__":
-    get_data_from_api()
-    #df = parse_data_to_dataframe()
+    #get_data_from_api()
+    df = parse_data_to_dataframe()
     #print(df.columns)
     #split_data(df)
