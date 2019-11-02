@@ -36,6 +36,11 @@ public class ReviewServices {
 		return results;
 	}
 	
-	
+	public void updateReview(Review review) {
+		reviewDAO.update(review);
+	}
+	public void deleteReview(int id) {
+		reviewDAO.delete(id);
+	}
 	
 }
