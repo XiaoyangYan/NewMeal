@@ -4,13 +4,11 @@ import json
 import requests
 import torch
 import flask
-from flask import request
+from flask import Flask, request
 from flask_cors import CORS
 from sklearn.neighbors import NearestNeighbors
 
-server = flask.Flask(_name_)
-CORS(server)
-@server.route('/user', methods=['get', 'post'])
+
 
 def get_data_from_api():
     # get info from api and convert it to a json 
@@ -19,12 +17,17 @@ def get_data_from_api():
     with open("recipes.json", 'w', encoding= 'utf-8') as f:
         json.dump(json_text, f, ensure_ascii=False, indent=4)
 
+
+server = flask.Flask(__name__) #创建一个flask对象
+CORS(server)
+@server.route('/recipe/user', methods=['get','post'])
 def get_data_from_frontend():
-            r = request.get('http://localhost:4200/user/favorite')
-            json_text = r.json()
+            r = request.get_json()
+            print(r)
+            json_text = r
             with open("recipes.json", 'w', encoding='utf-8') as f:
                 json.dump(json_text, f, ensure_ascii=False, indent=4)
-            return parse_data_to_dataframe()
+            return "rrrr" 
 
 def parse_data_to_dataframe():
     with open('recipes.json', 'r') as f:
@@ -58,11 +61,10 @@ def dl():
     pass
 
 
+server.run(port=7000, debug=True)
 
 if __name__ == "__main__":
-    #get_data_from_api()
-    df = parse_data_to_dataframe()
-    print(df.columns)
+    get_data_from_api()
+    #df = parse_data_to_dataframe()
+    #print(df.columns)
     #split_data(df)
-server.run(port=7000, debug=True)
-    
