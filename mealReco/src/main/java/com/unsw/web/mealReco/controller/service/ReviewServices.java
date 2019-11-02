@@ -42,8 +42,4 @@ public class ReviewServices {
 	public void deleteReview(int id) {
 		reviewDAO.delete(id);
 	}
-	
-	
-	
-	
 }
