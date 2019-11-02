@@ -1,0 +1,5 @@
+{
+        "jira-plugin.workingProject": "",
+        "python.linting.pylintEnabled": true,
+        "python.linting.enabled": true
+}

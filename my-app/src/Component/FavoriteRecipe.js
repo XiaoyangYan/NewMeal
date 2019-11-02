@@ -28,6 +28,9 @@ class FavoriteRecipe extends React.Component{
                 console.log(searchString);
                 const findMySavedFood = await Data.getRecipeFromFavorite(searchString);
                 console.log(findMySavedFood);
+
+                const pyData = await AjaxServiceRecipeForm.getDataFromPython(findMySavedFood);
+                console.log(pyData);
         }
 
         render(){

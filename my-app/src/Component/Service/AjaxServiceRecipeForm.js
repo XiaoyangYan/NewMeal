@@ -8,5 +8,9 @@ class AjaxServiceRecipeForm {
         findFavoriteRecipe(email){
                 return axios.get(`http://localhost:8080/recipe/getF/${email}`);
         }
+
+        getDataFromPython(data){
+                return axios.get(`http://localhost:7000/recipe/user`, data);
+        }
 }
 export default new AjaxServiceRecipeForm();
