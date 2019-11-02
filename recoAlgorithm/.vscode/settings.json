@@ -1,5 +1,8 @@
 {
         "jira-plugin.workingProject": "",
         "python.linting.pylintEnabled": true,
-        "python.linting.enabled": true
+        "python.linting.enabled": true,
+        "python.linting.pycodestyleEnabled": false,
+        "python.linting.flake8Enabled": false,
+        "git.ignoreLimitWarning": true
 }
