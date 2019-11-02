@@ -16,10 +16,10 @@ const ViewList = (props) => {
                                                          <div className="bookmark-btn">
                                                                         <Link to={{pathname:`/card/${items.recipe.label}`, state:{label:`${items.recipe.label}`}}} className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
                                                         </div>
-                                                        <a href="/" title={items.recipe.label} >
+                                                        <div  title={items.recipe.label} >
                                                                 <img src={items.recipe.image} alt={items.recipe.label} style={{ opacity: 1 }} />
                                                                 <span className="name">{items.recipe.label}</span><span className="mask"></span>
-                                                        </a>
+                                                        </div>
                                                 </li>
                                         )
                                 }

@@ -30,11 +30,14 @@ public class ReviewController extends BaseController {
 
 	@PostMapping(path="/create/{email}/{label}")
 	@ResponseBody
-	public ResponseEntity<List<Review>> createNewReview(@RequestBody Review review,
+	public ResponseEntity<?> createNewReview(@RequestBody Review review,
 					@PathVariable String email, @PathVariable String label){
 		System.out.println(label);
 		Users user = this.userService.getUsers(email);
 		Recipe recipe = this.recipeService.getRecipe(label);
+		if (recipe == null) {
+			return new ResponseEntity<String>("Please save your recipe and then comment", HttpStatus.OK);
+		}
 		System.out.println(recipe.getLabel());
 		review.setRecipe(recipe);
 		review.setUsers(user);
@@ -50,6 +53,23 @@ public class ReviewController extends BaseController {
 			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
 		}
 		List<Review> results = this.reviewService.listRecipeReview(recipe);
+		System.out.println(results.size());
+		if (results.size() == 0) {
+			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
+		} else {
+			return new ResponseEntity<List<Review>>(results, HttpStatus.OK);
+		}
+	}
+	
+	@GetMapping(path="/getE/{email}")
+	@ResponseBody
+	public ResponseEntity<?> getReviewListByUser(@PathVariable String email){
+		email = email.trim();
+		Users user = this.userService.getUsers(email);
+		if (user == null) {
+			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
+		}
+		List<Review> results = this.reviewService.listRecipeReviewByUser(user);
 		System.out.println(results.size());
 		if (results.size() == 0) {
 			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);

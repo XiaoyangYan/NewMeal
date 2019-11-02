@@ -1,5 +1,8 @@
 package com.unsw.web.mealReco.controller.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
@@ -22,11 +25,10 @@ public class RecipeServices {
 		this.saveDetailDAO = new SaveDetailDAO(entityManager);
 	}
 	
-	public int createRecipe(Recipe recipe,Users user) {
+	public int createSavedRecipe(Recipe recipe,Users user) {
 		//readRecipeDate(recipe);
 		System.out.println(recipe.getLabel());
 		Recipe newRecipe = recipeDAO.findByLabel(recipe.getLabel());
-//		SaveDetail newSavedDetail = this.saveDetailDAO.findByUserAndRecipe(user.getUserId(), newRecipe.getRecipeId());
 		if (newRecipe == null) {
 			Recipe createRecipe = recipeDAO.create(recipe);
 			SaveDetail sd = new SaveDetail();
@@ -41,14 +43,17 @@ public class RecipeServices {
 	public Recipe getRecipe(String label) {
 		return recipeDAO.findByLabel(label);
 	}
-//	public void readRecipeDate(Recipe recipe) {
-//		DateFormat dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-//		Date publishDate = null;
-//		try {
-//			publishDate = dateFormat.parse(recipe.getPublishDate().toString());
-//		} catch(ParseException e) {
-//			e.printStackTrace();
-//		}
-//		recipe.setPublishDate(publishDate);
-//	}
+	
+	public List<Recipe> getSavedRecipeList(Users user) {
+		List<SaveDetail> recipes = this.saveDetailDAO.userSaving(user.getUserId());
+		List<Recipe> results = new ArrayList<Recipe>();
+		if (recipes == null) {
+			return results;
+		}
+		for(int i = 0; i < recipes.size(); i++) {
+			Recipe recipe = this.recipeDAO.find(Recipe.class, recipes.get(i));
+			results.add(recipe);
+		}
+		return results;
+	}
 }

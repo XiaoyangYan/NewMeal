@@ -349,7 +349,9 @@ display:block;
   text-overflow: ellipsis;
   padding: 7px 0 14px;
 }
-
+.view-list li div:last-child:hover{
+  color:greenyellow;
+}
 .bookmark-btn{
   display:none;
   position:absolute;

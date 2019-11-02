@@ -18,7 +18,7 @@
         width: 400px;
         position: relative !important;
         left: 0px;
-        top: 130px;
+        top: 50px;
         z-index: 2;
         float:right;
         padding-bottom: 0;
@@ -53,7 +53,7 @@
         list-style: none;
 }
 .recipe-data{
-        top: 130px;
+        top: 70px;
         padding-right:0px;
         position: relative;
         width: 80%;
@@ -67,6 +67,7 @@
         border-left: 1px solid #F3F3F3;
         margin-right:0px;
         right:0px;
+        min-height:400px;
         position: relative;
         padding: 20px;
 }
@@ -106,10 +107,10 @@
   src: url('../fonts/Nunito-Regular.ttf');
 }
 .upper-introduction .right-intro .save-details{
-        width: 50%;
-        left:36%;
-        right:0;
+        width: 100%;
+        left:30px;right:0;
         bottom: 5px;
+        text-align:center;
         position:absolute;
         font-size:20px;
         line-height:20px;
@@ -149,8 +150,9 @@
         width: 100%;
 }
 .recipe-image{
-        width:800px;
-        height:400px;
+        max-width:800px;
+        min-width:400px;
+        max-height:400px;
 }
 .recipe-p-i{
         display: flex;
@@ -160,6 +162,9 @@
 }
 .recipe-preparation{
         width: 85%;
+}
+.recipe-review{
+        width:85%;
 }
 .recipe-ingredients h4,.recipe-nutrition h4, .recipe-preparation h4, .recipe-review h4{
         display: block;
@@ -289,7 +294,7 @@
                 width: 100%;
         }
 }
-@media screen and (max-width: 925px){
+@media screen and (max-width: 1120px){
         .side-bar{
                 display:none!important;
         }

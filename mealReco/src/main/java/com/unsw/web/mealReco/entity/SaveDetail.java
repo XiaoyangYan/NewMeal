@@ -19,7 +19,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "save_detail", catalog = "mymeal")
 @NamedQueries({
-	@NamedQuery(name="SaveDetail.userSaving", query="Select sd.recipe From SaveDetail sd Where sd.users.userId=:userId " +
+	@NamedQuery(name="SaveDetail.userSaving", query="Select sd.recipe.recipeId From SaveDetail sd Where sd.users.userId=:userId " +
 			"Order By sd.recipe.publishDate DESC"),
 	@NamedQuery(name = "SaveDetail.findByUserAndRecipe", 
 	query="SELECT r FROM SaveDetail r WHERE r.users.userId = :userId"+" AND r.recipe.recipeId = :recipeId")
@@ -48,6 +48,7 @@ public class SaveDetail implements java.io.Serializable {
 		this.user = user;
 	}
 	@EmbeddedId
+	
 	@AttributeOverrides({ @AttributeOverride(name = "recipeId",column = @Column(name = "recipe_id", nullable = false)),
 			@AttributeOverride(name = "userId", column = @Column(name = "user_id", nullable = false)) })
 	public SaveDetailId getId() {

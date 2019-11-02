@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.unsw.web.mealReco.dao.ReviewDAO;
 import com.unsw.web.mealReco.entity.Recipe;
 import com.unsw.web.mealReco.entity.Review;
+import com.unsw.web.mealReco.entity.Users;
 
 @Transactional
 @Service
@@ -19,7 +20,6 @@ public class ReviewServices {
 	
 	public ReviewServices(EntityManager entityManager) {
 		reviewDAO = new ReviewDAO(entityManager);
-
 	}
 	
 	public void createReview(Review review) {
