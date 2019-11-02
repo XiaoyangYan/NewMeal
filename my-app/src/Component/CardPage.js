@@ -24,7 +24,7 @@ class CardPage extends React.Component {
         saveRecipe= (e) =>{
                 e.preventDefault();
                 const Recipe = {
-                       image: this.state.currentData.recipe.image,
+                       image: this.state.currentData.recipe.uri,
                        label: this.state.currentData.recipe.label,
                        lastUpdateTime: new Date(),
                        publishDate: new Date(),
@@ -45,12 +45,11 @@ class CardPage extends React.Component {
         async componentWillReceiveProps(nextProps){
                 if (this.state.currentData.recipe.label !== nextProps.match.params.label){
                         if ( nextProps.match.params.label){
-                               await  this.handleData();
+                               await  this.handleData(nextProps.match.params.label);
                         }
                 }
         }
-       async handleData(){
-                const currentLabel = this.props.match.params.label;
+       async handleData(currentLabel){
                 console.log(currentLabel);
                 this.setState({ isLoading: true });
                 const data = await Data.getSpecialRecipe(currentLabel);
@@ -69,7 +68,8 @@ class CardPage extends React.Component {
                 })
         }
          async  componentDidMount() {
-                await this.handleData();
+                 const currentLabel = this.props.match.params.label;
+                await this.handleData(currentLabel);
                 
         }
         render() {

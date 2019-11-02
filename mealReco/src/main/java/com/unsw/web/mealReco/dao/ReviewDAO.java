@@ -12,8 +12,6 @@ import javax.transaction.Transactional;
 import com.unsw.web.mealReco.entity.Review;
 
 import org.springframework.stereotype.Service;
-
-import com.unsw.web.mealReco.entity.Review;
 @Transactional
 @Service
 public class ReviewDAO extends JpaDAO<Review> implements GenericDAO<Review>{

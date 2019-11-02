@@ -6,7 +6,8 @@ import DashBoard from "./Component/DashBoard";
 import Login from "./Component/Login";
 import Footer from "./Component/Footer";
 import CardPage from "./Component/CardPage";
-import ErrorPage from "./Component/ErrorPage"
+import ErrorPage from "./Component/ErrorPage";
+import UserPage from "./Component/UserPage";
 class App extends React.Component {
 	constructor(props){
 		super(props);
@@ -25,7 +26,7 @@ class App extends React.Component {
 						<Route path="/dash/:name" ><DashBoard/></Route>
 						<Route path="/card/:label" exact component={CardPage}></Route>
 						<Route path="/login"  component={Login}></Route>
-						<Route path="/footer"  component={Footer}></Route>
+						<Route path="/user"  component={UserPage}></Route>
 						<Route component={ErrorPage}></Route>
 					</Switch>
 					<Footer/>

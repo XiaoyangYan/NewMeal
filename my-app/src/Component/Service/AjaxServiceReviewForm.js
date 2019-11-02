@@ -7,5 +7,9 @@ class AjaxServiceReviewForm {
         getRecipeReview(label){
                 return axios.get(`http://localhost:8080/review/get/${label}`);
         }
+
+        getRecipeReviewByUser(email){
+                return axios.get(`http://localhost:8080/review/getE/${email}`)
+        }
 }
 export default new AjaxServiceReviewForm();

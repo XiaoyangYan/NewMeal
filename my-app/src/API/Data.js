@@ -5,7 +5,10 @@ const APP_ID = "97875047";
 const APP_KEY = "13a31b794de48e8c01b66e91ef648500"
 class FetchData {
         async getRecipeFromAPI(){
-                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=Special&diet=balanced&from=0&to=5`);
+                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&dishType=main course&q&from=0&to=15`);
+        }
+        async getRecipeFromFavorite(res){
+                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}${res}`);
         }
         async getRecipeFromAPIByDifferentCategory(diet){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q&diet=${diet}&from=0&to=10`);

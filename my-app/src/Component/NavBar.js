@@ -30,6 +30,9 @@ class NavBar extends React.Component {
                         }
                 })
         }
+        handleLogout = (e) => {
+                AuthenticationService.logout();
+        }
         render() {
                 return (
                         <>
@@ -38,9 +41,9 @@ class NavBar extends React.Component {
                                         <div className="menu-healthy hidden-xs">
                                                 <ul>
                                                         <li><Link to="/dash">Main</Link></li>
-                                                        <li><a href="/favorite">Favorite</a></li>
-                                                        <li><a href="/plan">Self-Planner</a></li>
-                                                        <li><a href="/aboutus">About Us</a></li>
+                                                        <li><Link to="/plan">Self-Planner</Link></li>
+                                                        <li><Link to="/user">MyPage</Link></li>
+                                                        <li><Link to="/aboutus">About Us</Link></li>
                                                 </ul>
                                         </div>
                                         <div className="menu-healthy cart hidden-xs">
@@ -52,8 +55,8 @@ class NavBar extends React.Component {
                                                                         <button type="button" className="button-search"><i className="fa fa-search" aria-hidden="true"></i></button>
                                                                 </form>
                                                         </li>
-                                                        <li>{!AuthenticationService.isUserLoggedIn() && < Link to="/login"  className="logged-button">Sign In</Link>}</li>
-                                                        <li>{AuthenticationService.isUserLoggedIn() && <Link to="/login" className="logged-button" >Logged Out</Link>}</li>
+                                                        <li>{!AuthenticationService.isUserLoggedIn() && < Link to="/login"   className="logged-button">Sign In</Link>}</li>
+                                                        <li>{AuthenticationService.isUserLoggedIn() && <Link to="/login" onClick={this.handleLogout} className="logged-button" >Logged Out</Link>}</li>
                                                 </ul>
                                         </div>
 

@@ -88,7 +88,7 @@ class Reviews extends React.Component{
                                 </div>
                         </form>
                         <ul className = "comment-show">
-                        <h4>{this.state.savedRecipe}</h4>
+                                <h4>{this.state.savedRecipe}</h4>
                                {
                                        this.state.reviews.map((items, index) => 
                                                 <li key={index}>
@@ -106,7 +106,6 @@ class Reviews extends React.Component{
                                                                        </div>
                                                                </div>
                                                         </div>
-                                                        
                                                 </li>
                                        )
                                }
