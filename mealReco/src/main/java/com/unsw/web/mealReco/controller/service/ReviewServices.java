@@ -36,14 +36,15 @@ public class ReviewServices {
 		return results;
 	}
 	
-	public List<Review> listRecipeReviewByUser(Users user){
-		List<Review> results = this.reviewDAO.findByUser(user.getUserId());
-		return results;
-	}
+	
 	public void updateReview(Review review) {
 		reviewDAO.update(review);
 	}
 	public void deleteReview(int id) {
 		reviewDAO.delete(id);
+	}
+	public List<Review> listRecipeReviewByUser(Users user){
+		List<Review> results = this.reviewDAO.findByUser(user.getUserId());
+		return results;
 	}
 }
