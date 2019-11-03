@@ -118,9 +118,17 @@
         font-weight:800;
         color: #db6b10;
 }
+.bookmark-options {
+        display:flex;
+        flex-direction: column;
+        justify-content: center;
+}
 .bookmark-options .save-button{
         display: inline-block;
+        top: 10px;
         height: 40px;
+        width: 40%;
+        margin: 10px auto;
         min-width: 0px;
         background: linear-gradient(to bottom, #77f7f7 0%, #ed7ded 100%);
         font:normal 13px/36px Arial;

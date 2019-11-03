@@ -20,7 +20,6 @@ class Reviews extends React.Component{
                 console.log(this.props.totalReview);
         }
         submitForm = (e) =>{
-                e.preventDefault();
                 const Review = {
                         comment: this.state.message,
                         headline: this.state.headline,

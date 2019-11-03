@@ -7,7 +7,7 @@ import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
 import AjaxServiceReviewForm from "./Service/AjaxServiceReviewForm";
 import AuthenticationService from "./Service/AuthenticationService";
 import Reviews from "./Reviews";
-
+import StarRatings from 'react-star-ratings';
 class CardPage extends React.Component {
         constructor(props) {
                 super(props);
@@ -18,6 +18,7 @@ class CardPage extends React.Component {
                         successData:"",
                         saved: false,
                         totalReview:[],
+                        currentRating:0,
                 }
                 this.handleData = this.handleData.bind(this);
         }
@@ -66,6 +67,12 @@ class CardPage extends React.Component {
                         });
                          console.log(this.state.totalReview);
                 })
+                AjaxServiceRecipeForm.getSpecialRecipe(label).then(res => {
+                        console.log(res.data.ratings);
+                        this.setState({
+                                currentRating: res.data.ratings
+                        })
+                })
         }
          async  componentDidMount() {
                  const currentLabel = this.props.match.params.label;
@@ -83,7 +90,6 @@ class CardPage extends React.Component {
                         const widthOne = (currentData.recipe.digest[0].daily*100/threeNum).toLocaleString() + "%";
                         const widthTwo = (currentData.recipe.digest[1].daily*100/threeNum).toLocaleString() + "%";
                          const widthThree = (currentData.recipe.digest[2].daily*100/threeNum).toLocaleString() + "%";
-                         console.log(widthOne);
                         return (
                                 <>
                                         <section className="total-data cf">
@@ -93,7 +99,10 @@ class CardPage extends React.Component {
                                                                 <div className="right-intro">
                                                                         <h2 className="recipe-title">{currentData.recipe.label}</h2>
                                                                         <p className="recipe-source">See full recipe on:<a href={currentData.recipe.url}>{currentData.recipe.source}</a></p>
-                                                                        <div className="bookmark-options"><button className="save-button" onClick={this.saveRecipe}><span>Save</span></button></div>
+                                                                        <div className="bookmark-options">
+                                                                                <StarRatings rating={this.state.currentRating} className="starItem" numOfStars={5} name='rating' starDimension={'20px'}  starRatedColor="gold" />
+                                                                                <button className="save-button" onClick={this.saveRecipe}><span>Save</span></button>
+                                                                        </div>
                                                                         <div className="save-details">{AuthenticationService.isUserLoggedIn() && this.state.saved &&<p>Saved Food Success!</p>}</div>
                                                                 </div>
                                                         </div>
