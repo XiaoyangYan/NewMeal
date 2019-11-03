@@ -3,47 +3,61 @@ import pandas as pd
 import json
 import requests
 import torch
-import flask
-from flask import Flask, request
-from flask_cors import CORS
+import os
 from sklearn.neighbors import NearestNeighbors
 
 
 
 def get_data_from_api():
-    # get info from api and convert it to a json 
-    r = requests.get('https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&diet=balanced&from=0&to=100')
-    json_text = r.json()
-    with open("recipes.json", 'w', encoding= 'utf-8') as f:
-        json.dump(json_text, f, ensure_ascii=False, indent=4)
+    # list of diets we need
+    diet = ['balanced', 'high-fiber', 'high-protein', 'low-carb', 'low-fat', 
+    'low-sodium']
+    health = ['keto-friendly', 'paleo', 'vegan']
 
 
-server = flask.Flask(__name__) #创建一个flask对象
-CORS(server)
-@server.route('/recipe/user', methods=['get','post'])
-def get_data_from_frontend():
-            r = request.get_json()
-            print(r)
-            json_text = r
-            with open("recipes.json", 'w', encoding='utf-8') as f:
-                json.dump(json_text, f, ensure_ascii=False, indent=4)
-            return  parse_data_to_dataframe()
+    # get json from corresponding api and then write it in a separate file
+    dir_name = os.path.dirname(__file__)
+    for each in diet:
+        file_name = os.path.join(dir_name, 'recipes/' + each + '.json')
+        recipe_file = open(file_name, 'w', encoding='utf-8')
+        recipe_content = requests.get('https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&diet=' + each + '&from=0&to=100')
+        recipe_json = recipe_content.json()
+        json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
+        recipe_file.close()
+    
+    for each in health:
+        file_name = os.path.join(dir_name, 'recipes/' + each + '.json')
+        recipe_file = open(file_name, 'w', encoding='utf-8')
+        recipe_content = requests.get('https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&health=' + each + '&from=0&to=100')
+        recipe_json = recipe_content.json()
+        json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
+        recipe_file.close()
+        
+    
+
 
 def parse_data_to_dataframe():
-    with open('recipes.json', 'r') as f:
-        json_text = json.load(f)
+    # read data from recipes dir
+    dir_name = os.path.dirname(__file__)
+    path = os.path.join(dir_name, 'recipes')
+    recipe_list = os.listdir(path)
 
-    # extract recipes from json
-    hits = json_text['hits']
+    # load json data
     dic_list = []
-    for i in range(len(hits)):
-        dic_list.append(hits[i]['recipe'])
-
+    for each in recipe_list:
+        file_name = os.path.join(dir_name, 'recipes/' + each)
+        recipe_file = open(file_name, 'r')
+        print(file_name)
+        json_text = json.load(recipe_file)
+        hits = json_text['hits']
+        for i in range(len(hits)):
+            dic_list.append(hits[i]['recipe'])
     # convert recipes to dataframe
     df = pd.DataFrame(dic_list)
-    df = df.drop(['uri','url','yield', 'source', 'shareAs', 'ingredients', 
-    'totalNutrients', 'digest', 'image', 'totalWeight', 'totalDaily'], axis=1)
+    df = df.drop(['yield', 'source', 'shareAs', 'ingredients', 
+    'totalNutrients', 'digest', 'image', 'totalWeight', 'totalDaily', 'label'], axis=1)
     return df
+
 
 def split_data(df_data):
     data = df_data.to_numpy()
@@ -60,11 +74,6 @@ def knn(X):
 def dl():
     pass
 
-
-server.run(port=7000, debug=True)
-
-if __name__ == "__main__":
-    #get_data_from_api()
-    df = parse_data_to_dataframe()
-    #print(df.columns)
-    #split_data(df)
+#get_data_from_api()
+df = parse_data_to_dataframe()
+print(df)
