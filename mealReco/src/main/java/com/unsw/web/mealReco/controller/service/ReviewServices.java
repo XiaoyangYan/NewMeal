@@ -46,4 +46,18 @@ public class ReviewServices {
 		List<Review> results = this.reviewDAO.findByUser(user.getUserId());
 		return results;
 	}
+	
+	public float calculateAvgRatingRecipe(Recipe recipe) {
+		List<Review> results = this.reviewDAO.findByRecipe(recipe.getRecipeId());
+		float average = 0;
+		int sum = 0;
+//		System.out.println(results.size());
+		for(int i = 0; i < results.size(); i++) {
+			sum += results.get(i).getRating();
+		}
+		if (results != null && results.size() != 0) {
+			average = sum/results.size();
+		}
+		return average;
+	}
 }

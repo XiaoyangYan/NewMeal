@@ -133,7 +133,17 @@
     bottom: 11px;
     transform: rotateZ(52deg);
 }
-
+.calories-select-box{
+    width: 50%;
+    margin:0 auto;
+    padding:10px 20px;
+    font-size: 18px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0px 20px;
+}
+.calories-select-box .calories-label{
+    margin: 20px 20px;
+}
 #s-cover:hover button span:after
 {
     bottom: -11px;

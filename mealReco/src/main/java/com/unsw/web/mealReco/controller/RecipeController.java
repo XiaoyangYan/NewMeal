@@ -42,7 +42,11 @@ public class RecipeController extends BaseController{
 		email = email.trim();
 		Users user = this.userService.getUsers(email);
 		List<Recipe> savedRecipe = this.recipeService.getSavedRecipeList(user);
+		for(Recipe item: savedRecipe) {
+			float num = this.reviewService.calculateAvgRatingRecipe(item);
+			this.recipeService.updateRating(num, item);
+		}
 		return new ResponseEntity<List<Recipe>>(savedRecipe, HttpStatus.OK);
 	}
-
+	
 }
