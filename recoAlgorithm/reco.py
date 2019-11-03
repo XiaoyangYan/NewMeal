@@ -25,9 +25,9 @@ def get_data_from_frontend():
             r = request.get_json()
             print(r)
             json_text = r
-            with open("recipes.json", 'w', encoding='utf-8') as f:
+            with open("users.json", 'w', encoding='utf-8') as f:
                 json.dump(json_text, f, ensure_ascii=False, indent=4)
-            return  parse_data_to_dataframe()
+            return  "ddd"
 
 def parse_data_to_dataframe():
     with open('recipes.json', 'r') as f:

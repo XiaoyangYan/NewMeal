@@ -38,10 +38,11 @@ public class ReviewController extends BaseController {
 		if (recipe == null) {
 			return new ResponseEntity<String>("Please save your recipe and then comment", HttpStatus.OK);
 		}
-		System.out.println(recipe.getLabel());
 		review.setRecipe(recipe);
 		review.setUsers(user);
 	    this.reviewService.createReview(review);
+	    float averageNum = this.reviewService.calculateAvgRatingRecipe(recipe);
+	    this.recipeService.updateRating(averageNum, recipe);
 	    List<Review> results = this.reviewService.listRecipeReview(recipe);
 		return new ResponseEntity<List<Review>>(results, HttpStatus.OK);
 	}

@@ -56,4 +56,9 @@ public class RecipeServices {
 		}
 		return results;
 	}
+	
+	public void updateRating(float average, Recipe recipe) {
+		recipe.setRatings(average);
+		this.recipeDAO.update(recipe);
+	}
 }

@@ -31,9 +31,7 @@ public class JpaDAO<T> {
 	}
 	@Transactional
 	public T update(T entity) {
-		entityManager.getTransaction().begin();
 		entity = entityManager.merge(entity);
-		entityManager.getTransaction().commit();
 		entityManager.close();
 		return entity;
 	}
