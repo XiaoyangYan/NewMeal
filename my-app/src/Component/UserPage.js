@@ -2,7 +2,6 @@ import React from "react";
 import AuthenticationService from "./Service/AuthenticationService";
 import "./css/dr-icon.css";
 import "./css/UserPage.css";
-import Banner from "./Banner";
 import {Switch, Route, NavLink} from "react-router-dom";
 import Main from "./Main";
 import ReviewList from "./ReviewList";
