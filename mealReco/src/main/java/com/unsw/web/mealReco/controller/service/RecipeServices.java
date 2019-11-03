@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.unsw.web.mealReco.dao.RecipeDAO;
 import com.unsw.web.mealReco.dao.SaveDetailDAO;
 import com.unsw.web.mealReco.entity.Recipe;
+import com.unsw.web.mealReco.entity.Review;
 import com.unsw.web.mealReco.entity.SaveDetail;
 import com.unsw.web.mealReco.entity.Users;
 
@@ -55,5 +56,16 @@ public class RecipeServices {
 			results.add(recipe);
 		}
 		return results;
+	}
+	
+	public void updateReciple(Recipe recipe) {
+		recipeDAO.update(recipe);
+	}
+	public void deleteReciple(int id) {
+		recipeDAO.delete(id);
+	}
+	public List<Recipe> listMostFavoredRecipes(){
+		List<Recipe> mostFavoredRecipes = recipeDAO.listMostFavoredRecipes();
+		return mostFavoredRecipes;
 	}
 }

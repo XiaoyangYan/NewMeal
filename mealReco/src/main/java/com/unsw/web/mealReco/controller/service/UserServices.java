@@ -6,6 +6,7 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.unsw.web.mealReco.dao.UserDAO;
+import com.unsw.web.mealReco.entity.Review;
 import com.unsw.web.mealReco.entity.Users;
 @Transactional
 @Service
@@ -47,5 +48,12 @@ public class UserServices {
 	
 	public Users getUsers(String email) {
 		return userDAO.findByEmail(email);
+	}
+	
+	public void updateUser(Users user) {
+		userDAO.update(user);
+	}
+	public void deleteUser(int id) {
+		userDAO.delete(id);
 	}
 }
