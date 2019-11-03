@@ -25,12 +25,7 @@
   overflow: hidden;
 }
 
-footer {
-	position: fixed;
-	bottom:0;
-	height:200px;
-	top: auto !important;
-}
+
 body {
 	font: 12px/20px Arial;
 	color: #ccc;
