@@ -48,4 +48,11 @@ public class UserServices {
 	public Users getUsers(String email) {
 		return userDAO.findByEmail(email);
 	}
+	
+	public void updateUser(Users user) {
+		userDAO.update(user);
+	}
+	public void deleteUser(int id) {
+		userDAO.delete(id);
+	}
 }

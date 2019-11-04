@@ -63,6 +63,7 @@
   min-width: 90px;
   width: 34%;
   background-color:white;
+  min-height:300px;
 }
 
 .drop-down {
