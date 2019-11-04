@@ -1,123 +1,137 @@
 import React from "react";
 import './css/Loading.min.css';
 import './css/PlanPage.css';
-
-
+import { addRecipe, removeFromCalendar } from "../actions";
+import { connect } from "react-redux";
+import Card from "./Card";
+import Modal from 'react-modal';
+import Data from "../API/Data";
+import RecipeSearch from "./RecipeSearch";
 class PlanPage extends React.Component {
         constructor(props) {
                 super(props);
                 this.state = {
+                        loadingFood: false,
+                        food: null,
+                        meal: null,
+                        day: null,
+                        recipeSearchInput: "",
+                        isRecipeModalOpen: false,
                 }
         }
 
-        render() {
-                return (
-                        <>
-                        <div class="planImage"></div>
-                        <div class="content">
-                                <div id="saved">
-                                        <div id="savedTitle">Saved Recipes</div>
-                                        <div> RECIPES GO HERE</div>
-                                </div>
-                                <nav class="planner">
+        searchRecipe = (e) => {
+                if (!this.state.recipeSearchInput){
+                        return;
+                }
+                e.preventDefault();
+                this.setState(() => ({loadingFood: true}));
+                Data.getRecipeFromPlanning(this.state.recipeSearchInput).then((res) => res.data).then(({hits}) =>hits.map(({recipe}) => recipe)).then((food) => 
+                this.setState(() => ({food, loadingFood: false})));
+        }
 
-                                        <nav class="drop-down-menu first">
-                                                <input type="checkbox" class="activate" id="accordion-1" name="accordion-1"></input>
-                                                <label for="accordion-1" class="menu-title">Monday</label>
-                                                <div class="drop-down">
-                                                        <a href="#">
-                                                                <div>Breakfast</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                        <a href="#">
-                                                                <div>Lunch</div>
-                                                                <div class="cardFill">drop card here</div>                                                                
-                                                        </a>                                                       
-                                                        <a class="last" href="#">
-                                                                <div>Dinner</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                </div>
-                                        </nav>
-                                        <nav class="drop-down-menu">
-                                                <input type="checkbox" class="activate" id="accordion-2" name="accordion-2"></input>
-                                                <label for="accordion-2" class="menu-title">Tuesday</label>
-                                                <div class="drop-down">
-                                                        <a href="#">
-                                                                <div>Breakfast</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                        <a href="#">
-                                                                <div>Lunch</div>
-                                                                <div class="cardFill">drop card here</div>                                                                
-                                                        </a>                                                       
-                                                        <a class="last" href="#">
-                                                                <div>Dinner</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                </div>
-                                        </nav>
-                                        <nav class="drop-down-menu">
-                                                <input type="checkbox" class="activate" id="accordion-3" name="accordion-3"></input>
-                                                <label for="accordion-3" class="menu-title">Wednesday</label>
-                                                <div class="drop-down">
-                                                        <a href="#">
-                                                                <div>Breakfast</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                        <a href="#">
-                                                                <div>Lunch</div>
-                                                                <div class="cardFill">drop card here</div>                                                                
-                                                        </a>                                                       
-                                                        <a class="last" href="#">
-                                                                <div>Dinner</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                </div>
-                                        </nav>
-                                        <nav class="drop-down-menu">
-                                                <input type="checkbox" class="activate" id="accordion-4" name="accordion-4"></input>
-                                                <label for="accordion-4" class="menu-title">Thursday</label>
-                                                <div class="drop-down">
-                                                        <a href="#">
-                                                                <div>Breakfast</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                        <a href="#">
-                                                                <div>Lunch</div>
-                                                                <div class="cardFill">drop card here</div>                                                                
-                                                        </a>                                                       
-                                                        <a class="last" href="#">
-                                                                <div>Dinner</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                </div>
-                                        </nav>
-                                        <nav class="drop-down-menu">
-                                                <input type="checkbox" class="activate" id="accordion-5" name="accordion-5"></input>
-                                                <label for="accordion-5" class="menu-title">Friday</label>
-                                                <div class="drop-down">
-                                                        <a href="#">
-                                                                <div>Breakfast</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                        <a href="#">
-                                                                <div>Lunch</div>
-                                                                <div class="cardFill">drop card here</div>                                                                
-                                                        </a>                                                       
-                                                        <a class="last" href="#">
-                                                                <div>Dinner</div>
-                                                                <div class="cardFill">drop card here</div>
-                                                        </a>
-                                                </div>
-                                        </nav>
-                                </nav>
-                        </div>
-                        </>
-                        
+        onInputChange = (e) =>{
+                e.preventDefault();
+                this.setState({recipeSearchInput: e.target.value});
+        }
+
+        openRecipeModal = ({meal, day}) =>{
+                console.log(this.state.isRecipeModalOpen);
+                this.setState(() =>( {
+                        isRecipeModalOpen: true,
+                        meal,
+                        day,
+                        recipeSearchInput:'',
+                }));
+        }
+        closeRecipeModal = () => {
+		this.setState(() => ({
+			isRecipeModalOpen: false,
+			meal: null,
+			day: null,
+			food: null,
+			recipeSearchInput: '',
+		}));
+        };
+        componentWillMount() {
+                Modal.setAppElement('body');
+            }
+        render() {
+                const { calendar, selectRecipe, remove } = this.props;
+                const mealOrder = ['breakfast', 'lunch', 'dinner'];
+                const {  loadingFood, food, day, meal } = this.state;
+                console.log(food);
+                return (
+                        <section className="planner-section">
+                                <div className="planImage"></div>
+                                <div className="search-for-recipe"></div>
+                                <div className="planner-content">
+                                        <div className="planner-list">
+                                                {calendar.map(({day, meals}, index) => (
+                                                        <ul className="drop-down-menu" key={day}>
+                                                                <input type="checkbox" className="activate" id={`accordion-${index+1}`} name={`accordion-${index+1}`}></input>
+                                                                <label htmlFor={`accordion-${index+1}`} className="menu-title">{day}</label>
+                                                                <div className="drop-down">
+                                                                        {mealOrder.map((meal) => (
+                                                                                <li key={meal} className='meal'>
+                                                                                        <div className="sub-planning-label">{meal}</div>
+                                                                                        { meals[meal] ? 
+                                                                                                <div className="recipe-planning-item">
+                                                                                                        <Card  backgroundImage={meals[meal].image}  calories={meals[meal].calories} props={this.props}
+                                                                                                        title={meals[meal].label} source={meals[meal].source} ingredientsLength={meals[meal].ingredients.length} /> 
+                                                                                                        <button onClick={() => remove({meal,day})}>Clear</button>
+                                                                                                </div>
+                                                                                                : <button onClick={() => this.openRecipeModal({meal, day})} className="open-recipe-button">
+                                                                                                        <i className="fa fa-calendar" style={{width:30,height:30}}/>
+                                                                                                </button>
+                                                                                        }
+                                                                               </li>
+                                                                        ))}
+                                                                </div>
+                                                        </ul>
+                                                ))}
+                                        </div>
+                                </div>
+                                <Modal label="Recipe Search Modal" isOpen={this.state.isRecipeModalOpen} onClose={this.closeRecipeModal} >
+                                        <RecipeSearch
+                                                isLoading={loadingFood}
+                                                selectRecipe={selectRecipe}
+                                                searchRecipe={this.searchRecipe}
+                                                food={food}
+                                                onInputChange={this.onInputChange}
+                                                day={day}
+                                                meal={meal}
+                                                onClose={this.closeRecipeModal}
+                                        />
+                                </Modal>
+                        </section>
+
                 );
 
         }
 }
 
-export default PlanPage;
+const mapStateToProps = ({ calendar, food }) => {
+        const dayOrder = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday'];
+        console.log(calendar);
+        console.log(food);
+        return {
+                calendar: dayOrder.map(day => ({
+                        day,
+                        meals: Object.keys(calendar[day]).reduce((meals, meal) => {
+                                console.log(meals[meal])
+                                console.log(meal);
+                                console.log(calendar[day][meal])
+                                meals[meal] = calendar[day][meal] ? food[calendar[day][meal]] : null;
+                                return meals;
+                        }, {})
+                })),
+        };
+};
+
+const mapDispatchToProps = (dispatch) => ({
+        selectRecipe: (data) => dispatch(addRecipe(data)),
+        remove: (data) => dispatch(removeFromCalendar(data)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlanPage);

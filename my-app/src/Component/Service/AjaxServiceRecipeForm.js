@@ -12,5 +12,9 @@ class AjaxServiceRecipeForm {
         getDataFromPython(data){
                 return axios.post(`http://localhost:7000/recipe/user`, data);
         }
+
+        getSpecialRecipe(label){
+                return axios.get(`http://localhost:8080/recipe/getS/${label}`);
+        }
 }
 export default new AjaxServiceRecipeForm();

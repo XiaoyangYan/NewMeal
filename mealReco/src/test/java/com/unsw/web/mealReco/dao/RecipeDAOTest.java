@@ -143,6 +143,15 @@ public class RecipeDAOTest {
 		assertEquals(actual, expect);
 	}
 	
+	@Test
+	public void testlistSavedRecipe() {
+		int id = 2;
+		entitymanager = entitymanagerfactory.createEntityManager();
+		recipeDAO = new RecipeDAO(entitymanager);
+		List<Recipe> savedRecipe = recipeDAO.listSavedRecipe(id);
+		assertTrue(savedRecipe.size()>=0);
+	}
+	
 	
 	@AfterClass
 	public static void tearDownAfterClass() throws Exception {

@@ -50,4 +50,10 @@ public class RecipeController extends BaseController{
 		return new ResponseEntity<List<Recipe>>(savedRecipe, HttpStatus.OK);
 	}
 	
+	@GetMapping(path="/getS/{label}")
+	@ResponseBody
+	public ResponseEntity<Recipe> getSpecialRecipe(@PathVariable String label){
+		Recipe recipe = this.recipeService.getRecipe(label);
+		return new ResponseEntity<Recipe>(recipe, HttpStatus.OK);
+	}
 }
