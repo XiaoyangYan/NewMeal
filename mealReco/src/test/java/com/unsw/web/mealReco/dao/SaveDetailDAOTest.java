@@ -3,6 +3,7 @@ package com.unsw.web.mealReco.dao;
 import static org.junit.Assert.*;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
@@ -14,6 +15,7 @@ import org.junit.Test;
 
 import com.unsw.web.mealReco.entity.Recipe;
 import com.unsw.web.mealReco.entity.SaveDetail;
+import com.unsw.web.mealReco.entity.Users;
 
 public class SaveDetailDAOTest {
 	
@@ -40,8 +42,25 @@ public class SaveDetailDAOTest {
 	}
 
 	@Test
-	public void test() {
-		fail("Not yet implemented");
+	public void testfindByUserAndRecipe() {
+		int uid = 33;
+		int rid = 2;
+		entitymanager = entitymanagerfactory.createEntityManager();
+		savedetailDAO = new SaveDetailDAO(entitymanager);
+		SaveDetail  sd = savedetailDAO.findByUserAndRecipe(uid, rid);
+		assertTrue(sd!=null);
+		entitymanager.close();
+		
+	}
+	@Test
+	public void testuserSaving() {
+		int uid = 33;
+		entitymanager = entitymanagerfactory.createEntityManager();
+		savedetailDAO = new SaveDetailDAO(entitymanager);
+		List<SaveDetail>  sd = savedetailDAO.userSaving(uid);
+		assertTrue(sd.size()>0);
+		entitymanager.close();
+		
 	}
 
 }

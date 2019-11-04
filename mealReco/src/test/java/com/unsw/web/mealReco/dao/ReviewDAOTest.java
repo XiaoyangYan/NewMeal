@@ -41,7 +41,7 @@ public class ReviewDAOTest {
 		Review review = new Review();
 		
 		Recipe recipe = new Recipe();
-		recipe.setRecipeId(1);
+		recipe.setRecipeId(2);
 		
 		Users user = new Users();
 		user.setUserId(20);
@@ -120,6 +120,24 @@ public class ReviewDAOTest {
 		
 		long count = reviewDao.count();
 		assertTrue(count>0);
+
+	}
+	@Test
+	public void testfindByRecipe() {
+		entitymanager = entitymanagerfactory.createEntityManager();
+		reviewDao = new ReviewDAO(entitymanager);
+		int id = 2;
+		List<Review> review = reviewDao.findByRecipe(id);
+		assertTrue(review.size()>0);
+
+	}
+	@Test
+	public void testfindByUser() {
+		entitymanager = entitymanagerfactory.createEntityManager();
+		reviewDao = new ReviewDAO(entitymanager);
+		int useid = 2;
+		List<Review> review = reviewDao.findByUser(useid);
+		assertTrue(review.size()>0);
 
 	}
 
