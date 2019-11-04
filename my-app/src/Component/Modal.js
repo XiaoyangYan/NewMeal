@@ -1,34 +1,30 @@
 import React from 'react';
-import Modal from 'react-modal';
+import PropTypes from 'prop-types';
+import ReactModal from 'react-modal';
 
-class AppModal extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
+const AppModal = ({ isOpen, onClose, label, children }) => {
+	ReactModal.setAppElement('#root')
+	return (
+		<ReactModal
+			className='modal'
+			overlayClassName='overlay'
+			isOpen={isOpen}
+			onRequestClose={onClose}
+			contentLabel={label}
+		>
 
-		}
-	}
-	componentWillMount() {
-                Modal.setAppElement('body');
-            }
-	render() {
-		const { isOpen, onClose, label, children } = this.props
-			return(
-				<Modal
-					className='modal'
-					overlayClassName='overlay'
-					isOpen={isOpen}
-					onRequestClose={onClose}
-					contentLabel={label}
-				>
-					<div style={{ float: 'right' }}>
-						<button className="icon-btn" onClick={onClose} aria-label='Close modal'>
-							<i size={24} className="fa fa-close" />
-						</button>
-					</div>
-					{children}
-				</Modal>
-			);
-	};
-}
+			<div style={{ float: 'right' }}>
+				<button className="icon-btn" onClick={(e) => { this.props.onClose() }} aria-label='Close modal' style={{ width: "40px", height: "40px" }}>
+					<i className="fa fa-close fa-lg " style={{ font: "60px" }} autoFocus />
+				</button>
+			</div>
+			{children}
+		</ReactModal>
+	);
+};
+AppModal.propTypes = {
+	isOpen: PropTypes.bool,
+	onClose: PropTypes.func,
+	label: PropTypes.string,
+};
 export default AppModal;

@@ -4,7 +4,7 @@ import './css/PlanPage.css';
 import { addRecipe, removeFromCalendar } from "../actions";
 import { connect } from "react-redux";
 import Card from "./Card";
-import Modal from 'react-modal';
+import ReactModal from 'react-modal';
 import Data from "../API/Data";
 import RecipeSearch from "./RecipeSearch";
 class PlanPage extends React.Component {
@@ -36,7 +36,6 @@ class PlanPage extends React.Component {
         }
 
         openRecipeModal = ({meal, day}) =>{
-                console.log(this.state.isRecipeModalOpen);
                 this.setState(() =>( {
                         isRecipeModalOpen: true,
                         meal,
@@ -53,9 +52,9 @@ class PlanPage extends React.Component {
 			recipeSearchInput: '',
 		}));
         };
-        componentWillMount() {
-                Modal.setAppElement('body');
-            }
+        componentDidMount() {
+                ReactModal.setAppElement('#root');
+        }
         render() {
                 const { calendar, selectRecipe, remove } = this.props;
                 const mealOrder = ['breakfast', 'lunch', 'dinner'];
@@ -92,18 +91,22 @@ class PlanPage extends React.Component {
                                                 ))}
                                         </div>
                                 </div>
-                                <Modal label="Recipe Search Modal" isOpen={this.state.isRecipeModalOpen} onClose={this.closeRecipeModal} >
-                                        <RecipeSearch
-                                                isLoading={loadingFood}
-                                                selectRecipe={selectRecipe}
-                                                searchRecipe={this.searchRecipe}
-                                                food={food}
-                                                onInputChange={this.onInputChange}
-                                                day={day}
-                                                meal={meal}
-                                                onClose={this.closeRecipeModal}
-                                        />
-                                </Modal>
+                                <div  className="modal">
+                                        <ReactModal label="Recipe Search Modal" isOpen={this.state.isRecipeModalOpen} shouldCloseOnEsc={true}
+                                                onClose={this.closeRecipeModal}>
+                                                <RecipeSearch
+                                                        isLoading={loadingFood}
+                                                        selectRecipe={selectRecipe}
+                                                        searchRecipe={this.searchRecipe}
+                                                        food={food}
+                                                        onInputChange={this.onInputChange}
+                                                        day={day}
+                                                        meal={meal}
+                                                        closeRecipeModal={this.closeRecipeModal}
+                                                />
+                                        </ReactModal>
+                                </div>
+                                
                         </section>
 
                 );
@@ -119,10 +122,10 @@ const mapStateToProps = ({ calendar, food }) => {
                 calendar: dayOrder.map(day => ({
                         day,
                         meals: Object.keys(calendar[day]).reduce((meals, meal) => {
+                                meals[meal] = calendar[day][meal] ? food[calendar[day][meal]] : null;
                                 console.log(meals[meal])
                                 console.log(meal);
                                 console.log(calendar[day][meal])
-                                meals[meal] = calendar[day][meal] ? food[calendar[day][meal]] : null;
                                 return meals;
                         }, {})
                 })),

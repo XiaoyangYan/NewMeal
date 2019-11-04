@@ -7,10 +7,11 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import '../node_modules/font-awesome/css/font-awesome.min.css';
 import {createStore} from 'redux';
-import rootReducer from './reducers'
+import rootReducer from './reducers';
+import devToolsEnhancer from 'remote-redux-devtools';
 let initialStore = {
 };
-const store = createStore(rootReducer, initialStore, window._REDUX_DEVTOOLS_EXTENSION_ && window._REDUX_DEVTOOLS_EXTENSION_());
+const store = createStore(rootReducer, initialStore, devToolsEnhancer());
 ReactDOM.render(
         <Provider store={store}>
                  <App />
