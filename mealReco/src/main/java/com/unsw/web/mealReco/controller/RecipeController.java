@@ -41,6 +41,7 @@ public class RecipeController extends BaseController{
 		System.out.println(email);
 		email = email.trim();
 		Users user = this.userService.getUsers(email);
+		System.out.println(user.getFullName());
 		List<Recipe> savedRecipe = this.recipeService.getSavedRecipeList(user);
 		for(Recipe item: savedRecipe) {
 			float num = this.reviewService.calculateAvgRatingRecipe(item);
@@ -49,4 +50,10 @@ public class RecipeController extends BaseController{
 		return new ResponseEntity<List<Recipe>>(savedRecipe, HttpStatus.OK);
 	}
 	
+	@GetMapping(path="/getS/{label}")
+	@ResponseBody
+	public ResponseEntity<Recipe> getSpecialRecipe(@PathVariable String label){
+		Recipe recipe = this.recipeService.getRecipe(label);
+		return new ResponseEntity<Recipe>(recipe, HttpStatus.OK);
+	}
 }

@@ -16,7 +16,7 @@ class Search extends React.Component{
                         currentData: [],
                         isLoading:false,
                         text:"",
-                        calories:"0-2000",
+                        calories:"0-200",
                 }
                 this.getSearchData = this.getSearchData.bind(this);
         }
@@ -29,6 +29,7 @@ class Search extends React.Component{
                 console.log(dishType);
                 console.log(diet);
                 console.log(queryText);
+                console.log(calorieyType);
                 this.setState({isLoading: true});
                 var queryData;
                 if (this.state.currentDietIndex <= 4){
@@ -44,7 +45,7 @@ class Search extends React.Component{
                         currentDiet:"high-protein",
                         currentDietIndex:0,
                         currentDishIndex:0,
-                        calories:'0-2000'
+                        calories:'0-200'
                 })
                 console.log(this.state.currentData);
         }
@@ -172,11 +173,11 @@ class Search extends React.Component{
                                         <div className="calories-select-box">
                                                 <label className="calories-label">Choose Calories Standard</label>
                                                 <select value={this.state.calories} onChange={this.onChange} name="calories">
-                                                        <option value="0-2000">0-500</option>
-                                                        <option value="2001-4000">501-4000</option>
-                                                        <option value="4001-8000">4001-8000</option>
-                                                        <option value="8001-12000">8001-12000</option>
-                                                        <option value="12001-100000">12001-100000</option>
+                                                        <option value="0-200">0-200</option>
+                                                        <option value="201-400">201-400</option>
+                                                        <option value="401-600">401-600</option>
+                                                        <option value="801-1200">801-1200</option>
+                                                        <option value="1201">1201-INF</option>
                                                 </select>
                                         </div>
                                         <div className="cardList-wrap">
