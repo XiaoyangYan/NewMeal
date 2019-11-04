@@ -33,8 +33,8 @@ class FavoriteRecipe extends React.Component{
                 console.log(findMySavedFood);
                 let arrayRecipe = findMySavedFood.data
                 this.setState({currentData:arrayRecipe});
-                // const pyData = await AjaxServiceRecipeForm.getDataFromPython(arrayRecipe);
-                // console.log(pyData);
+                const pyData = await AjaxServiceRecipeForm.getDataFromPython(arrayRecipe);
+                console.log(pyData);
         }
         decideColor(index){
                 index  = index%4;

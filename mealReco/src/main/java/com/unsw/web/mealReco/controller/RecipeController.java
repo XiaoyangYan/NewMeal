@@ -41,6 +41,7 @@ public class RecipeController extends BaseController{
 		System.out.println(email);
 		email = email.trim();
 		Users user = this.userService.getUsers(email);
+		System.out.println(user.getFullName());
 		List<Recipe> savedRecipe = this.recipeService.getSavedRecipeList(user);
 		for(Recipe item: savedRecipe) {
 			float num = this.reviewService.calculateAvgRatingRecipe(item);

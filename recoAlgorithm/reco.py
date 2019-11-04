@@ -4,7 +4,11 @@ import json
 import requests
 import torch
 import os
+
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.neighbors import NearestNeighbors
+from sklearn.preprocessing import OneHotEncoder
 
 
 
@@ -36,7 +40,7 @@ def get_data_from_api():
     
 
 
-def parse_data_to_dataframe():
+def parse_api_data():
     # read data from recipes dir
     dir_name = os.path.dirname(__file__)
     path = os.path.join(dir_name, 'recipes')
@@ -47,33 +51,54 @@ def parse_data_to_dataframe():
     for each in recipe_list:
         file_name = os.path.join(dir_name, 'recipes/' + each)
         recipe_file = open(file_name, 'r')
-        print(file_name)
         json_text = json.load(recipe_file)
         hits = json_text['hits']
         for i in range(len(hits)):
             dic_list.append(hits[i]['recipe'])
-    # convert recipes to dataframe
+    # convert recipes to dataframe and add user label
     df = pd.DataFrame(dic_list)
-    df = df.drop(['yield', 'source', 'shareAs', 'ingredients', 
-    'totalNutrients', 'digest', 'image', 'totalWeight', 'totalDaily', 'label'], axis=1)
+    df['user'] = 0
+    return df
+
+def parse_user_data():
+    # load json data
+    user_file = open('users.json', 'r')
+    json_text = json.load(user_file)
+    # convert json to dataframe and add user label
+    df = pd.DataFrame(json_text)
+    df['user'] = 1
     return df
 
 
-def split_data(df_data):
-    data = df_data.to_numpy()
-    size = data.shape[0]
-    train_size = (int)(size * 0.7)
-    train = data[:train_size]
-    test = data[train_size:]
-    print(train.shape)
-    print(test.shape)
+def recoByLabels(df_data):
+    #preprocess data
+    df = df_data[['cuisineType', 'dishType', 'healthLabels']]
+    df_dish = df.dishType.str.get_dummies()
+    df_cuisine = df.cuisineType.str.get_dummies()
+    df_health = df.healthLabels.str.get_dummies(',')
+    data = df_dish.join(df_cuisine)
+    data = data.join(df_health)
+    train = data.to_numpy()[:900]
+    test = data.to_numpy()[900:]
 
-def knn(X):
-    nbrs = NearestNeighbors(n_neighbors=10, algorithm='ball_tree').fit(X)
+    knn = NearestNeighbors(n_neighbors=4, algorithm='ball_tree', metric='manhattan')
+    knn.fit(train)
+    return knn.kneighbors(test, return_distance=False)
+    
 
 def dl():
     pass
 
-#get_data_from_api()
-df = parse_data_to_dataframe()
-print(df)
+if __name__ == '__main__':
+    #get_data_from_api()
+    recipe_df = parse_api_data()
+    user_df = parse_user_data()
+    df = pd.concat([recipe_df, user_df], ignore_index = True)
+    df = df.drop(['yield', 'source', 'shareAs', 'ingredients', 
+    'totalNutrients', 'digest', 'image', 'totalWeight', 'totalDaily', 'label', 'ingredientLines'], axis=1)
+    r = recoByLabels(df)
+    print(r)
+    
+
+
+
