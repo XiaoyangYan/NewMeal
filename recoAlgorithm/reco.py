@@ -2,13 +2,10 @@ import numpy as np
 import pandas as pd
 import json
 import requests
-import torch
 import os
 
 from sklearn.metrics.pairwise import cosine_similarity
-from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.neighbors import NearestNeighbors
-from sklearn.preprocessing import OneHotEncoder
 
 
 
@@ -70,9 +67,8 @@ def parse_user_data():
     return df
 
 
-def recoByLabels(df_data):
+def recoByLabels(df_data, recipe):
     #preprocess data
-    df = df_data[['cuisineType', 'dishType', 'healthLabels']]
     df_dish = df.dishType.str.get_dummies()
     df_cuisine = df.cuisineType.str.get_dummies()
     df_health = df.healthLabels.str.get_dummies(',')
@@ -80,10 +76,19 @@ def recoByLabels(df_data):
     data = data.join(df_health)
     train = data.to_numpy()[:900]
     test = data.to_numpy()[900:]
+    test_size = test.shape[0]
 
+    # use knn to find similarity and return nearest neighbours
     knn = NearestNeighbors(n_neighbors=4, algorithm='ball_tree', metric='manhattan')
     knn.fit(train)
-    return knn.kneighbors(test, return_distance=False)
+    neighbours = knn.kneighbors(test, return_distance=False)
+    
+    # extract result
+    neighbours = neighbours.reshape((-1, test_size*4))[0]
+    uri_list = []
+    for each in neighbours:
+        uri_list.append(recipe.iloc[each]['uri'])
+    return uri_list
     
 
 def dl():
@@ -94,9 +99,8 @@ if __name__ == '__main__':
     recipe_df = parse_api_data()
     user_df = parse_user_data()
     df = pd.concat([recipe_df, user_df], ignore_index = True)
-    df = df.drop(['yield', 'source', 'shareAs', 'ingredients', 
-    'totalNutrients', 'digest', 'image', 'totalWeight', 'totalDaily', 'label', 'ingredientLines'], axis=1)
-    r = recoByLabels(df)
+    df = df[['cuisineType', 'dishType', 'healthLabels']]
+    r = recoByLabels(df, recipe_df)
     print(r)
     
 
