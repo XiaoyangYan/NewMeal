@@ -1,6 +1,5 @@
-import json
-import requests
 import flask
+import json
 import reco
 from flask import Flask, request
 from flask_cors import CORS
@@ -15,7 +14,7 @@ def get_data_from_frontend():
     json_text = r
     with open("users.json", 'w', encoding='utf-8') as f:
         json.dump(json_text, f, ensure_ascii=False, indent=4)
-    return "ddd"
+    return reco.reco()
 
 
 server.run(port=7000, debug=True)

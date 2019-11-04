@@ -69,9 +69,9 @@ def parse_user_data():
 
 def recoByLabels(df_data, recipe):
     #preprocess data
-    df_dish = df.dishType.str.get_dummies()
-    df_cuisine = df.cuisineType.str.get_dummies()
-    df_health = df.healthLabels.str.get_dummies(',')
+    df_dish = df_data.dishType.str.get_dummies()
+    df_cuisine = df_data.cuisineType.str.get_dummies()
+    df_health = df_data.healthLabels.str.get_dummies(',')
     data = df_dish.join(df_cuisine)
     data = data.join(df_health)
     train = data.to_numpy()[:900]
@@ -94,14 +94,17 @@ def recoByLabels(df_data, recipe):
 def dl():
     pass
 
-if __name__ == '__main__':
+
+def reco():
     #get_data_from_api()
     recipe_df = parse_api_data()
     user_df = parse_user_data()
     df = pd.concat([recipe_df, user_df], ignore_index = True)
     df = df[['cuisineType', 'dishType', 'healthLabels']]
-    r = recoByLabels(df, recipe_df)
-    print(r)
+    return recoByLabels(df, recipe_df)
+
+if __name__ == "__main__":
+    print(reco())
     
 
 
