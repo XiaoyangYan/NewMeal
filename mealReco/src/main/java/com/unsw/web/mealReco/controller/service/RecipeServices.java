@@ -61,4 +61,17 @@ public class RecipeServices {
 		recipe.setRatings(average);
 		this.recipeDAO.update(recipe);
 	}
+	
+
+	public void updateReciple(Recipe recipe) {
+		recipeDAO.update(recipe);
+	}
+	public void deleteReciple(int id) {
+		recipeDAO.delete(id);
+	}
+	public List<Recipe> listMostFavoredRecipes(){
+		List<Recipe> mostFavoredRecipes = recipeDAO.listMostFavoredRecipes();
+		return mostFavoredRecipes;
+	}
+
 }
