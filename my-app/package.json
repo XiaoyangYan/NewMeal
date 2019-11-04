@@ -10,6 +10,7 @@
     "font-awesome": "^4.7.0",
     "history": "^4.10.1",
     "mdbreact": "^4.21.1",
+    "rc-antd-tags": "^1.0.0",
     "react": "^16.10.2",
     "react-animated-router": "^0.2.2",
     "react-axios": "^2.0.3",
@@ -28,10 +29,12 @@
     "react-validator-ease": "0.0.9",
     "redux": "^4.0.4",
     "redux-thunk": "^2.3.0",
-    "sass": "^1.23.1"
+    "sass": "^1.23.1",
+    "semantic-ui-react": "^0.88.1",
+    "tags": "^2.0.10"
   },
   "scripts": {
-    "start": "PORT=4200 react-scripts start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
