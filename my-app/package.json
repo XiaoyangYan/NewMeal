@@ -17,6 +17,7 @@
     "react-bootstrap": "^1.0.0-beta.14",
     "react-dom": "^16.10.2",
     "react-form-validates": "^2.0.3",
+    "react-icons": "^3.8.0",
     "react-iframe": "^1.8.0",
     "react-loading": "^2.0.3",
     "react-naive": "^1.0.0",
@@ -34,7 +35,7 @@
     "tags": "^2.0.10"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4200 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

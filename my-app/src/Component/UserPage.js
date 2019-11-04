@@ -38,9 +38,9 @@ class UserPage extends React.Component {
                        }
                        return (
                                  <Menu.Item key={items.key} title={items.title} pitem={pItem}>
-                                                <NavLink  to={items.key} className={classNameList[index]}>
-                                                        <span>{items.title}</span>
-                                                </NavLink>
+                                        <NavLink  to={items.key} className={classNameList[index]}>
+                                                 <span>{items.title}</span>
+                                        </NavLink>
                                 </Menu.Item>
                        );
                })

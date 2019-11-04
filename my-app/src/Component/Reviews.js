@@ -80,7 +80,7 @@ class Reviews extends React.Component{
                                 <div className="left-word-p">
                                         <p>
                                                 <span className="countTxt">You can still type</span>
-                                                <strong className="maxNum">200</strong>
+                                                <strong className="maxNum">{200-this.state.message.length}</strong>
                                                 <span>words</span>
                                                 <button className="send-review-button"  onClick={this.submitForm}>review</button>
                                         </p>

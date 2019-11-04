@@ -27,8 +27,9 @@
 .box{
         width:300px;
         padding: 4px;
+        max-height:400px;
         border: 1px solid #e6e6e6;
-        background: linear-gradient(to bottom,white, 60%, #f7f7f7, 100%);
+        background: linear-gradient(to bottom,white, 60%, #f7f7f7, 100%)!important;
 }
 .box .object{
         margin-bottom: 10px;
@@ -59,11 +60,16 @@
         margin: 0px 10px;
         text-align: center;
         display:flex;
+        overflow:hidden;
         flex-direction: row;
         flex-wrap: nowrap;
         justify-content: space-around;
         background: url('https://api.edamam.com/images/line-h.gif');
         list-style: none;
+        max-height:100px;
+}
+.card-data li{
+        max-height:100px;
 }
 .card-cal{
         border-right: 1px solid #D9D9D9;

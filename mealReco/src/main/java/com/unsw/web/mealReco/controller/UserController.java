@@ -31,6 +31,9 @@ public class UserController extends BaseController {
 	@PostMapping(path="/register")
 	@ResponseBody
 	public ResponseEntity<Users>  registerUser(@RequestBody Users user){
+		user.setEmail(user.getEmail().trim());
+		user.setFullName(user.getFullName().trim());
+		user.setPassword(user.getPassword().trim());
 		Users newUser = this.userService.registerUser(user.getFullName(), user.getPassword(), user.getEmail());
 		return new ResponseEntity<Users>(newUser, HttpStatus.OK);
 	}
