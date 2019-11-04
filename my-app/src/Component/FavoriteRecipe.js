@@ -65,7 +65,7 @@ class FavoriteRecipe extends React.Component{
                                                         <th>tags</th>
                                                 </tr>
                                         </thead>
-                                        <tbody>
+                                        <tbody className="tbody">
                                                 {
                                                         this.state.currentData.map((items, index) => 
                                                                 <tr key={index}>
