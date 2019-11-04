@@ -46,6 +46,7 @@ class CardPage extends React.Component {
         async componentWillReceiveProps(nextProps){
                 if (this.state.currentData.recipe.label !== nextProps.match.params.label){
                         if ( nextProps.match.params.label){
+                                this.setState({saved:false});
                                await  this.handleData(nextProps.match.params.label);
                         }
                 }
