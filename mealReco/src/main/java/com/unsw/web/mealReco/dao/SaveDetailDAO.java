@@ -1,10 +1,8 @@
 package com.unsw.web.mealReco.dao;
 
-import java.util.Date;
 import java.util.List;
 
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 
@@ -12,10 +10,6 @@ import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 
-import com.unsw.web.mealReco.entity.SaveDetail;
-
-
-import com.unsw.web.mealReco.entity.Review;
 import com.unsw.web.mealReco.entity.SaveDetail;
 
 public class SaveDetailDAO extends JpaDAO<SaveDetail> implements GenericDAO<SaveDetail>{
