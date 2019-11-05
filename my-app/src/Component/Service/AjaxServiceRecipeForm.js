@@ -16,5 +16,9 @@ class AjaxServiceRecipeForm {
         getSpecialRecipe(label){
                 return axios.get(`http://localhost:8080/recipe/getS/${label}`);
         }
+
+        deleteSaveRecipe(email, label){
+                return axios.delete(`http://localhost:8080/recipe/delete/${email}/${label}`);
+        }
 }
 export default new AjaxServiceRecipeForm();

@@ -6,8 +6,8 @@ class FetchData {
         async getRecipeFromAPI(){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&dishType=main course&q&from=0&to=15`);
         }
-        async getRecipeFromPlanning(query){
-                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}`);
+        async getRecipeFromPlanning(query,meal){
+                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&mealType=${meal}`);
         }
         async getRecipeFromFavorite(res){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}${res}`);

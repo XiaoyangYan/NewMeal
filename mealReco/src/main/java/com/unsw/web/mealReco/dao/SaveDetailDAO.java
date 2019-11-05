@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
+import org.springframework.data.jpa.repository.Modifying;
 
 import com.unsw.web.mealReco.entity.SaveDetail;
 
@@ -33,6 +34,7 @@ public class SaveDetailDAO extends JpaDAO<SaveDetail> implements GenericDAO<Save
 
 	@Override
 	@Transactional
+	@Modifying
 	public void delete(Object id) {
 		super.delete(SaveDetail.class, id);
 	}

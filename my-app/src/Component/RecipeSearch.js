@@ -36,7 +36,7 @@ class RecipeSearch extends React.Component{
                                                                 food={this.props.food}
                                                                 onSelect={(recipe) => {
                                                                         this.props.selectRecipe({recipe, day, meal});
-                                                                        this.props.onClose();
+                                                                        this.props.closeRecipeModal();
                                                                 }}
                                                         />
                                                 )

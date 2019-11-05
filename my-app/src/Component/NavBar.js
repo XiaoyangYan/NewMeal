@@ -31,6 +31,7 @@ class NavBar extends React.Component {
                 })
         }
         handleLogout = (e) => {
+                e.preventDefault();
                 AuthenticationService.logout();
         }
         render() {
@@ -41,8 +42,8 @@ class NavBar extends React.Component {
                                         <div className="menu-healthy hidden-xs">
                                                 <ul>
                                                         <li><Link to="/dash">Main</Link></li>
-                                                        <li><Link to="/plan">Self-Planner</Link></li>
-                                                        <li><Link to="/user">MyPage</Link></li>
+                                                        <li>{AuthenticationService.isUserLoggedIn() && <Link to="/plan">Self-Planner</Link>}</li>
+                                                        <li>{AuthenticationService.isUserLoggedIn() &&<Link to="/user">MyPage</Link>}</li>
                                                         <li><Link to="/aboutus">About Us</Link></li>
                                                 </ul>
                                         </div>

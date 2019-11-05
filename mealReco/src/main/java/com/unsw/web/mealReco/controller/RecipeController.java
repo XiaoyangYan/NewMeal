@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -29,7 +30,7 @@ public class RecipeController extends BaseController{
 	@PostMapping(path="/create/{email}")
 	@ResponseBody
 	public ResponseEntity<?> createSavedNewRecipe(@RequestBody Recipe recipe, @PathVariable String email){
-		System.out.println(recipe.getLabel()+" "+recipe.getPublishDate());
+		email = email.trim();
 		Users user = this.userService.getUsers(email);
 		Integer recipeId = this.recipeService.createSavedRecipe(recipe, user);
 		return new ResponseEntity<String>(recipeId.toString(), HttpStatus.OK);
@@ -41,7 +42,6 @@ public class RecipeController extends BaseController{
 		System.out.println(email);
 		email = email.trim();
 		Users user = this.userService.getUsers(email);
-		System.out.println(user.getFullName());
 		List<Recipe> savedRecipe = this.recipeService.getSavedRecipeList(user);
 		for(Recipe item: savedRecipe) {
 			float num = this.reviewService.calculateAvgRatingRecipe(item);
@@ -55,5 +55,16 @@ public class RecipeController extends BaseController{
 	public ResponseEntity<Recipe> getSpecialRecipe(@PathVariable String label){
 		Recipe recipe = this.recipeService.getRecipe(label);
 		return new ResponseEntity<Recipe>(recipe, HttpStatus.OK);
+	}
+	
+	@DeleteMapping(path="/delete/{email}/{label}")
+	@ResponseBody
+	public ResponseEntity<?> deleteRecipe(@PathVariable String email, @PathVariable String label) {
+		email = email.trim();
+		Recipe recipe = this.recipeService.getRecipe(label);
+		Users user = this.userService.getUsers(email);
+		this.recipeService.deleteSavedRecipe(recipe, user);
+		List<Recipe> lists = this.recipeService.getSavedRecipeList(user);
+		return new ResponseEntity<List<Recipe>>(lists, HttpStatus.OK);
 	}
 }

@@ -51,7 +51,6 @@ public class ReviewServices {
 		List<Review> results = this.reviewDAO.findByRecipe(recipe.getRecipeId());
 		float average = 0;
 		int sum = 0;
-//		System.out.println(results.size());
 		for(int i = 0; i < results.size(); i++) {
 			sum += results.get(i).getRating();
 		}
