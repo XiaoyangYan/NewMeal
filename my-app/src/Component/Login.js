@@ -35,7 +35,6 @@ class Login extends React.Component {
 
 	}
 	async submitFormLogin(e) {
-		e.preventDefault();
 		const message = await AjaxServiceSignForm.loginExistUser(this.state.email, this.state.password);
 		if (message.data === "valid"){
 			this.props.LoginUser({email: this.state.email, password:this.state.password});

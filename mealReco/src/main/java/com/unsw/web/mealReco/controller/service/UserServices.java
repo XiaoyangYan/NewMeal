@@ -6,7 +6,6 @@ import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import com.unsw.web.mealReco.dao.UserDAO;
-import com.unsw.web.mealReco.entity.Review;
 import com.unsw.web.mealReco.entity.Users;
 @Transactional
 @Service

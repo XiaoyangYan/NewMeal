@@ -24,9 +24,10 @@ class PlanPage extends React.Component {
                 if (!this.state.recipeSearchInput){
                         return;
                 }
+                const {meal} = this.state
                 e.preventDefault();
                 this.setState(() => ({loadingFood: true}));
-                Data.getRecipeFromPlanning(this.state.recipeSearchInput).then((res) => res.data).then(({hits}) =>hits.map(({recipe}) => recipe)).then((food) => 
+                Data.getRecipeFromPlanning(this.state.recipeSearchInput, meal).then((res) => res.data).then(({hits}) =>hits.map(({recipe}) => recipe)).then((food) => 
                 this.setState(() => ({food, loadingFood: false})));
         }
 
@@ -59,7 +60,6 @@ class PlanPage extends React.Component {
                 const { calendar, selectRecipe, remove } = this.props;
                 const mealOrder = ['breakfast', 'lunch', 'dinner'];
                 const {  loadingFood, food, day, meal } = this.state;
-                console.log(food);
                 return (
                         <section className="planner-section">
                                 <div className="planImage"></div>
