@@ -8,7 +8,8 @@ import Footer from "./Component/Footer";
 import CardPage from "./Component/CardPage";
 import ErrorPage from "./Component/ErrorPage";
 import UserPage from "./Component/UserPage";
-import PlanPage from "./Component/PlanPage"
+import PlanPage from "./Component/PlanPage";
+import CreatePage from "./Component/CreatePage";
 class App extends React.Component {
 	constructor(props){
 		super(props);
@@ -29,6 +30,7 @@ class App extends React.Component {
 						<Route path="/login"  component={Login}></Route>
 						<Route path="/user"  component={UserPage}></Route>
 						<Route path="/plan" component={PlanPage}></Route>
+						<Route path="/aboutus" component={CreatePage}></Route>
 						<Route component={ErrorPage}></Route>
 					</Switch>
 					<Footer/>

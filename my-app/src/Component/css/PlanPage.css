@@ -26,18 +26,11 @@
 }
 
 
-body {
-	font: 12px/20px Arial;
-	color: #ccc;
-}
-
-a, label {
-  color: #fff;
-  font-weight: bold;
-}
 
 .menu-title {
-	margin-bottom: 0px;
+  margin-bottom: 0px;
+  color: #fff;
+  font-weight: bold;
 }
 
 a:hover {
@@ -67,6 +60,8 @@ a:hover {
 .drop-down-menu {
   display: flex;
   flex-direction: column;
+  color: #fff;
+  font-weight: bold;
 }
 
 .menu-title {

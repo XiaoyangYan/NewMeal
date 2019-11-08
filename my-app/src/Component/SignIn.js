@@ -11,7 +11,7 @@ const SignIn = (props) => {
                                onChange = {props.onChange}/>
                     </div>
                     <div className="group">
-                        <label htmlFor="pass" className="label">Password</label>
+                        <label htmlFor="password" className="label">Password</label>
                         <input id="password" type="password" className="input" name="password" data-type="password" 
                         placeholder="Please type your password" value={props.password}
                                onChange={props.onChange}/>
