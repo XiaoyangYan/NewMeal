@@ -6,6 +6,7 @@ import StarItem from "./StarItems";
 import "./css/FavoriteRecipe.css";
 import ReactLoading from "react-loading";
 import {Link} from "react-router-dom";
+import StarRatings from 'react-star-ratings';
 class FavoriteRecipe extends React.Component{
         constructor(props){
                 super(props);
@@ -14,8 +15,11 @@ class FavoriteRecipe extends React.Component{
                         rec:[],
                         isLoading:false,
                         removeLabel: "",
+                        sorting:"",
                 }
                 this.onDelete = this.onDelete.bind(this);
+                this.sortByRating = this.sortByRating.bind(this);
+                this.onChange = this.onChange.bind(this);
         }
        async  onDelete (e){
                 e.preventDefault();
@@ -37,13 +41,32 @@ class FavoriteRecipe extends React.Component{
                        searchString = searchString + "&r=";
                        searchString += ss;
                }
-               console.log(searchString);
                const findMySavedFood = await Data.getRecipeFromFavorite(searchString);
-               console.log(findMySavedFood);
                let arrayRecipe = findMySavedFood.data
                this.setState({currentData:arrayRecipe, isLoading:false});
         }
-
+        async sortByRating(){
+                let {rec} = this.state;
+                rec.sort((a, b) => {
+                        if (a.ratings > b.ratings){
+                                return -1;
+                        } else {
+                                return 1;
+                        }
+                })
+                await this.assignData();
+        }
+        async sortByPublishDate(){
+                let {rec} = this.state;
+                rec.sort((a, b) => {
+                        if (a.publishDate > b.publishDate){
+                                return -1;
+                        } else {
+                                return 1;
+                        }
+                })
+                await this.assignData();
+        }
         async componentWillMount(){
                this.setState({isLoading: true});
                 const email = AuthenticationService.getEmail();
@@ -51,6 +74,8 @@ class FavoriteRecipe extends React.Component{
                 // console.log(savedRecipe.data);
                 const rec = savedRecipe.data;
                 this.setState({rec});
+                console.log(rec);
+                this.sortByRating();
                 this.assignData();
                 // const pyData = await AjaxServiceRecipeForm.getDataFromPython(arrayRecipe);
                 // console.log(pyData);
@@ -70,6 +95,22 @@ class FavoriteRecipe extends React.Component{
                                 return "red";
                 }
         }
+        async onChange(e){
+                e.preventDefault();
+                this.setState({
+                        [e.target.name] : e.target.value,
+                })
+                switch(e.target.value){
+                        case "ratings":
+                                await this.sortByRating();
+                                break;
+                        case "SaveDate":
+                                await this.sortByPublishDate();
+                                break;
+                        default:
+                                break;
+                }
+        }
         render(){
                 if (this.state.isLoading) {
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
@@ -84,9 +125,18 @@ class FavoriteRecipe extends React.Component{
                                                                  <th>label</th>
                                                                  <th>calories</th>
                                                                  <th>ratings</th>
-                                                                 <th>tags</th>
+                                                                 <th>tags 
+                                                                         <div className="sort-select-box">
+                                                                                 <label className="sort-label"></label>
+                                                                                <select value={this.state.sorting} onChange={this.onChange} name="sorting">
+                                                                                        <option value="ratings">Ratings</option>
+                                                                                        <option value="SaveDate">Saved Date</option>
+                                                                                </select>
+                                                                         </div>
+                                                                </th>
                                                          </tr>
                                                  </thead>
+                                                 {this.state.currentData &&
                                                  <tbody className="tbody">
                                                          {
                                                                  this.state.currentData.map((items, index) => 
@@ -95,7 +145,7 @@ class FavoriteRecipe extends React.Component{
                                                                                  <td><img src={items.image} alt="recipe"/></td>
                                                                                  <td><Link to={{pathname:`/card/${items.label}`, state:{label:`${items.label}`}}} exact="true">{items.label}</Link> </td>
                                                                                  <td>{Math.round(items.calories)}</td>
-                                                                                 <td><StarItem star={this.state.rec[index].ratings+1}/></td>
+                                                                                 <td><StarRatings rating={this.state.rec[index].ratings} starRatedColor="gold" className="starItem" numOfStars={5} name='rating' starDimension={'15px'}/></td>
                                                                                  <td>
                                                                                       {
                                                                                               items.dietLabels.map((items, index) => 
@@ -110,6 +160,7 @@ class FavoriteRecipe extends React.Component{
                                                                  )
                                                          }
                                                  </tbody>
+                                                 }
                                          </table>
                                                 
                                 </section>

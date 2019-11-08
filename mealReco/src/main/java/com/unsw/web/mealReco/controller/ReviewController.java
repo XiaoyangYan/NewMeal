@@ -33,6 +33,7 @@ public class ReviewController extends BaseController {
 	public ResponseEntity<?> createNewReview(@RequestBody Review review,
 					@PathVariable String email, @PathVariable String label){
 		System.out.println(label);
+		email = email.trim();
 		Users user = this.userService.getUsers(email);
 		Recipe recipe = this.recipeService.getRecipe(label);
 		if (recipe == null) {

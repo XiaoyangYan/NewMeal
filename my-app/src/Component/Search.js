@@ -3,8 +3,9 @@ import "./css/Search.css";
 import Data from "../API/Data";
 import ReactLoading from 'react-loading';
 import Card from "./Card";
-import {Select} from "antd";
-const Option = Select.Option;
+import {connect} from "react-redux";
+import {addCautions, removeFromCalendar, addRecipe, removeCautions} from "../actions/planner";
+import Tags from "./Tags";
 class Search extends React.Component{
         constructor(props){
                 super(props);
@@ -17,25 +18,32 @@ class Search extends React.Component{
                         isLoading:false,
                         text:"",
                         calories:"0-200",
+                        cautionList:["celery-free", "alcohol-free", "crustacean-free", 
+                        "gluten-free", "kidney-friendly" ,"wheat-free", "soy-free", "sugar-conscious", 
+                        "egg-free", "peanut-free", "mustard-free", "dairy-free" ],
+                        checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false],
+                        currentCaution: 0,
                 }
                 this.getSearchData = this.getSearchData.bind(this);
         }
         async getSearchData (e) {
                 e.preventDefault();
+                const {caution} = this.props;
                 const diet = this.state.currentDiet.toLowerCase().trim();
                 const dishType = this.state.currentFood.toLowerCase().trim();
                 const queryText =  this.state.text.toLowerCase().trim();
                 const calorieyType = this.state.calories;
-                console.log(dishType);
-                console.log(diet);
-                console.log(queryText);
-                console.log(calorieyType);
+                var searchString = "";
+                for (let i = 0; i < caution.length; i++){
+                        searchString = searchString + "&health="
+                        searchString += caution[i];
+                }
                 this.setState({isLoading: true});
                 var queryData;
                 if (this.state.currentDietIndex <= 4){
-                        queryData = await Data.getRecipeByDishTypeAndDiet(dishType,diet,queryText,calorieyType);
+                        queryData = await Data.getRecipeByDishTypeAndDiet(dishType,diet,queryText,calorieyType, searchString);
                 } else {
-                        queryData = await Data.getRecipeByHealthAndDiet(dishType, diet,queryText,calorieyType );
+                        queryData = await Data.getRecipeByHealthAndDiet(dishType, diet,queryText,calorieyType, searchString);
                 }
                         
                 this.setState({
@@ -47,7 +55,6 @@ class Search extends React.Component{
                         currentDishIndex:0,
                         calories:'0-200'
                 })
-                console.log(this.state.currentData);
         }
         searchCategoryDiet = (e) =>{
                 var _this = this;
@@ -81,13 +88,17 @@ class Search extends React.Component{
                this.setState({currentFood: liFood[this.state.currentDishIndex].innerText})
                 liFood[this.state.currentDishIndex].className = "styled-Category active-word";
         }
-        componentWillMount() {
-                // window.addEventListener('scroll', () =>
-                //   console.log(document.body.scrollTop || document.documentElement.scrollTop)
-                // )
-        }
         componentDidMount(){
-
+                var _this = this;
+                var ulCautions = document.getElementsByClassName("Cautions");
+                var liCautions = ulCautions[0].getElementsByTagName("li");
+                for(var i = 0; i < liCautions.length; i++){
+                        liCautions[i].className = "styled-Category"
+                        liCautions[i].index = i;
+                        liCautions[i].onclick = function(){
+                                _this.setState({currentCaution: this.index});
+                        }
+                }
         }
         handleAddMore = (e) => {
                 document.getElementById("line-next").className = 
@@ -106,14 +117,28 @@ class Search extends React.Component{
                         document.getElementById("minus-2").innerHTML === "add more"? "get back":"add more";
         }
         onChange = (e) => {
+                console.log(e);
                 this.setState({
                         [e.target.name] : e.target.value,
                 })
         }
         handleChange = value =>{
-                this.setState(()=>({value}));
-              }
+                  this.setState(()=>({value}));
+        }
+        handleCautionChange = checked => {
+                const {addCautions} = this.props;
+                 var ulCautions = document.getElementsByClassName("Cautions");
+                 var liCautions = ulCautions[0].getElementsByTagName("li");
+                 if (checked){
+                        addCautions({caution:this.state.cautionList[this.state.currentCaution]});
+                        liCautions[this.state.currentCaution].className = "styled-Category active-word";
+                   } else {
+                        liCautions[this.state.currentCaution].className = "styled-Category";    
+                   }
+                   this.state.checkCautions[this.state.currentCaution] = checked;
+        }
         render(){
+                const {caution} = this.props;
                 if (!this.state.isLoading){
                         return (
                                 <>
@@ -131,7 +156,6 @@ class Search extends React.Component{
                                                         </div>
                                                 </form>
                                         </div>
-                                      
                                         <div className="styled-Categories">
                                                 <h6>Search category for dish type: <samp>{this.state.currentFood.toLowerCase()}</samp></h6>
                                                 <ul className="styled-CategoryList Food" onClick={this.searchCategoryFood}>
@@ -151,9 +175,9 @@ class Search extends React.Component{
                                                         <div className="addMore" onClick={this.handleAddMore}><i id="icon" className="fa fa-plus"></i><p id="minus">add more</p></div>
                                                 </ul>
                                         </div>
-                                        <div className="styled-Categories Diet">
+                                        <div className="styled-Categories">
                                                 <h6>Search category for diet: <samp>{this.state.currentDiet.toLowerCase()}</samp></h6>
-                                                <ul className="styled-CategoryList " onClick={this.searchCategoryDiet}>
+                                                <ul className="styled-CategoryList  Diet" onClick={this.searchCategoryDiet}>
                                                         <li className="styled-Category active-word" >High-Protein</li>
                                                         <li className="styled-Category">High-Fiber</li>
                                                         <li className="styled-Category">Low-Fat</li>
@@ -170,6 +194,21 @@ class Search extends React.Component{
                                                                 <i id="icon-2" className="fa fa-plus"></i><p id="minus-2">add more</p></div>
                                                 </ul>
                                         </div>
+                                        <div className="styled-Categories">
+                                                <h6>Search category for Cautions: </h6>
+                                                <ul className="styled-CategoryList Cautions">
+                                                {
+                                                        this.state.cautionList.map((items, index) =>
+                                                             <li key={index}>
+                                                                        <Tags key={index} checked={this.state.checkCautions[index]} 
+                                                                                      onChange={this.handleCautionChange}>
+                                                                                {items}
+                                                                        </Tags>
+                                                                </li>
+                                                        )
+                                                }
+                                                </ul>
+                                        </div>
                                         <div className="calories-select-box">
                                                 <label className="calories-label">Choose Calories Standard</label>
                                                 <select value={this.state.calories} onChange={this.onChange} name="calories">
@@ -181,12 +220,14 @@ class Search extends React.Component{
                                                 </select>
                                         </div>
                                         <div className="cardList-wrap">
-
-                                                <ul className="cardList">
+                                                 <ul className="cardList" onClick={this.searchCategoryCautions}>
                                                         {
                                                                 this.state.currentData.map((items, index) =>
-                                                                        <li key={index} itemScope itemType="http://schema.org/Thing"><Card calories={items.recipe.calories} ingredientsLength={items.recipe.ingredients.length}
-                                                                                backgroundImage={items.recipe.image} title={items.recipe.label} source={items.recipe.source} /></li>
+                                                                        <li key={index} itemScope itemType="http://schema.org/Thing">
+                                                                                <Card calories={items.recipe.calories} 
+                                                                                             ingredientsLength={items.recipe.ingredients.length}
+                                                                                             backgroundImage={items.recipe.image} 
+                                                                                             title={items.recipe.label} source={items.recipe.source} /></li>
                                                                 )
                                                         }
                                                 </ul>
@@ -199,4 +240,14 @@ class Search extends React.Component{
         }
 }
 
-export default Search;
+const mapStateToProps = (state) =>{
+        return {
+                caution : state.cautions,
+        }
+}
+export default connect(mapStateToProps, {
+        addCautions,
+        removeCautions,
+        removeFromCalendar,
+        addRecipe,
+})(Search);

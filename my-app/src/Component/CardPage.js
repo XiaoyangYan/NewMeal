@@ -17,6 +17,7 @@ class CardPage extends React.Component {
                         totalData: [],
                         successData:"",
                         saved: false,
+                        currentLabel:"",
                         totalReview:[],
                         currentRating:0,
                 }
@@ -53,10 +54,18 @@ class CardPage extends React.Component {
         }
        async handleData(currentLabel){
                 console.log(currentLabel);
-                this.setState({ isLoading: true });
-                const data = await Data.getSpecialRecipe(currentLabel);
+                this.setState({ isLoading: true, currentLabel});
+                let data = await Data.getSpecialRecipe(currentLabel);
+                var currentDataList = [];
+                 console.log(data);
+                data.data.hits.map((recipe, index) => {
+                        if (recipe.recipe.label == currentLabel){
+                                currentDataList.push(recipe);
+                        }
+                })
+                console.log(currentDataList);
                 this.setState({
-                        currentData: data.data.hits[0],
+                        currentData:currentDataList[0],
                         totalData: data.data.hits,
                 })
                 this.state.totalData.shift(); 
@@ -69,7 +78,7 @@ class CardPage extends React.Component {
                          console.log(this.state.totalReview);
                 })
                 AjaxServiceRecipeForm.getSpecialRecipe(label).then(res => {
-                        console.log(res.data.ratings);
+                        console.log(res.data);
                         this.setState({
                                 currentRating: res.data.ratings
                         })
@@ -77,6 +86,7 @@ class CardPage extends React.Component {
         }
          async  componentDidMount() {
                  const currentLabel = this.props.match.params.label;
+                 console.log(currentLabel);
                 await this.handleData(currentLabel);
                 
         }

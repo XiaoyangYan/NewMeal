@@ -66,7 +66,7 @@ class Reviews extends React.Component{
                                                 max:'should at most 20 words'
                                         })}</div>
                                         <StarRatings rating={this.state.rating} starRatedColor="gold" changeRating={this.changeRating}
-                                                       className="starItem" numOfStars={5} name='rating' starDimension={'20px'}/>
+                                                       className="starItem" numOfStars={5} name='rating' starDimension={'15px'}/>
                                 </div>
                                 <div className="group">
                                         <textarea class="review-text comment-input" name="messge" placeholder="Please enter a comment&hellip;"  autoComplete="off"

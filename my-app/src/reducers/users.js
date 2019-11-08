@@ -1,23 +1,31 @@
-import AuthenticatedService from "../Component/Service/AuthenticationService";
-const initialState = {email:"xxx", password:"lll"}
-const users = (state = initialState, action) => {
+import AuthenticationService from "../Component/Service/AuthenticationService";
+
+const initialState = {email:AuthenticationService.getEmail(), password:null, username:AuthenticationService.getUserName()}
+const users = (state ={}, action) => {
         switch(action.type){
                 case "USER_LOGIN":
-                        AuthenticatedService.recordLogin(action.email);
                         return {
-                                ...initialState,
+                                ...state,
                                 password: action.password,
                                 email:action.email,
                         };
                 case "GET_USER_NAME":
                         return {
-                                ...initialState,
+                                ...state,
                                 email: action.email,
                                 username: action.username,
                         };
-                case "":
-                        return initialState;
+                case "DELETE_USER":
+                        return {
+                                ...state,
+                                email: null,
+                                username: null,
+                                password: null,
+                        }
                 default:
+                        if (state != null){
+                                return state;
+                        }
                         return initialState;
         }
 }
