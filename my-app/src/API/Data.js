@@ -18,11 +18,11 @@ class FetchData {
         async getRecipeFromAPIByDifferentFood(diet){
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q&diet=${diet}&from=0&to=10`);
         }
-        async getRecipeByDishTypeAndDiet(dishType, diet, query, calories){
-               return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&diet=${diet}&dishType=${dishType}&calories=${calories}&from=0&to=100`);
+        async getRecipeByDishTypeAndDiet(dishType, diet, query, calories, searchString){
+               return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&diet=${diet}&dishType=${dishType}&calories=${calories}&from=0&to=100${searchString}`);
         }
-        async getRecipeByHealthAndDiet(dishType, health, query, calories){
-                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&health=${health}&dishType=${dishType}&calories=${calories}&from=0&to=100`);
+        async getRecipeByHealthAndDiet(dishType, health, query, calories, searchString){
+                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&health=${health}&dishType=${dishType}&calories=${calories}&from=0&to=100${searchString}`);
          }
          async getSpecialRecipe(query){
                  return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&from=0&to=10`);

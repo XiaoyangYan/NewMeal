@@ -1,6 +1,8 @@
 export const ADD_RECIPE = 'ADD_RECIPE';
 export const REMOVE_FROM_CALENDER = 'REMOVE_FROM_CALENDAR';
-export const CAUTIONS = "CAUTIONS";
+export const ADD_CAUTIONS = "ADD_CAUTIONS";
+export const REMOVE_CAUTIONS = "REMOVE_CAUTIONS";
+
 export function addRecipe({day, recipe, meal}){
         return {
                 type:ADD_RECIPE,
@@ -18,9 +20,16 @@ export function removeFromCalendar({day, meal}){
         };
 }
 
-export function cautions({caution}){
+export function addCautions({caution}){
         return {
-                type:CAUTIONS,
+                type:ADD_CAUTIONS,
+                caution,
+        }
+}
+
+export function removeCautions({caution}){
+        return {
+                type:REMOVE_CAUTIONS,
                 caution,
         }
 }

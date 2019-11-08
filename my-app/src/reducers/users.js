@@ -2,7 +2,6 @@ import AuthenticationService from "../Component/Service/AuthenticationService";
 
 const initialState = {email:AuthenticationService.getEmail(), password:null, username:AuthenticationService.getUserName()}
 const users = (state ={}, action) => {
-        console.log(action.type);
         switch(action.type){
                 case "USER_LOGIN":
                         return {
