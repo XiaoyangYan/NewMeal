@@ -39,13 +39,15 @@ const calendarReducer = (state =initialCalendarState, action) => {
 }
 export var cautions = (state =[], action) =>{
         const {caution} = action;
-        console.log(caution);
         switch(action.type){
                 case ADD_CAUTIONS:
-                       console.log( [...state, action.caution]);
                        return [...state, caution];
                 case REMOVE_CAUTIONS:
-                        return state.filter(res => res != caution)
+                        console.log(caution);
+                        var newState = state;
+                        return newState.filter(function(res){
+                                return res.trim() != caution.trim();
+                        })
                 default:
                         return state;
         }

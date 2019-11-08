@@ -100,6 +100,10 @@ class Search extends React.Component{
                         }
                 }
         }
+        componentWillUpdate(nextProps, nextState){
+                if (this.state != nextState){
+                }
+        }
         handleAddMore = (e) => {
                 document.getElementById("line-next").className = 
                         document.getElementById("line-next").className === "active" ? "displayNone":"active";
@@ -126,14 +130,15 @@ class Search extends React.Component{
                   this.setState(()=>({value}));
         }
         handleCautionChange = checked => {
-                const {addCautions} = this.props;
+                const {addCautions, removeCautions} = this.props;
                  var ulCautions = document.getElementsByClassName("Cautions");
                  var liCautions = ulCautions[0].getElementsByTagName("li");
                  if (checked){
                         addCautions({caution:this.state.cautionList[this.state.currentCaution]});
                         liCautions[this.state.currentCaution].className = "styled-Category active-word";
                    } else {
-                        liCautions[this.state.currentCaution].className = "styled-Category";    
+                        removeCautions({caution:this.state.cautionList[this.state.currentCaution]});
+                           liCautions[this.state.currentCaution].className = "styled-Category";    
                    }
                    this.state.checkCautions[this.state.currentCaution] = checked;
         }
