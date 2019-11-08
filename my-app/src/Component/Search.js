@@ -3,8 +3,9 @@ import "./css/Search.css";
 import Data from "../API/Data";
 import ReactLoading from 'react-loading';
 import Card from "./Card";
-import {Select} from "antd";
-const Option = Select.Option;
+import {connect} from "react-redux";
+import {cautions, removeFromCalendar, addRecipe} from "../actions/planner";
+
 class Search extends React.Component{
         constructor(props){
                 super(props);
@@ -26,10 +27,6 @@ class Search extends React.Component{
                 const dishType = this.state.currentFood.toLowerCase().trim();
                 const queryText =  this.state.text.toLowerCase().trim();
                 const calorieyType = this.state.calories;
-                console.log(dishType);
-                console.log(diet);
-                console.log(queryText);
-                console.log(calorieyType);
                 this.setState({isLoading: true});
                 var queryData;
                 if (this.state.currentDietIndex <= 4){
@@ -47,7 +44,6 @@ class Search extends React.Component{
                         currentDishIndex:0,
                         calories:'0-200'
                 })
-                console.log(this.state.currentData);
         }
         searchCategoryDiet = (e) =>{
                 var _this = this;
@@ -181,8 +177,7 @@ class Search extends React.Component{
                                                 </select>
                                         </div>
                                         <div className="cardList-wrap">
-
-                                                <ul className="cardList">
+                                                 <ul className="cardList">
                                                         {
                                                                 this.state.currentData.map((items, index) =>
                                                                         <li key={index} itemScope itemType="http://schema.org/Thing"><Card calories={items.recipe.calories} ingredientsLength={items.recipe.ingredients.length}
@@ -199,4 +194,14 @@ class Search extends React.Component{
         }
 }
 
-export default Search;
+const mapStateToProps = (state) =>{
+        console.log(state);
+        return {
+                caution : state.cautions,
+        }
+}
+export default connect(mapStateToProps, {
+        cautions,
+        removeFromCalendar,
+        addRecipe,
+})(Search);

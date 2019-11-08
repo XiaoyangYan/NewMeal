@@ -53,3 +53,8 @@ td{
         text-decoration: none;
         transition: .5s;
 }
+.sort-select-box{
+       right:20px;
+       top:40px;
+        position: absolute;
+}

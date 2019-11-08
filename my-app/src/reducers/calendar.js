@@ -37,5 +37,16 @@ const calendarReducer = (state =initialCalendarState, action) => {
                                 return state;
         }
 }
-
+export const cautions = (state =[], action) =>{
+        const {caution} = action;
+        switch(action.types){
+                case "CAUTIONS":
+                        return {
+                                ...state,
+                                caution,
+                        }
+                default:
+                        return state;
+        }
+}
 export default calendarReducer;

@@ -6,7 +6,7 @@ import SignUp from "./SignUp";
 import AjaxServiceSignForm from './Service/AjaxServiceSignForm';
 import AuthenticatedService from './Service/AuthenticationService';
 import {connect} from "react-redux";
-import {GetUserName, LoginUser} from "../actions"
+import {GetUserName, LoginUser, DeleteUser} from "../actions"
 class Login extends React.Component {
 
 	constructor(props) {
@@ -30,7 +30,11 @@ class Login extends React.Component {
 		this.submitFormLogin = this.submitFormLogin.bind(this);
 		sessionStorage.clear();
 	}
-
+	componentWillUpdate(nextState){
+		if (this.state !== nextState){
+			this.state = nextState;
+		}
+	}
 	componentDidMount() {
 
 	}
@@ -96,7 +100,7 @@ class Login extends React.Component {
 	}
 	render() {
 		return (
-			<div className="container" >
+			<div className="login-container" >
 				<div className="login-wrap">
 					<div className="login-html">
 						<input id="tab-1" type="radio" name={this.state.tab1} className="sign-in" checked={this.state.checkedRadio1} onChange={this.onChangeRadio} /><label htmlFor="tab-1" className="tab">Login</label>
@@ -127,5 +131,6 @@ export default connect(
 	{
 		LoginUser,
 		GetUserName,
+		DeleteUser
 	}
 )(Login);
