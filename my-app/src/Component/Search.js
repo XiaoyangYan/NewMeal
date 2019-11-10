@@ -190,7 +190,7 @@ class Search extends React.Component{
                                                         <li className="styled-Category">Low-Carbon</li>
                                                         <div id="line-next-2" className="displayNone">
                                                                 <li className="styled-Category">Vegan</li>
-                                                                <li className="styled-Category">Alcohol-Free</li>
+                                                                <li className="styled-Category">Pecatarian</li>
                                                                 <li className="styled-Category">Vegetarian</li>
                                                                 <li className="styled-Category">Low-Sugar</li>
                                                                 <li className="styled-Category">kosher</li>

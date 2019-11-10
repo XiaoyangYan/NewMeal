@@ -1,4 +1,4 @@
-import {ADD_RECIPE, REMOVE_FROM_CALENDER, ADD_CAUTIONS, REMOVE_CAUTIONS} from "../actions"
+import {ADD_RECIPE, REMOVE_FROM_CALENDER, ADD_CAUTIONS, REMOVE_CAUTIONS, RESET_ALL} from "../actions"
 
 const INITIAL_MENU = {
         breakfast: null,
@@ -33,6 +33,9 @@ const calendarReducer = (state =initialCalendarState, action) => {
                                                 [meal]:null,
                                         }
                                 }
+                        case RESET_ALL:
+                                state = initialCalendarState;
+                                return state;
                         default:
                                 return state;
         }
@@ -48,6 +51,9 @@ export var cautions = (state =[], action) =>{
                         return newState.filter(function(res){
                                 return res.trim() != caution.trim();
                         })
+                case RESET_ALL:
+                        state = [];
+                        return state;
                 default:
                         return state;
         }

@@ -11,7 +11,7 @@ import FavoriteRecipe from "./FavoriteRecipe";
 import {switchMenu} from '../actions'
 import {Menu} from 'antd';
 import PlannerPage from "./PlanPage";
-
+import CreateRecipe from "./CreateRecipe";
 const {SubMenu} = Menu;
 
 class UserPage extends React.Component {
@@ -101,7 +101,7 @@ class UserPage extends React.Component {
                                                         <Route path="/user/reviews" component={ReviewList}></Route>
                                                          <Route path="/user/favorite" component={FavoriteRecipe}></Route>
                                                          <Route path="/user/planner" component={PlannerPage}></Route>
-                                                         <Route path="/user/create" component={Main}></Route>
+                                                         <Route path="/user/create" component={CreateRecipe}></Route>
                                                          <Route path="/user/planner"></Route>
                                                 </Switch>
                                         </div>

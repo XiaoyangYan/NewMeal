@@ -5,7 +5,7 @@ import SideDrawer from "./SideDrawer";
 import AuthenticationService from './Service/AuthenticationService';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
-import {LoginUser, GetUserName, DeleteUser} from "../actions"
+import {LoginUser, GetUserName, DeleteUser, resetAllT} from "../actions";
 import { relativeTimeThreshold } from 'moment';
 class NavBar extends React.Component {
         constructor(props) {
@@ -37,6 +37,7 @@ class NavBar extends React.Component {
         handleLogout = (e) => {
                 AuthenticationService.logout();
                 this.props.DeleteUser();
+                this.props.resetAllT();
         }
         componentWillUpdate(nextState){
 		if (this.state !== nextState){
@@ -96,6 +97,7 @@ export default connect(
         {
                 LoginUser,
                 GetUserName,
-                DeleteUser
+                DeleteUser,
+                resetAllT
         }
 )(NavBar);

@@ -69,7 +69,7 @@ class Reviews extends React.Component{
                                                        className="starItem" numOfStars={5} name='rating' starDimension={'15px'}/>
                                 </div>
                                 <div className="group">
-                                        <textarea class="review-text comment-input" name="messge" placeholder="Please enter a comment&hellip;"  autoComplete="off"
+                                        <textarea className="review-text comment-input" name="messge" placeholder="Please enter a comment&hellip;"  autoComplete="off"
                                                 value={this.state.message}  onChange={this.handleTextAreaChange}></textarea>
                                                 <div style={{color:'red'}}>{this.state.validator.message('message', this.state.message, 'required|min:25|max:200', '', {
                                                         required: 'comments cannot be null',
