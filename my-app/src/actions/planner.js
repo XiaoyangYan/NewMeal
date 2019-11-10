@@ -2,6 +2,7 @@ export const ADD_RECIPE = 'ADD_RECIPE';
 export const REMOVE_FROM_CALENDER = 'REMOVE_FROM_CALENDAR';
 export const ADD_CAUTIONS = "ADD_CAUTIONS";
 export const REMOVE_CAUTIONS = "REMOVE_CAUTIONS";
+export const RESET_ALL = "RESET_ALL";
 
 export function addRecipe({day, recipe, meal}){
         return {
@@ -31,5 +32,11 @@ export function removeCautions({caution}){
         return {
                 type:REMOVE_CAUTIONS,
                 caution,
+        }
+}
+
+export function resetAllT(){
+        return {
+                type: RESET_ALL
         }
 }
