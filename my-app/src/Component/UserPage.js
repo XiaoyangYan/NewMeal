@@ -8,7 +8,7 @@ import ReviewList from "./ReviewList";
 import {connect} from "react-redux";
 import menuConfig from "../config/menuConfig";
 import FavoriteRecipe from "./FavoriteRecipe";
-import {switchMenu} from '../actions'
+import {switchMenu, GetUserName} from '../actions'
 import {Menu} from 'antd';
 import PlannerPage from "./PlanPage";
 import CreateRecipe from "./CreateRecipe";
@@ -77,10 +77,11 @@ class UserPage extends React.Component {
                 this.props.handleClick(titleArray);
         }
         render() {
+                const {username} = this.props;
                 return (
                         <div className="card-page-container" >
                                 <header className="user-name-title">
-                                        <h1>Welcome, {AuthenticationService.getUserName()}
+                                        <h1>Welcome, {username}
                                                 <span>Enjoy your journey in searching food</span>
                                         </h1>
                                 </header>
@@ -111,13 +112,18 @@ class UserPage extends React.Component {
         }
 
 }
-const mapStateToProps = () => {
-        return {};
+const mapStateToProps = (state) => {
+        return {
+                username: state.users.username
+        };
 }
 const mapDispatchToProps = (dispatch) => {
         return {
                 handleClick(titleArray){
                         dispatch(switchMenu(titleArray));
+                },
+                getUserName(){
+                        dispatch(GetUserName());
                 }
         }
 }

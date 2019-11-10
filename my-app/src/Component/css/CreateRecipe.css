@@ -1,9 +1,17 @@
-
 #my-recipe{
         background-color: #d0d0d0;
         border-radius: 15px;
         border:1px solid #777;
         box-shadow: 10px 10px 5px #000111;
+        margin-top: 10px;
+        bottom: 20px;
+}
+#my-recipe h3{
+        margin-left: 8%;
+        font-family: Dopestyle;
+        color: green;
+        margin-top: 25px;
+        margin-bottom: 15px;
 }
 #my-recipe > div{
         position: relative;
@@ -36,7 +44,7 @@
         margin-bottom: 25px;
 }
 .recipe-introduction-text::placeholder{
-        font-size: 25px;;
+        font-size: 25px;
 }
 .create-my-recipe{
         position: absolute;
@@ -51,4 +59,47 @@
         box-shadow: 0  1px rgba(2,165,209,29);
         background-color: #7db343;
         border-radius: 10%;
+}
+.self-recipe-show{
+        position:relative;
+        min-width:300px;
+        top:20px;
+        width:100%;
+        overflow-x:hidden;
+}
+.self-recipe-show > li{
+        width: 80%;
+        margin: 0 auto;
+        background-color:#d0d0d0;
+        border-radius: 15px;
+        border:1px solid #777;
+        box-shadow: 10px 10px 5px #000111;
+        margin-bottom: 20px;
+}
+.self-recipe-show-item .self-recipe-name{
+        font-size: 20px;
+        color: #339b53;
+        margin-left: 100px;
+        margin-top: 20px;
+        letter-spacing: 0.5px;
+}
+.self-recipe-headline{
+        padding-right:10px;
+        display: block;
+        font-size: 20px;
+        color: #8b8b8b;
+        margin-top: 10px;
+        margin-left: 100px;
+        width: 100%;
+}
+.self-recipe-main-area{
+        font-size: 20px;
+        color: #339b53;
+        margin-top:20px;
+        margin-bottom:40px;
+        font-weight: 600;
+        display:block;
+        width:100%;
+        margin-left: 100px;
+        position: relative;
 }
