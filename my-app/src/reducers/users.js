@@ -8,12 +8,11 @@ const users = (state ={}, action) => {
                                 ...state,
                                 password: action.password,
                                 email:action.email,
+                                username: action.username,
                         };
                 case "GET_USER_NAME":
                         return {
                                 ...state,
-                                email: action.email,
-                                username: action.username,
                         };
                 case "DELETE_USER":
                         return {

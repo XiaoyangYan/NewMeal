@@ -51,6 +51,7 @@ public class UserController extends BaseController {
 	@GetMapping(path="/username/{email}")
 	@ResponseBody
 	public ResponseEntity<?> getUserName(@PathVariable String email){
+		email = email.trim();
 		String userName = this.userService.getUserName(email);
 		if (userName != null) {
 			return ResponseEntity.ok(userName);

@@ -1,19 +1,18 @@
 import AuthenticationService from "../Component/Service/AuthenticationService";
 
-export const LoginUser = ({email, password}) => {
+export const LoginUser = ({email, password,username}) => {
         AuthenticationService.recordLogin(email);
        return {
                 type: "USER_LOGIN",
                 password: password,
                 email: email,
+                username: username,
         };
 }
 
-export const GetUserName = ({email, username}) => {
+export const GetUserName = () => {
         return {
                 type: "GET_USER_NAME",
-                email: email,
-                username: username,
         }
 }
 
