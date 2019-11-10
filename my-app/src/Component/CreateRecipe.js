@@ -58,7 +58,6 @@ class CreateRecipe extends React.Component{
                 }
         }
         async handleCreateClick(e){
-                e.preventDefault();
                 let {email, username, caution} = this.props;
                 console.log(caution);
                 const recipeMessage = {
@@ -105,6 +104,10 @@ class CreateRecipe extends React.Component{
                                 <ul className="self-recipe-show">
                                         {this.state.allRecipes && this.state.allRecipes.map((items, index) =>
                                                  <li key={index}>
+                                                         <div className="button-self-recipe-group">
+                                                                <button  className="edit-my-new-recipe">Edit</button>
+                                                                <button  className="delete-my-new-recipe">Delete</button>
+                                                         </div>
                                                          <div className="self-recipe-except-picture">
                                                                  <div className="self-recipe-show-item">
                                                                          <div className="self-recipe-name"><span>Creator:  </span>{items.userName}</div>
@@ -124,6 +127,7 @@ class CreateRecipe extends React.Component{
                                                                 </div>
                                                                  <div className="self-recipe-main-area"><span>Description: </span>{items.recipeDescription}</div>
                                                          </div>
+                                                         
                                                  </li>
                                         )}
                                 </ul>
