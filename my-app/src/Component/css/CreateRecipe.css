@@ -48,6 +48,7 @@
 }
 .create-my-recipe{
         position: absolute;
+        display: inline-block;
         top: 15px;
         right: 15px;
         width:102px;
@@ -59,6 +60,27 @@
         box-shadow: 0  1px rgba(2,165,209,29);
         background-color: #7db343;
         border-radius: 10%;
+}
+.button-self-recipe-group{
+        position: relative;
+}
+.edit-my-new-recipe,  .delete-my-new-recipe{
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        width:82px;
+        font-size:20px;
+        height: 30px;
+        line-height: 30px;
+        cursor: pointer;
+        color: yellow;
+        border: 0px 0px 1px 1px rgba(12,120,200,6);
+        box-shadow: 0  1px rgba(2,165,209,29);
+        background-color: #7db343;
+        border-radius: 10%;
+}
+.delete-my-new-recipe{
+        right: 120px;
 }
 .self-recipe-show{
         position:relative;
