@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import {addCautions, removeFromCalendar, addRecipe, removeCautions, resetAllT} from "../actions/planner";
 import "./css/CreateRecipe.css";
 import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
+import PersonalRecipe from "./PersonalRecipe";
 class CreateRecipe extends React.Component{
         constructor(props){
                 super(props);
@@ -72,9 +73,12 @@ class CreateRecipe extends React.Component{
                 this.setState({allRecipes: data.data});
                 this.props.resetAllT();
         }
+        noneEffect = checked => {
+
+        }
         render(){
                 return (
-                        <div>
+                        <div className="create-recipe-page-all">
                                 <form id="my-recipe">
                                         <div>
                                                 <h3>Create your own recipe :</h3>
@@ -103,32 +107,33 @@ class CreateRecipe extends React.Component{
                                 </form>
                                 <ul className="self-recipe-show">
                                         {this.state.allRecipes && this.state.allRecipes.map((items, index) =>
-                                                 <li key={index}>
-                                                         <div className="button-self-recipe-group">
-                                                                <button  className="edit-my-new-recipe">Edit</button>
-                                                                <button  className="delete-my-new-recipe">Delete</button>
-                                                         </div>
-                                                         <div className="self-recipe-except-picture">
-                                                                 <div className="self-recipe-show-item">
-                                                                         <div className="self-recipe-name"><span>Creator:  </span>{items.userName}</div>
-                                                                         <div className="self-recipe-headline"><span>Recipe Name:  </span>{items.title}</div>
-                                                                 </div>
-                                                                 <div className="styled-Categories">
-                                                                        <h6> Cautions: </h6>
-                                                                        <ul className="styled-CategoryList Cautions">
-                                                                        {
-                                                                                items.cautions.map((smallItems, smallIndex) =>
-                                                                                <li key={smallIndex}>
-                                                                                                <Tags key={smallIndex} >{smallItems}</Tags>
-                                                                                </li>
-                                                                                )
-                                                                        }
-                                                                        </ul>
-                                                                </div>
-                                                                 <div className="self-recipe-main-area"><span>Description: </span>{items.recipeDescription}</div>
-                                                         </div>
+                                                <PersonalRecipe items={items} index={index}/>
+                                                //  <li key={index}>
+                                                //          <div className="button-self-recipe-group">
+                                                //                 <button  className="edit-my-new-recipe">Edit</button>
+                                                //                 <button  className="delete-my-new-recipe">Delete</button>
+                                                //          </div>
+                                                //          <div className="self-recipe-except-picture">
+                                                //                  <div className="self-recipe-show-item">
+                                                //                          <div className="self-recipe-name"><span>Creator:  </span>{items.userName}</div>
+                                                //                          <div className="self-recipe-headline"><span>Recipe Name:  </span>{items.title}</div>
+                                                //                  </div>
+                                                //                  <div className="styled-Categories">
+                                                //                         <h6> Cautions: </h6>
+                                                //                         <ul className="styled-CategoryList Cautions">
+                                                //                         {
+                                                //                                 items.cautions.map((smallItems, smallIndex) =>
+                                                //                                 <li key={smallIndex}>
+                                                //                                                 <Tags key={smallIndex} checked={true} onChange={this.noneEffect}>{smallItems}</Tags>
+                                                //                                 </li>
+                                                //                                 )
+                                                //                         }
+                                                //                         </ul>
+                                                //                 </div>
+                                                //                  <div className="self-recipe-main-area"><span>Description: </span>{items.recipeDescription}</div>
+                                                //          </div>
                                                          
-                                                 </li>
+                                                //  </li>
                                         )}
                                 </ul>
                         </div>
