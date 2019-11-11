@@ -18,7 +18,7 @@ class Tags extends React.Component{
 
         render() {
                 return (
-                        <CheckableTag {...this.props} checked={this.state.checked} onChange={this.handleChange} />
+                        <CheckableTag {...this.props} checked={this.state.checked} onChange={this.handleChange}/>
                 )
         }
 }

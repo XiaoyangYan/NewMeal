@@ -28,5 +28,9 @@ class AjaxServiceRecipeForm {
         getAllSelfRecipe(){
                 return axios.get(`http://localhost:8011/recipe/findAll`);
         }
+
+        editOneSelfRecipe(editMessage) {
+                return axios.put(`http://localhost:8011/recipe/editOne`, editMessage);
+        }
 }
 export default new AjaxServiceRecipeForm();
