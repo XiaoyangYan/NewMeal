@@ -72,8 +72,7 @@ public class ReviewController extends BaseController {
 			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
 		}
 		List<Review> results = this.reviewService.listRecipeReviewByUser(user);
-		System.out.println(results.size());
-		if (results.size() == 0) {
+		if (results == null || results.size() == 0) {
 			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<List<Review>>(results, HttpStatus.OK);

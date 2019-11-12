@@ -11,6 +11,7 @@ import UserPage from "./Component/UserPage";
 import PlanPage from "./Component/PlanPage"
 import AuthenticationRoute from "./Component/Service/AuthenticatedRoute";
 import AuthenticationService from "./Component/Service/AuthenticationService";
+import AdvancedRecommendation from "./Component/AdvancedRecommendation"
 class App extends React.Component {
 	constructor(props){
 		super(props);
@@ -32,6 +33,7 @@ class App extends React.Component {
 						<Route path="/login"  component={Login}></Route>
 						<AuthenticationRoute path="/user"  component={UserPage}></AuthenticationRoute>
 						<AuthenticationRoute path="/plan" component={PlanPage}></AuthenticationRoute>
+						<AuthenticationRoute path="/advanced" component={AdvancedRecommendation}></AuthenticationRoute>
 						<Route component={ErrorPage}></Route>
 					</Switch>
 					<Footer/>

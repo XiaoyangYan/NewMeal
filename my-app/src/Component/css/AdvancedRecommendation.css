@@ -1,0 +1,51 @@
+.advanced-planner-section {
+        top: 100px;
+        position: relative;
+        width: 100%;
+        min-height: 2000px;
+        margin-bottom: 150px;
+}
+
+.planImage {
+        background-image: url(../images/plan.jpg);
+        background-size: cover;
+        max-width: 90%;
+        min-height: 200px;
+        padding: 2.875em 1.875em 2.875em;
+        text-align: center;
+        width: 100%;
+        background-size: cover;
+        margin: 0 auto;
+}
+
+.advanced-planner-content {
+        display: flex;
+        flex-direction: column;
+        min-height: 700px;
+        margin-top: 10px;
+        max-width: 90%;
+        overflow: hidden;
+        position: relative;
+        margin: 0 auto;
+}
+.advanced-planner-content h2{
+        color: aquamarine;
+        text-align: center;
+        font-family: Dopestyle;
+        margin-top: 30px;
+        margin-bottom: 30px;
+}
+.advanced-grid {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        flex-wrap: wrap;
+}
+.assign-data {
+        width: 25%;
+        margin-bottom: 20px;
+}
+.advanced-grid > li:hover .bookmark-btn{
+        display: block;
+        position: relative;
+}

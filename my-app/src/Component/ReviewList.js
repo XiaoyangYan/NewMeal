@@ -28,9 +28,10 @@ class ReviewList extends React.Component{
                 if (this.state.isLoading){
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
                 } else {
+                        console.log(this.state.reviews.data);
                         return (
                                 <ul className="comment-show lower-baby">
-                                        {
+                                        {this.state.reviews.length > 0 &&
                                                 this.state.reviews.map((items, index) =>
                                                         <li key={index}>
                                                                 <div className="comment-except-picture">

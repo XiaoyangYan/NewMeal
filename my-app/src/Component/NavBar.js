@@ -47,7 +47,7 @@ class NavBar extends React.Component {
         render() {
                 const {isUserLoggedIn} = this.state;
                 console.log(isUserLoggedIn);
-                const {email, LoginUser} = this.props;
+                const {email} = this.props;
                 console.log(email);
                 return (
                         <div className="navigation-healthy" id="navbar">
@@ -57,7 +57,7 @@ class NavBar extends React.Component {
                                                 <li><Link to="/dash">Main</Link></li>
                                                 {(email) &&<li> <Link to="/plan">Self-Planner</Link></li>}
                                                 {(email)  &&<li> <Link to="/user">MyPage</Link></li>}
-                                                <li><Link to="/aboutus">About Us</Link></li>
+                                                {(email)  &&<li><Link to="/advanced">Advanced-Planner</Link></li>}
                                         </ul>
                                 </div>
                                 <div className="menu-healthy cart hidden-xs">

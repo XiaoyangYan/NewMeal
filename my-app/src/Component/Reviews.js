@@ -88,7 +88,7 @@ class Reviews extends React.Component{
                         </form>
                         <ul className = "comment-show">
                                 <h4>{this.state.savedRecipe}</h4>
-                               {
+                               {this.state.reviews.length > 0 && 
                                        this.state.reviews.map((items, index) => 
                                                 <li key={index}>
                                                         <div className="comment-except-picture">

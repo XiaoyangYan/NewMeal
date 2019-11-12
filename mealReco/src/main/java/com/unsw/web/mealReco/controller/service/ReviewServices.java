@@ -43,8 +43,7 @@ public class ReviewServices {
 		reviewDAO.delete(id);
 	}
 	public List<Review> listRecipeReviewByUser(Users user){
-		List<Review> results = this.reviewDAO.findByUser(user.getUserId());
-		return results;
+		return this.reviewDAO.findByUser(user.getUserId());
 	}
 	
 	public float calculateAvgRatingRecipe(Recipe recipe) {
