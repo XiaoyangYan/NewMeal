@@ -47,7 +47,6 @@ export const  cautions = (state =[], action) =>{
                 case ADD_CAUTIONS:
                        return [...state, caution];
                 case REMOVE_CAUTIONS:
-                        console.log(caution);
                         var newState = state;
                         return newState.filter(function(res){
                                 return res.trim() != caution.trim();
