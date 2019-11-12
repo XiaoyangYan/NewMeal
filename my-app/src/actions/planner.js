@@ -3,6 +3,7 @@ export const REMOVE_FROM_CALENDER = 'REMOVE_FROM_CALENDAR';
 export const ADD_CAUTIONS = "ADD_CAUTIONS";
 export const REMOVE_CAUTIONS = "REMOVE_CAUTIONS";
 export const RESET_ALL = "RESET_ALL";
+export const SET_PERSONAL_RECIPE = "SET_PERSONAL_RECIPE";
 
 export function addRecipe({day, recipe, meal}){
         return {
@@ -38,5 +39,12 @@ export function removeCautions({caution}){
 export function resetAllT(){
         return {
                 type: RESET_ALL
+        }
+}
+
+export function setPersonalRecipe({recipeMessage}){
+        return {
+                type: SET_PERSONAL_RECIPE,
+                recipeMessage
         }
 }

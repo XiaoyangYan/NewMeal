@@ -83,7 +83,6 @@ class NavBar extends React.Component {
         }
 }
 const mapStateToProps = (state) => {
-        console.log(state);
         return {
                 email: state.users.email,
                 username: state.users.username,

@@ -1,9 +1,11 @@
 import React from "react";
 import Tags from "./Tags";
 import {connect} from "react-redux";
-import {addCautions, removeFromCalendar, addRecipe, removeCautions, resetAllT} from "../actions/planner";
+import {addCautions, removeFromCalendar, addRecipe, removeCautions, resetAllT, setPersonalRecipe} from "../actions/planner";
 import "./css/CreateRecipe.css";
 import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
+import PersonalRecipe from "./PersonalRecipe";
+import { selfRecipe } from "../reducers/calendar";
 class CreateRecipe extends React.Component{
         constructor(props){
                 super(props);
@@ -16,6 +18,8 @@ class CreateRecipe extends React.Component{
                         "gluten-free", "kidney-friendly" ,"wheat-free", "soy-free", "sugar-conscious", 
                         "egg-free", "peanut-free", "mustard-free", "dairy-free" ],
                         checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false],
+                        modify: 0,
+                        deletable: false,
                 }
                 this.handleCreateClick = this.handleCreateClick.bind(this);
         }
@@ -40,13 +44,16 @@ class CreateRecipe extends React.Component{
                   }
                   this.state.checkCautions[this.state.currentCaution] = checked;
         }
-        componentDidMount(){
-                var _this = this;
+        componentWillMount(){
                 AjaxServiceRecipeForm.getAllSelfRecipe().then( res => {
                         console.log(res.data);
+                        this.props.setPersonalRecipe({recipeMessage: res.data});
                         this.setState({allRecipes: res.data});
                 })
                 this.props.resetAllT();
+        }
+        componentDidMount(){
+                var _this = this;
                 var ulCautions = document.getElementsByClassName("Cautions");
                 var liCautions = ulCautions[0].getElementsByTagName("li");
                 for(var i = 0; i < liCautions.length; i++){
@@ -57,24 +64,40 @@ class CreateRecipe extends React.Component{
                         }
                 }
         }
+        async onDelete (titems){
+                console.log(titems);
+                const data = await AjaxServiceRecipeForm.deleteOneSelfRecipe(titems, titems._id);
+                console.log(data);
+                this.props.setPersonalRecipe({recipeMessage: data.data});
+                this.setState({
+                        deletable: !this.state.deletable,
+                })
+        }
         async handleCreateClick(e){
                 let {email, username, caution} = this.props;
                 console.log(caution);
-                const recipeMessage = {
+                const recipeM = {
                         userEmail: email,
                         userName: username,
                         title: this.state.headLine,
                         cautions: caution,
                         recipeDescription: this.state.description
                 }
-                const data  = await AjaxServiceRecipeForm.createSelfRecipe(recipeMessage);
-                console.log(data);
+                const data  = await AjaxServiceRecipeForm.createSelfRecipe(recipeM);
+                this.props.selfRecipeList({recipeMessage: data.data});
                 this.setState({allRecipes: data.data});
                 this.props.resetAllT();
         }
+        componentWillReceiveProps(nextProps){
+                if (this.props.selfRecipeList != nextProps.selfRecipeList){
+                        this.props = nextProps;
+                }
+        }
         render(){
+                var {selfRecipeList} = this.props;
+                // console.log(selfRecipeList);
                 return (
-                        <div>
+                        <div className="create-recipe-page-all">
                                 <form id="my-recipe">
                                         <div>
                                                 <h3>Create your own recipe :</h3>
@@ -97,38 +120,14 @@ class CreateRecipe extends React.Component{
                                                 </div>
                                                 <textarea className="recipe-introduction-text" name="description" placeholder="Please enter a description" autoComplete="off"
                                                         value={this.state.description} onChange={this.handleTextAreaChange}/>
-                                                <button className="create-my-recipe"onClick={this.onCreate} name="create-recipe"
+                                                <button className="create-my-recipe"  name="create-recipe"
                                                         onClick={this.handleCreateClick}>create</button>
                                         </div>
                                 </form>
                                 <ul className="self-recipe-show">
-                                        {this.state.allRecipes && this.state.allRecipes.map((items, index) =>
-                                                 <li key={index}>
-                                                         <div className="button-self-recipe-group">
-                                                                <button  className="edit-my-new-recipe">Edit</button>
-                                                                <button  className="delete-my-new-recipe">Delete</button>
-                                                         </div>
-                                                         <div className="self-recipe-except-picture">
-                                                                 <div className="self-recipe-show-item">
-                                                                         <div className="self-recipe-name"><span>Creator:  </span>{items.userName}</div>
-                                                                         <div className="self-recipe-headline"><span>Recipe Name:  </span>{items.title}</div>
-                                                                 </div>
-                                                                 <div className="styled-Categories">
-                                                                        <h6> Cautions: </h6>
-                                                                        <ul className="styled-CategoryList Cautions">
-                                                                        {
-                                                                                items.cautions.map((smallItems, smallIndex) =>
-                                                                                <li key={smallIndex}>
-                                                                                                <Tags key={smallIndex} >{smallItems}</Tags>
-                                                                                </li>
-                                                                                )
-                                                                        }
-                                                                        </ul>
-                                                                </div>
-                                                                 <div className="self-recipe-main-area"><span>Description: </span>{items.recipeDescription}</div>
-                                                         </div>
-                                                         
-                                                 </li>
+                                        {selfRecipeList && selfRecipeList.map((titems, tindex) =>
+                                                <PersonalRecipe items={titems} index={tindex} email={this.props.email} history={this.props.history} 
+                                                 onDelete={() => this.onDelete(titems)}/>
                                         )}
                                 </ul>
                         </div>
@@ -140,6 +139,7 @@ const mapStateToProps = (state) =>{
                 caution : state.cautions,
                 email: state.users.email,
                 username: state.users.username,
+                selfRecipeList:state.selfRecipe,
         }
 }
 export default connect(mapStateToProps, {
@@ -148,4 +148,5 @@ export default connect(mapStateToProps, {
         removeFromCalendar,
         addRecipe,
         resetAllT,
+        setPersonalRecipe
 })(CreateRecipe);

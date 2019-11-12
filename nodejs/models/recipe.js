@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const recipeSchema = new Schema({
-        userEmail:{type:String},
-        userName:{type: String},
+        userEmail:{type:String, trim: true},
+        userName:{type: String, trim: true},
         title:{type:String},
         cautions:[
                 {type:String}],

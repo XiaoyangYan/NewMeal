@@ -123,9 +123,6 @@ const mapStateToProps = ({ calendar, food }) => {
                         day,
                         meals: Object.keys(calendar[day]).reduce((meals, meal) => {
                                 meals[meal] = calendar[day][meal] ? food[calendar[day][meal]] : null;
-                                console.log(meals[meal])
-                                console.log(meal);
-                                console.log(calendar[day][meal])
                                 return meals;
                         }, {})
                 })),

@@ -22,6 +22,7 @@
         margin-left: 10%;
 }
 .recipe-header-text{
+        width: 400px;
         display:inline;
 }
 
@@ -36,12 +37,12 @@
 }
 
 .recipe-introduction-text{
-        width: 800px;
+        width:800px;
         resize: none;
         height: 225px;
         font-size:18px;
         overflow: auto;
-        margin-bottom: 25px;
+        margin-bottom: 50px;
 }
 .recipe-introduction-text::placeholder{
         font-size: 25px;
@@ -64,9 +65,14 @@
 .button-self-recipe-group{
         position: relative;
 }
-.edit-my-new-recipe,  .delete-my-new-recipe{
+.save-edited-recipe-form {
         position: absolute;
-        top: 15px;
+        right: 40px;
+        bottom: 20px;
+        width: 120px;
+}
+.edit-my-new-recipe,  .delete-my-new-recipe, .save-my-edited-new-recipe{
+        position: absolute;
         right: 15px;
         width:82px;
         font-size:20px;
@@ -80,7 +86,16 @@
         border-radius: 10%;
 }
 .delete-my-new-recipe{
+        top: 15px;
         right: 120px;
+}
+.edit-my-new-recipe{
+        top: 15px;
+}
+.save-my-edited-new-recipe{
+        bottom: 15px;
+        right: 15px;
+        position: relative;
 }
 .self-recipe-show{
         position:relative;
@@ -90,7 +105,7 @@
         overflow-x:hidden;
 }
 .self-recipe-show > li{
-        width: 80%;
+        width: 90%;
         margin: 0 auto;
         background-color:#d0d0d0;
         border-radius: 15px;
