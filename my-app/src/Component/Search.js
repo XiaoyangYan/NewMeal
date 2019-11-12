@@ -4,7 +4,7 @@ import Data from "../API/Data";
 import ReactLoading from 'react-loading';
 import Card from "./Card";
 import {connect} from "react-redux";
-import {addCautions, removeFromCalendar, addRecipe, removeCautions} from "../actions/planner";
+import {addCautions, removeFromCalendar, addRecipe, removeCautions, resetAllT} from "../actions/planner";
 import Tags from "./Tags";
 class Search extends React.Component{
         constructor(props){
@@ -17,10 +17,13 @@ class Search extends React.Component{
                         currentData: [],
                         isLoading:false,
                         text:"",
-                        calories:"0-200",
+                        calories:"0-1000000000",
                         cautionList:["celery-free", "alcohol-free", "crustacean-free", 
                         "gluten-free", "kidney-friendly" ,"wheat-free", "soy-free", "sugar-conscious", 
                         "egg-free", "peanut-free", "mustard-free", "dairy-free" ],
+                        editClassName: ["styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
+                        "styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
+                        "styled-Category"],
                         checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false],
                         currentCaution: 0,
                 }
@@ -45,15 +48,16 @@ class Search extends React.Component{
                 } else {
                         queryData = await Data.getRecipeByHealthAndDiet(dishType, diet,queryText,calorieyType, searchString);
                 }
-                        
+                let numList = this.state.calories.split("-");
+                this.props.resetAllT();
+                let middleData = queryData.data.hits;
+                var newData  = middleData.filter( function(item){
+                        return (item.recipe.calories > numList[0] && item.recipe.calories < numList[1])
+                 })
                 this.setState({
-                        currentData: queryData.data.hits,
+                        currentData: newData,
                         isLoading: false,
-                        currentFood: "soup",
-                        currentDiet:"high-protein",
-                        currentDietIndex:0,
-                        currentDishIndex:0,
-                        calories:'0-200'
+                        checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false],
                 })
         }
         searchCategoryDiet = (e) =>{
@@ -88,20 +92,12 @@ class Search extends React.Component{
                this.setState({currentFood: liFood[this.state.currentDishIndex].innerText})
                 liFood[this.state.currentDishIndex].className = "styled-Category active-word";
         }
-        componentDidMount(){
-                var _this = this;
-                var ulCautions = document.getElementsByClassName("Cautions");
-                var liCautions = ulCautions[0].getElementsByTagName("li");
-                for(var i = 0; i < liCautions.length; i++){
-                        liCautions[i].className = "styled-Category"
-                        liCautions[i].index = i;
-                        liCautions[i].onclick = function(){
-                                _this.setState({currentCaution: this.index});
-                        }
-                }
-        }
         componentWillUpdate(nextProps, nextState){
-                if (this.state != nextState){
+                if (nextState.checkCautions != this.state.checkCautions ){
+                        this.state.checkCautions = nextState.checkCautions;
+                        this.setState({editClassName:["styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
+                        "styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
+                        "styled-Category"]})
                 }
         }
         handleAddMore = (e) => {
@@ -121,7 +117,6 @@ class Search extends React.Component{
                         document.getElementById("minus-2").innerHTML === "add more"? "get back":"add more";
         }
         onChange = (e) => {
-                console.log(e);
                 this.setState({
                         [e.target.name] : e.target.value,
                 })
@@ -129,21 +124,18 @@ class Search extends React.Component{
         handleChange = value =>{
                   this.setState(()=>({value}));
         }
-        handleCautionChange = checked => {
+        handleCautionClick (index){
                 const {addCautions, removeCautions} = this.props;
-                 var ulCautions = document.getElementsByClassName("Cautions");
-                 var liCautions = ulCautions[0].getElementsByTagName("li");
-                 if (checked){
-                        addCautions({caution:this.state.cautionList[this.state.currentCaution]});
-                        liCautions[this.state.currentCaution].className = "styled-Category active-word";
-                   } else {
-                        removeCautions({caution:this.state.cautionList[this.state.currentCaution]});
-                           liCautions[this.state.currentCaution].className = "styled-Category";    
-                   }
-                   this.state.checkCautions[this.state.currentCaution] = checked;
+                this.state.checkCautions[index] = !this.state.checkCautions[index];
+                if (this.state.checkCautions[index]){
+                       addCautions({caution:this.state.cautionList[index]});
+                      this.state.editClassName[index] = "styled-Category active-word"
+                  } else {
+                       removeCautions({caution:this.state.cautionList[index]});
+                       this.state.editClassName[index] = "styled-Category";
+                  }
         }
         render(){
-                const {caution} = this.props;
                 if (!this.state.isLoading){
                         return (
                                 <>
@@ -205,10 +197,8 @@ class Search extends React.Component{
                                                 {
                                                         this.state.cautionList.map((items, index) =>
                                                              <li key={index}>
-                                                                        <Tags key={index} checked={this.state.checkCautions[index]} 
-                                                                                      onChange={this.handleCautionChange}>
-                                                                                {items}
-                                                                        </Tags>
+                                                                        <div index={index} className={this.state.editClassName[index]} onClick={() => this.handleCautionClick(index)} 
+                                                                         checked={this.state.currentCaution[index]}>{items}</div>
                                                                 </li>
                                                         )
                                                 }
@@ -217,11 +207,13 @@ class Search extends React.Component{
                                         <div className="calories-select-box">
                                                 <label className="calories-label">Choose Calories Standard</label>
                                                 <select value={this.state.calories} onChange={this.onChange} name="calories">
+                                                        <option value="0-1000000000">default</option>
                                                         <option value="0-200">0-200</option>
                                                         <option value="201-400">201-400</option>
-                                                        <option value="401-600">401-600</option>
+                                                        <option value="401-600">401-800</option>
                                                         <option value="801-1200">801-1200</option>
-                                                        <option value="1201">1201-INF</option>
+                                                        <option value="1201-2000">1201-2000</option>
+                                                        <option value="2001-1000000000">2001-INF</option>
                                                 </select>
                                         </div>
                                         <div className="cardList-wrap">
@@ -255,4 +247,5 @@ export default connect(mapStateToProps, {
         removeCautions,
         removeFromCalendar,
         addRecipe,
+        resetAllT,
 })(Search);
