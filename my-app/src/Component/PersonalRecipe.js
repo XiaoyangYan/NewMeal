@@ -35,23 +35,17 @@ class PersonalRecipe extends React.Component{
                 })
         }
         noneEffect = checked => {
-
         }
         onEditable = (e) => {
                 this.setState({
                         editable: !this.state.editable,
                 })
         }
-        onDelete = (e) => {
-                this.setState({
-                        deletable: !this.state.deletable
-                })
-        }
+        
         async handleSubmit(e) {
                 let {email, username} =this.props;
                 let {items} = this.state;
                 var allRecipe = [];
-                console.log(this.state.checkCautions);
                 for (let i = 0; i < this.state.cautionList.length; i++){
                         if (this.state.checkCautions[i]){
                                 allRecipe.push(this.state.cautionList[i]);
@@ -67,7 +61,6 @@ class PersonalRecipe extends React.Component{
                         recipeDescription: this.state.description
                 }
                 const data = await AjaxServiceRecipeForm.editOneSelfRecipe(recipeM);
-                console.log(data.data);
                 this.props.setPersonalRecipe({recipeMessage: data.data});
                 this.setState({ editable: false, checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false]});
                 this.props.resetAllT();
@@ -99,8 +92,7 @@ class PersonalRecipe extends React.Component{
                 this.props.resetAllT();
         }
         render(){
-                const {index} = this.props;
-                const {items} = this.props;
+                const {index, items} = this.props;
                 let {email} = this.props;
                 email = email.trim();
                 items.userEmail = items.userEmail.trim();
@@ -108,7 +100,7 @@ class PersonalRecipe extends React.Component{
                         <li key={index}>
                                <div className="button-self-recipe-group">
                                {(email == items.userEmail) && <button  className="edit-my-new-recipe" onClick={this.onEditable}>Edit</button>}
-                               {(email == items.userEmail) &&  <button  className="delete-my-new-recipe" onClick={this.onDelete}>Delete</button>}
+                               {(email == items.userEmail) &&  <button  className="delete-my-new-recipe" onClick={this.props.onDelete}>Delete</button>}
                                 </div>
                                 <div className="self-recipe-except-picture">
                                         <div className="self-recipe-show-item">

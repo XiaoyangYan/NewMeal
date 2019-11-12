@@ -25,6 +25,18 @@ const recipeController = {
                         res.status(status.CREATED).send(data);
                 })
         },
+        delete: async (req, res) => {
+                const id = req.params.deleteId;
+                const deleted = await Recipe.remove({_id: id}, function(err,data){
+                        if (err) console.log(err);
+                        const recipe =  Recipe.find({}, function(err, data){
+                                if (err) console.log(err);
+                                res.send(data);
+                        })
+                })
+
+                
+        },
         editOne: async (req, res) => {
                 const newRecipe = new Recipe(req.body);
                 const {email} =  req.body;

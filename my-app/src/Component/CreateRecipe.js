@@ -19,6 +19,7 @@ class CreateRecipe extends React.Component{
                         "egg-free", "peanut-free", "mustard-free", "dairy-free" ],
                         checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false],
                         modify: 0,
+                        deletable: false,
                 }
                 this.handleCreateClick = this.handleCreateClick.bind(this);
         }
@@ -62,6 +63,15 @@ class CreateRecipe extends React.Component{
                                 _this.setState({currentCaution: this.index});
                         }
                 }
+        }
+        async onDelete (titems){
+                console.log(titems);
+                const data = await AjaxServiceRecipeForm.deleteOneSelfRecipe(titems, titems._id);
+                console.log(data);
+                this.props.setPersonalRecipe({recipeMessage: data.data});
+                this.setState({
+                        deletable: !this.state.deletable,
+                })
         }
         async handleCreateClick(e){
                 let {email, username, caution} = this.props;
@@ -116,7 +126,8 @@ class CreateRecipe extends React.Component{
                                 </form>
                                 <ul className="self-recipe-show">
                                         {selfRecipeList && selfRecipeList.map((titems, tindex) =>
-                                                <PersonalRecipe items={titems} index={tindex} email={this.props.email} history={this.props.history}/>
+                                                <PersonalRecipe items={titems} index={tindex} email={this.props.email} history={this.props.history} 
+                                                 onDelete={() => this.onDelete(titems)}/>
                                         )}
                                 </ul>
                         </div>
