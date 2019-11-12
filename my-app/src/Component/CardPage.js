@@ -69,6 +69,7 @@ class CardPage extends React.Component {
                         totalData: data.data.hits,
                 })
                 this.state.totalData.shift(); 
+                console.log(this.state.currentData);
                 const label = this.state.currentData.recipe.label;
                 AjaxServiceReviewForm.getRecipeReview(label).then(res =>{
                          this.setState({

@@ -2,7 +2,6 @@ import React from "react";
 import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
 import AuthenticationService from "./Service/AuthenticationService";
 import Data from "../API/Data";
-import StarItem from "./StarItems";
 import "./css/FavoriteRecipe.css";
 import ReactLoading from "react-loading";
 import {Link} from "react-router-dom";
@@ -16,6 +15,7 @@ class FavoriteRecipe extends React.Component{
                         isLoading:false,
                         removeLabel: "",
                         sorting:"",
+                        favData:[],
                 }
                 this.onDelete = this.onDelete.bind(this);
                 this.sortByRating = this.sortByRating.bind(this);
@@ -71,14 +71,10 @@ class FavoriteRecipe extends React.Component{
                this.setState({isLoading: true});
                 const email = AuthenticationService.getEmail();
                 const savedRecipe = await AjaxServiceRecipeForm.findFavoriteRecipe(email);
-                // console.log(savedRecipe.data);
                 const rec = savedRecipe.data;
                 this.setState({rec});
                await  this.sortByRating();
                await  this.assignData();
-                console.log(this.state.currentData)
-                const pyData = await AjaxServiceRecipeForm.getDataFromPython(this.state.currentData);
-                console.log(pyData);
         }
         decideColor(index){
                 index  = index%4;

@@ -17,9 +17,9 @@ const SideDrawer = props => {
                                 <a href="cart.html">Cart <i className="fa fa-shopping-bag" aria-hidden="true"></i></a>
                         </div>
                         <div className="navigation-mb-sm">
-                                <a href="">Recipe</a>
-                                <a href="">Favourite</a>
-                                <a href="/plan">Self-Planner</a>
+                                <a href="">Main</a>
+                                <a href="">Self-Planner</a>
+                                <a href="/plan">Advanced-Planner</a>
                                 <a href="">About Us</a>
                         </div>
                 </div>
