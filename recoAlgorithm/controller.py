@@ -1,7 +1,7 @@
 import flask
 import json
 import reco
-from flask import Flask, request
+from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 
@@ -16,7 +16,7 @@ def get_data_from_frontend():
         json.dump(json_text, f, ensure_ascii=False, indent=4)
     data = {}
     data['uri'].append(reco.reco())
-    return data
+    return jsonify(data)
 
 
 server.run(port=7000, debug=True)
