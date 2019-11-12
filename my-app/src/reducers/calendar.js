@@ -1,4 +1,5 @@
-import {ADD_RECIPE, REMOVE_FROM_CALENDER, ADD_CAUTIONS, REMOVE_CAUTIONS, RESET_ALL} from "../actions"
+import {ADD_RECIPE, REMOVE_FROM_CALENDER, ADD_CAUTIONS, 
+        REMOVE_CAUTIONS, RESET_ALL, SET_PERSONAL_RECIPE} from "../actions"
 
 const INITIAL_MENU = {
         breakfast: null,
@@ -40,7 +41,7 @@ const calendarReducer = (state =initialCalendarState, action) => {
                                 return state;
         }
 }
-export var cautions = (state =[], action) =>{
+export const  cautions = (state =[], action) =>{
         const {caution} = action;
         switch(action.type){
                 case ADD_CAUTIONS:
@@ -53,6 +54,17 @@ export var cautions = (state =[], action) =>{
                         })
                 case RESET_ALL:
                         state = [];
+                        return state;
+                default:
+                        return state;
+        }
+}
+
+export const selfRecipe = (state = [], action) => {
+        const {recipeMessage} = action;
+        switch(action.type){
+                case SET_PERSONAL_RECIPE:
+                        state = recipeMessage;
                         return state;
                 default:
                         return state;

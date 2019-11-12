@@ -8,7 +8,7 @@ import ReviewList from "./ReviewList";
 import {connect} from "react-redux";
 import menuConfig from "../config/menuConfig";
 import FavoriteRecipe from "./FavoriteRecipe";
-import {switchMenu, GetUserName} from '../actions'
+import {switchMenu, GetUserName, resetAllT} from '../actions'
 import {Menu} from 'antd';
 import PlannerPage from "./PlanPage";
 import CreateRecipe from "./CreateRecipe";
@@ -76,6 +76,9 @@ class UserPage extends React.Component {
                 const titleArray = this.selectBreadCrumb(currentKey, pathName);
                 this.props.handleClick(titleArray);
         }
+        componentDidMount(){
+                this.props.resetAllCaution();
+        }
         render() {
                 const {username} = this.props;
                 return (
@@ -124,6 +127,9 @@ const mapDispatchToProps = (dispatch) => {
                 },
                 getUserName(){
                         dispatch(GetUserName());
+                },
+                resetAllCaution(){
+                        dispatch(resetAllT());
                 }
         }
 }

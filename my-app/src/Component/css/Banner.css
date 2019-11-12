@@ -17,7 +17,7 @@
         margin:0;
         color:white;
         min-height: 660px;
-        max-height: 750px;
+        max-height: 1050px;
 }
 
 .banner-aul{
@@ -123,6 +123,7 @@
         text-align: center;
         width: 75%;
         margin:40px auto;
+        color: white!important;
 }
 .active{
         display:block;
