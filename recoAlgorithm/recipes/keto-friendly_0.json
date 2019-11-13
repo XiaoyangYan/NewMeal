@@ -52425,12 +52425,12 @@
         },
         {
             "recipe": {
-                "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_bc3ae2054cc3f717b2d2867b03f052b1",
-                "label": "Baked Red Snapper With Avgolemono",
-                "image": "https://www.edamam.com/web-img/586/5869f63555cbda896a9c87353553d7f5.jpg",
+                "uri": "http://www.edamam.com/ontologies/edamam.owl#recipe_ba56a460921d4098b5e9d0c472a2e847",
+                "label": "Baked Red Snapper with Avgolemono",
+                "image": "https://www.edamam.com/web-img/e5b/e5ba749abbf0a74f15966e585b11fa90.jpg",
                 "source": "Epicurious",
-                "url": "http://www.epicurious.com/recipes/food/views/Baked-Red-Snapper-with-Avgolemono-106367",
-                "shareAs": "http://www.edamam.com/recipe/baked-red-snapper-with-avgolemono-bc3ae2054cc3f717b2d2867b03f052b1/special/keto-friendly",
+                "url": "https://www.epicurious.com/recipes/food/views/baked-red-snapper-with-avgolemono-106367",
+                "shareAs": "http://www.edamam.com/recipe/baked-red-snapper-with-avgolemono-ba56a460921d4098b5e9d0c472a2e847/special/keto-friendly",
                 "yield": 6.0,
                 "dietLabels": [
                     "High-Protein",

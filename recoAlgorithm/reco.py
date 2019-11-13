@@ -94,7 +94,7 @@ def recoByLabels(df_data, recipe):
     return uri_list
 
 def reco():
-    get_data_from_api()
+    #get_data_from_api()
     recipe_df = parse_api_data()
     user_df = parse_user_data()
     df = pd.concat([recipe_df, user_df], ignore_index = True)
