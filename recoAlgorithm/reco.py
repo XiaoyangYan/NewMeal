@@ -15,26 +15,28 @@ def get_data_from_api():
     'low-sodium']
     health = ['keto-friendly', 'paleo', 'vegan']
 
-
+    headers = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/54.0.2840.90 Safari/537.36'}
     # get json from corresponding api and then write it in a separate file
     dir_name = os.path.dirname(__file__)
     for each in diet:
-        file_name = os.path.join(dir_name, 'recipes/' + each + '.json')
-        recipe_file = open(file_name, 'w', encoding='utf-8')
-        recipe_content = requests.get('https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&diet=' + each + '&from=0&to=100')
-        recipe_json = recipe_content.json()
-        json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
-        recipe_file.close()
-    
+        for i in range(2):
+            frm = i * 100 + 1
+            to = (i + 1) * 100
+            file_name = os.path.join(dir_name, 'recipes/' + each + '_' + str(i) + '.json')
+            recipe_file = open(file_name, 'w', encoding='utf-8')
+            recipe_content = requests.get(url = 'https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&diet=' + each + '&from=' + str(frm) + '&to=' + str(to), headers=headers)
+            recipe_json = recipe_content.json()
+            json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
     for each in health:
-        file_name = os.path.join(dir_name, 'recipes/' + each + '.json')
-        recipe_file = open(file_name, 'w', encoding='utf-8')
-        recipe_content = requests.get('https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&health=' + each + '&from=0&to=100')
-        recipe_json = recipe_content.json()
-        json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
-        recipe_file.close()
-        
-    
+        for i in range(2):
+            frm = i * 100 + 1
+            to = (i+1) * 100
+            file_name = os.path.join(dir_name, 'recipes/' + each + '_' + str(i) + '.json')
+            recipe_file = open(file_name, 'w', encoding='utf-8')
+            url = 'https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&health=' + each + '&from='+str(frm)+'&to='+str(to)
+            recipe_content = requests.get(url = url, headers=headers)
+            recipe_json = recipe_content.json()
+            json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
 
 
 def parse_api_data():
@@ -89,11 +91,6 @@ def recoByLabels(df_data, recipe):
     for each in neighbours:
         uri_list.append(recipe.iloc[each]['uri'])
     return uri_list
-    
-
-def dl():
-    pass
-
 
 def reco():
     #get_data_from_api()
