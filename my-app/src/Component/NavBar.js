@@ -6,7 +6,6 @@ import AuthenticationService from './Service/AuthenticationService';
 import {Link} from "react-router-dom";
 import {connect} from "react-redux";
 import {LoginUser, GetUserName, DeleteUser, resetAllT} from "../actions";
-import { relativeTimeThreshold } from 'moment';
 class NavBar extends React.Component {
         constructor(props) {
                 super(props);

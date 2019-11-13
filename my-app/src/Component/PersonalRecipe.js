@@ -111,7 +111,7 @@ class PersonalRecipe extends React.Component{
                                                 autoComplete="off"  onChange={this.handleChange}
                                                         placeholder="Please type your recipe name" name="headLine"/>}
                                         </div>
-                                        <div className="styled-Categories">
+                                        <div className="styled-Categories" id="styled-modify">
                                                 <h6> Cautions: </h6>
                                                 <ul className="styled-CategoryList">
                                                         { !this.state.editable &&

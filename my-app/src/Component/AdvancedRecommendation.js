@@ -35,8 +35,12 @@ class AdvancedRecommendation extends React.Component {
                 this.setState({ isLoading: true });
                 const email = AuthenticationService.getEmail();
                 const savedRecipe = await AjaxServiceRecipeForm.findFavoriteRecipe(email);
-                const rec = savedRecipe.data;
-                this.setState({ rec });
+                let rec = savedRecipe.data;
+                const newRec = rec.filter(function(items){
+                        return items.ratings >= 3
+                })
+                console.log(newRec);
+                this.setState({ rec: newRec });
                 await this.assignData();
                 const pyData = await AjaxServiceRecipeForm.getDataFromPython(this.state.currentData);
                 let ss = "";
