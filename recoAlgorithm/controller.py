@@ -13,6 +13,7 @@ def get_data_from_frontend():
     json_text = r
     with open("users.json", 'w', encoding='utf-8') as f:
         json.dump(json_text, f, ensure_ascii=False, indent=4)
+    print(jsonify(reco.reco()))
     return jsonify(reco.reco())
 
 

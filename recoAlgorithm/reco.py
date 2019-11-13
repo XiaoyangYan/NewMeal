@@ -20,17 +20,18 @@ def get_data_from_api():
     dir_name = os.path.dirname(__file__)
     for each in diet:
         for i in range(2):
-            frm = i * 100 + 1
-            to = (i + 1) * 100
+            frm = i * 100
+            to = (i + 1) * 100 - 1
             file_name = os.path.join(dir_name, 'recipes/' + each + '_' + str(i) + '.json')
             recipe_file = open(file_name, 'w', encoding='utf-8')
-            recipe_content = requests.get(url = 'https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&diet=' + each + '&from=' + str(frm) + '&to=' + str(to), headers=headers)
+            url = 'https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&diet=' + each + '&from=' + str(frm) + '&to=' + str(to)
+            recipe_content = requests.get(url = url, headers=headers)
             recipe_json = recipe_content.json()
             json.dump(recipe_json, recipe_file, ensure_ascii=False, indent=4)
     for each in health:
         for i in range(2):
-            frm = i * 100 + 1
-            to = (i+1) * 100
+            frm = i * 100
+            to = (i+1) * 100 - 1
             file_name = os.path.join(dir_name, 'recipes/' + each + '_' + str(i) + '.json')
             recipe_file = open(file_name, 'w', encoding='utf-8')
             url = 'https://api.edamam.com/search?app_id=97875047&app_key=13a31b794de48e8c01b66e91ef648500&q=Special&health=' + each + '&from='+str(frm)+'&to='+str(to)
@@ -76,8 +77,8 @@ def recoByLabels(df_data, recipe):
     df_health = df_data.healthLabels.str.get_dummies(',')
     data = df_dish.join(df_cuisine)
     data = data.join(df_health)
-    train = data.to_numpy()[:900]
-    test = data.to_numpy()[900:]
+    train = data.to_numpy()[:recipe.shape[0]]
+    test = data.to_numpy()[recipe.shape[0]:]
     test_size = test.shape[0]
 
     # use knn to find similarity and return nearest neighbours
@@ -93,7 +94,7 @@ def recoByLabels(df_data, recipe):
     return uri_list
 
 def reco():
-    #get_data_from_api()
+    get_data_from_api()
     recipe_df = parse_api_data()
     user_df = parse_user_data()
     df = pd.concat([recipe_df, user_df], ignore_index = True)
