@@ -1,3 +1,3 @@
 # NewMeal
 
-![Image text](file:///home/yanxiaoyang/%E5%9B%BE%E7%89%87/meal-planner-banner.png)
+![Image text](https://raw.githubusercontent.com/XiaoyangYan/NewMeal/XiaoyangYan-Project-Effect/meal-planner-banner.png)
