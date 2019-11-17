@@ -2,7 +2,7 @@ import {combineReducers} from "redux";
 import users from "./users"
 import menu from "./changeSide";
 import food from "./planner";
-import calendar,  {cautions, selfRecipe} from "./calendar";
+import calendar,  {cautions, selfRecipe,myRecipe} from "./calendar";
 
 export default combineReducers({
         users,
@@ -11,4 +11,5 @@ export default combineReducers({
         calendar,
         cautions,
         selfRecipe,
+        myRecipe
 });
