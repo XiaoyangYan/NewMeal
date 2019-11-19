@@ -5,14 +5,13 @@ class Card extends React.Component{
         constructor(props){
                 super(props);
                 this.state = {
-
                 }
         }
         render(){
                 return(
                         <>
                         <div className="bookmark-btn">
-                                <Link to={{pathname:`/card/${this.props.title}`, state:{label:`${this.props.title}`, name:`${this.props.name}`}}} exact="true" className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
+                                <Link to={{pathname:`/card/${this.props.title}/${this.props.name}`, state:{label:`${this.props.title}`, name:`${this.props.name}`}}} exact="true" className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
                         </div>
                         <div className="box">
                                 <div className="inner" itemScope itemType="http://schema.org/Recipe">

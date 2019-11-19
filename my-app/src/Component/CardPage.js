@@ -43,10 +43,12 @@ class CardPage extends React.Component {
         }
        
         async componentWillReceiveProps(nextProps){
-                if (this.state.currentData.recipe.label !== nextProps.match.params.label){
+                console.log(nextProps.match.params.label);
+                console.log(encodeURIComponent(this.state.currentData.uri));
+                if (encodeURIComponent(this.state.currentData.uri) !== nextProps.match.params.label){
                         if ( nextProps.match.params.label){
                                 this.setState({saved:false});
-                               await  this.handleData(nextProps.match.params.label);
+                               await  this.handleData(nextProps.match.params.name, nextProps.match.params.label);
                         }
                 }
         }
@@ -75,18 +77,17 @@ class CardPage extends React.Component {
                  const currentLabel = this.props.match.params.name;
                  const currentUri = this.props.match.params.label;
                 await this.handleData(currentLabel, currentUri);
-                
         }
         render() {
                 if (this.state.isLoading) {
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
                 } else {
                         var { currentData, totalData } = this.state;
-                        totalData.shift(0);
                         console.log(currentData);
-                        let first = currentData.digest.shift();
-                        let second = currentData.digest.shift();
-                        let third = currentData.digest.shift();
+                        totalData.shift(0);
+                        let first = currentData.digest.shift(0);
+                        let second = currentData.digest.shift(0);
+                        let third = currentData.digest.shift(0);
                         const threeNum = first.daily +  second.daily+third.daily;
                         const widthOne = (first.daily*100/threeNum).toLocaleString() + "%";
                         const widthTwo = (second.daily*100/threeNum).toLocaleString() + "%";
@@ -169,7 +170,8 @@ class CardPage extends React.Component {
                                                                 {
                                                                         totalData.map((items, index) =>
                                                                                 <li key={index}><Card calories={items.recipe.calories} ingredientsLength={items.recipe.ingredients.length}
-                                                                                        backgroundImage={items.recipe.image} title={items.recipe.label} source={items.recipe.source} 
+                                                                                        backgroundImage={items.recipe.image} source={items.recipe.source} title={encodeURIComponent(items.recipe.uri)}
+                                                                                        name={items.recipe.label} 
                                                                                        props={this.props}
                                                                                         /></li>
                                                                         )

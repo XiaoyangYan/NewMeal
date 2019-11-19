@@ -139,7 +139,7 @@ class FavoriteRecipe extends React.Component{
                                                                          <tr key={index}>
                                                                                  <td>{index}</td>
                                                                                  <td><img src={items.image} alt="recipe"/></td>
-                                                                                 <td><Link to={{pathname:`/card/${items.label}`, state:{label:`${items.label}`}}} exact="true">{items.label}</Link> </td>
+                                                                                 <td><Link to={{pathname:`/card/${encodeURIComponent(items.uri)}`, state:{label:`${encodeURIComponent(items.uri)} `, name:`${items.label}`}}} exact="true">{items.label}</Link> </td>
                                                                                  <td>{Math.round(items.calories)}</td>
                                                                                  <td><StarRatings rating={this.state.rec[index].ratings} starRatedColor="gold" className="starItem" numOfStars={5} name='rating' starDimension={'15px'}/></td>
                                                                                  <td>
