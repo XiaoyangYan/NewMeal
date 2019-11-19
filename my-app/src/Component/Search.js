@@ -224,7 +224,8 @@ class Search extends React.Component{
                                                                                 <Card calories={items.recipe.calories} 
                                                                                              ingredientsLength={items.recipe.ingredients.length}
                                                                                              backgroundImage={items.recipe.image} 
-                                                                                             title={items.recipe.label} source={items.recipe.source} /></li>
+                                                                                             title={encodeURIComponent(items.recipe.uri)} name={items.recipe.label}
+                                                                                              source={items.recipe.source} /></li>
                                                                 )
                                                         }
                                                 </ul>

@@ -63,7 +63,8 @@ class AdvancedRecommendation extends React.Component {
                                                         {this.state.recommendRecipe.map((items, index) =>
                                                                 <li className="assign-data" key={index} >
                                                                         <Card calories={items.calories} ingredientsLength={items.ingredients.length}
-                                                                                backgroundImage={items.image} title={items.label} source={items.source}
+                                                                                backgroundImage={items.image} title={encodeURIComponent(items.uri)}
+                                                                                name={items.label} source={items.source}
                                                                                 props={this.props} /></li>
                                                         )
                                                         }
