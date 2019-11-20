@@ -61,13 +61,13 @@ class NavBar extends React.Component {
                                 </div>
                                 <div className="menu-healthy cart hidden-xs">
                                         <ul>
-                                                <li><a href="#"><i className="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
+                                                {/* <li><a href="#"><i className="fa fa-shopping-bag" aria-hidden="true"></i></a></li>
                                                 <li>
                                                         <form action="" className="input-search">
                                                                 <input type="text" name="search" />
                                                                 <button type="button" className="button-search"><i className="fa fa-search" aria-hidden="true"></i></button>
                                                         </form>
-                                                </li>
+                                                </li> */}
                                                 {!email&&  <li>< Link to="/login" className="logged-button">Sign In</Link></li>}
                                                 {email   &&<li> <Link to="/login" onClick={this.handleLogout} className="logged-button" >Logged Out</Link></li>}
                                         </ul>

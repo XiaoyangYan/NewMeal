@@ -56,6 +56,16 @@ class FavoriteRecipe extends React.Component{
                 })
                 await this.assignData();
         }
+        async sortByCalories(){
+                console.log(this.state.currentData);
+               this.state.currentData.sort((a,b) => {
+                       if (a.calories < b.calories){
+                               return -1;
+                       } else {
+                               return 1;
+                       }
+               })
+        }
         async sortByPublishDate(){
                 let {rec} = this.state;
                 rec.sort((a, b) => {
@@ -91,6 +101,7 @@ class FavoriteRecipe extends React.Component{
                                 return "red";
                 }
         }
+        
         async onChange(e){
                 e.preventDefault();
                 this.setState({
@@ -102,6 +113,9 @@ class FavoriteRecipe extends React.Component{
                                 break;
                         case "SaveDate":
                                 await this.sortByPublishDate();
+                                break;
+                        case "Calories":
+                                await this.sortByCalories();
                                 break;
                         default:
                                 break;
@@ -127,6 +141,7 @@ class FavoriteRecipe extends React.Component{
                                                                                 <select value={this.state.sorting} onChange={this.onChange} name="sorting">
                                                                                         <option value="ratings">Ratings</option>
                                                                                         <option value="SaveDate">Saved Date</option>
+                                                                                        <option value="Calories">Calories</option>
                                                                                 </select>
                                                                          </div>
                                                                 </th>
