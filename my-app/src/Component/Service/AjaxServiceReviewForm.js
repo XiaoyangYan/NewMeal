@@ -11,5 +11,9 @@ class AjaxServiceReviewForm {
         getRecipeReviewByUser(email){
                 return axios.get(`http://localhost:8080/review/getE/${email}`)
         }
+
+        deleteRecipeReviewById(id) {
+                return axios.delete(`http://localhost:8080/review/delete/${id}`)
+        }
 }
 export default new AjaxServiceReviewForm();

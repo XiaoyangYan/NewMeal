@@ -130,3 +130,20 @@ form {
         color: #8b8b8b;
         display: block;
 }
+.cancel-saved-recipe{
+        position: absolute;
+        text-align:center;
+        bottom:5px;
+        right:10px;
+        content:'delete';
+        background-color: #f6e04b;
+        color: #676262;
+        padding: 6px 20px;
+        font-size: 15px;
+        border-radius: 6px;
+        font-weight: 400;
+        display: inline-block;
+        text-decoration: none;
+        transition: .5s;
+        height: 20px;
+}

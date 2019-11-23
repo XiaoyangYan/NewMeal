@@ -78,6 +78,11 @@ class CardPage extends React.Component {
                  const currentUri = this.props.match.params.label;
                 await this.handleData(currentLabel, currentUri);
         }
+        onDelete = async id => {
+                e.preventDefault();
+                const reviewData  = await AjaxServiceReviewForm.deleteRecipeReviewById(id);
+                this.setState({totalReview: reviewData.data});
+        }
         render() {
                 if (this.state.isLoading) {
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
@@ -125,7 +130,7 @@ class CardPage extends React.Component {
                                                                         </div>
                                                                         <div className="recipe-review">
                                                                                 <h4>Reviews</h4>
-                                                                                <Reviews label={currentData.label} totalReview={this.state.totalReview}/>
+                                                                                <Reviews label={currentData.label} totalReview={this.state.totalReview} onDelete={this.onDelete}/>
                                                                         </div>
                                                                 </div>
                                                                 <div className="recipe-nutrition" itemProp="nutrition" itemScope=""

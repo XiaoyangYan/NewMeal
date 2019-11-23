@@ -19,7 +19,8 @@ class Reviews extends React.Component{
                 }
                 console.log(this.props.totalReview);
         }
-        submitForm = (e) =>{
+        submitForm = async (e) =>{
+                e.preventDefault();
                 const Review = {
                         comment: this.state.message,
                         headline: this.state.headline,
@@ -55,6 +56,7 @@ class Reviews extends React.Component{
                         rating: newRating
                 })
         }
+       
         render(){
                 return(
                         <>
@@ -100,9 +102,7 @@ class Reviews extends React.Component{
                                                                <div className="comment-main-area">{items.comment}</div>
                                                                <div className="comment-date">
                                                                        <span class="comment-date-left">{items.reviewTime}</span>
-                                                                       <div className="comment-button-group">
-
-                                                                       </div>
+                                                                        <button className="cancel-saved-recipe" key={index} onClick={() => {this.props.onDelete(items.reviewId)}} name={items.label}>delete</button>
                                                                </div>
                                                         </div>
                                                 </li>
