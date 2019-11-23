@@ -84,10 +84,13 @@ public class ReviewController extends BaseController {
 	@ResponseBody
 	public ResponseEntity<?> deleteReview(@PathVariable String id, @PathVariable String label){
 		this.reviewService.deleteReview(Integer.parseInt(id));
+		System.out.println(label+"88888888");
+		label = label.trim();
 		Recipe recipe = this.recipeService.getRecipe(label);
 		if (recipe == null) {
 			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
 		}
+		System.out.println(recipe.getLabel() + "888888");
 		List<Review> results = this.reviewService.listRecipeReview(recipe);
 		return new ResponseEntity<List<Review>>(results, HttpStatus.OK);
 	}

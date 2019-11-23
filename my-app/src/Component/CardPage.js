@@ -23,7 +23,7 @@ class CardPage extends React.Component {
                 }
                 this.handleData = this.handleData.bind(this);
         }
-        saveRecipe= (e) =>{
+        saveRecipe= async  (e) =>{
                 e.preventDefault();
                 const Recipe = {
                        image: this.state.currentData.uri,
@@ -78,9 +78,14 @@ class CardPage extends React.Component {
                  const currentUri = this.props.match.params.label;
                 await this.handleData(currentLabel, currentUri);
         }
+        async componentWillUpdate(nextProps, nextState){
+                if (this.state.totalReview !== nextState.totalReview){
+                        this.setState({totalReview: nextState.totalReview});
+                }
+        }
         onDelete = async id => {
-                e.preventDefault();
-                const reviewData  = await AjaxServiceReviewForm.deleteRecipeReviewById(id);
+                const reviewData  = await AjaxServiceReviewForm.deleteRecipeReviewById(id, this.state.currentData.label);
+                console.log(reviewData);
                 this.setState({totalReview: reviewData.data});
         }
         render() {
