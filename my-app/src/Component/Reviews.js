@@ -19,7 +19,8 @@ class Reviews extends React.Component{
                 }
                 console.log(this.props.totalReview);
         }
-        submitForm = (e) =>{
+        submitForm = async (e) =>{
+                e.preventDefault();
                 const Review = {
                         comment: this.state.message,
                         headline: this.state.headline,
@@ -31,19 +32,21 @@ class Reviews extends React.Component{
                 if (AuthenticationService.isUserLoggedIn()){
                         AjaxServiceReviewForm.saveNewReview(Review, email, label).then(
                                 res => {
-                                        console.log(res.data);
                                         if (typeof res.data == 'string'){
-                                                console.log(res.data);
                                                 this.setState({savedRecipe:res.data});
                                         } else {
                                                 this.setState({reviews: res.data, savedRecipe:""});
-                                                console.log(this.state.reviews);
                                         }
                                 }
                         )
                 }
         }
-        
+        componentWillReceiveProps(nextProps, nextState){
+                if (this.props !== nextProps){
+                        this.props = nextProps;
+                        this.setState({reviews: this.props.totalReview});
+                }
+        }
         handleChange = (e) => {
                 this.setState({[e.target.name]:e.target.value});
         }
@@ -55,6 +58,9 @@ class Reviews extends React.Component{
                         rating: newRating
                 })
         }
+       async componentDidMount(){
+
+       }
         render(){
                 return(
                         <>
@@ -100,9 +106,8 @@ class Reviews extends React.Component{
                                                                <div className="comment-main-area">{items.comment}</div>
                                                                <div className="comment-date">
                                                                        <span class="comment-date-left">{items.reviewTime}</span>
-                                                                       <div className="comment-button-group">
-
-                                                                       </div>
+                                                                        { items.users.email.trim() === AuthenticationService.getEmail().trim() && 
+                                                                        <button className="cancel-review" key={index} onClick={() => {this.props.onDelete(items.reviewId)}} name={items.label}>delete</button>}
                                                                </div>
                                                         </div>
                                                 </li>

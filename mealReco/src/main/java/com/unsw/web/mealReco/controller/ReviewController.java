@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -77,5 +78,20 @@ public class ReviewController extends BaseController {
 		} else {
 			return new ResponseEntity<List<Review>>(results, HttpStatus.OK);
 		}
+	}
+	
+	@DeleteMapping(path="/delete/{id}/{label}")
+	@ResponseBody
+	public ResponseEntity<?> deleteReview(@PathVariable String id, @PathVariable String label){
+		this.reviewService.deleteReview(Integer.parseInt(id));
+		System.out.println(label+"88888888");
+		label = label.trim();
+		Recipe recipe = this.recipeService.getRecipe(label);
+		if (recipe == null) {
+			return new ResponseEntity<List<Review>>(new ArrayList<Review>(), HttpStatus.OK);
+		}
+		System.out.println(recipe.getLabel() + "888888");
+		List<Review> results = this.reviewService.listRecipeReview(recipe);
+		return new ResponseEntity<List<Review>>(results, HttpStatus.OK);
 	}
 }

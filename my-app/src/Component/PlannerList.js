@@ -16,7 +16,7 @@ class PlannerList extends React.Component{
                                 {this.props.food.map((item, index) => (
                                         <li onClick={() => this.props.onSelect(item) } key={index}>
                                                 <Card backgroundImage={item.image}  calories={item.calories}
-                                                title={item.label} source={item.source} ingredientsLength={item.ingredients.length}/>
+                                                name={item.label} source={item.source} ingredientsLength={item.ingredients.length}/>
                                         </li>
                                 ))}
                         </ul>

@@ -59,6 +59,7 @@ form {
         box-shadow: 0  1px rgba(2,165,209,29);
         background-color: #7db343;
         border-radius: 10%;
+        color:white;
         position: relative;
 }
 .send-review-button:hover{
@@ -69,11 +70,13 @@ form {
 }
 .comment-show{
         position:relative;
-        min-width:300px;
+        min-width:400px;
         top:20px;
         float: left;
+        padding-bottom: 40px;
         width:100%;
-        max-height:1000px;
+        min-height: 300px;
+        max-height:800px;
         overflow-y:scroll;
         overflow-x:hidden;
 }
@@ -89,6 +92,7 @@ form {
         float:left !important;
         border-top: 2px solid #EDEDED;
         padding-bottom:10px;
+        margin-bottom: 20px;
 }
 .comment-show-item{
         width: 100%;
@@ -129,4 +133,19 @@ form {
         font-size: 12px;
         color: #8b8b8b;
         display: block;
+}
+.cancel-review{
+        position: relative;
+        text-align:center;
+        bottom:5px;
+        right:10px;
+        background-color: #f6e04b;
+        color: #676262;
+        font-size: 15px;
+        border-radius: 6px;
+        font-weight: 400;
+        text-decoration: none;
+        transition: .5s;
+        height: 24px;
+        float:right;
 }
