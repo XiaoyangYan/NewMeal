@@ -2,7 +2,7 @@ import React from "react";
 import Tags from "./Tags";
 import {connect} from "react-redux";
 import {addCautions, removeFromCalendar, addRecipe, removeCautions, 
-        resetAllT, setPersonalRecipe} from "../actions/planner";
+        resetAllT, setPersonalRecipe,setMyRecipe} from "../actions/planner";
 import AjaxServiceRecipeForm from "./Service/AjaxServiceRecipeForm";
 class PersonalRecipe extends React.Component{
         constructor(props){
@@ -22,6 +22,9 @@ class PersonalRecipe extends React.Component{
                         "styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
                         "styled-Category"],
                         items: this.props.items,
+                        title:"",
+                        creator:"",
+                        cautions:[],
                 }
                 this.props.resetAllT();
                 this.handleSubmit = this.handleSubmit.bind(this);
@@ -61,9 +64,12 @@ class PersonalRecipe extends React.Component{
                         recipeDescription: this.state.description
                 }
                 const data = await AjaxServiceRecipeForm.editOneSelfRecipe(recipeM);
-                this.props.setPersonalRecipe({recipeMessage: data.data});
+                console.log(data.data);
+                this.props.setMyRecipe({recipeOne: data.data})
+                const {myRecipe} = this.props;
+                this.setState({description: myRecipe.recipeOne.recipeDescription, caution: myRecipe.recipeOne.cautions, 
+                                headLine: myRecipe.recipeOne.title,creator: myRecipe.recipeOne.userName})
                 this.setState({ editable: false, checkCautions:[false, false,false, false,false, false,false, false,false, false,false, false]});
-                this.props.resetAllT();
         }
         handleCautionClick (index){
                 const {addCautions, removeCautions} = this.props;
@@ -77,25 +83,33 @@ class PersonalRecipe extends React.Component{
                   }
         }
         componentWillUpdate(nextProps, nextState){
-                if (nextState.checkCautions != this.state.checkCautions ){
+                if (nextState.checkCautions != this.state.checkCautions || this.state.description != nextState.description
+                        || this.state.cautions != nextState.cautions || this.state.headLine != nextState.headLine){
                         this.state.checkCautions = nextState.checkCautions;
                         this.setState({editClassName:["styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
                         "styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category","styled-Category",
                         "styled-Category"]});
-                        console.log(this.state.editClassName);
+                        console.log(nextState);
+                        this.setState({
+                                description:nextState.description,
+                                headLine: nextState.headLine,
+                                cautions: nextState.cautions,
+                        })
+                        console.log(this.state);
                 }
         }
-        componentDidMount(){
+        componentWillMount(){
                 const { items} = this.props;
-                this.setState({headLine: items.title, description: items.recipeDescription, items});
-                // this.props.setPersonalRecipe({recipeMessage:items});
-                this.props.resetAllT();
+                this.props.setMyRecipe({recipeOne: items});
+                this.setState({headLine: items.title, description: items.recipeDescription, items
+                        ,creator: items.userName, cautions:items.cautions});
         }
         render(){
-                const {index, items} = this.props;
+                const {index, items,myRecipe} = this.props;
                 let {email} = this.props;
                 email = email.trim();
                 items.userEmail = items.userEmail.trim();
+                console.log(this.state);
                 return (
                         <li key={index}>
                                <div className="button-self-recipe-group">
@@ -104,18 +118,18 @@ class PersonalRecipe extends React.Component{
                                 </div>
                                 <div className="self-recipe-except-picture">
                                         <div className="self-recipe-show-item">
-                                                <div className="self-recipe-name"><span>Creator:  </span>{items.userName}</div>
-                                                {!this.state.editable && <div className="self-recipe-headline"><span>Recipe Name:  </span>{items.title}</div>}
+                                                <div className="self-recipe-name"><span>Creator:  </span>{this.state.creator}</div>
+                                                {!this.state.editable && <div className="self-recipe-headline"><span>Recipe Name:  </span>{this.state.headLine}</div>}
                                                 {(email == items.userEmail) && (this.state.editable) && 
                                                 <input className="recipe-header-text" value={this.state.headLine} 
                                                 autoComplete="off"  onChange={this.handleChange}
                                                         placeholder="Please type your recipe name" name="headLine"/>}
                                         </div>
-                                        <div className="styled-Categories">
+                                        <div className="styled-Categories" id="styled-modify">
                                                 <h6> Cautions: </h6>
                                                 <ul className="styled-CategoryList">
                                                         { !this.state.editable &&
-                                                                items.cautions.map((smallItems, smallIndex) =>
+                                                               this.state.cautions.map((smallItems, smallIndex) =>
                                                                 <li key={smallIndex}>
                                                                                 <Tags key={smallIndex} checked={false}  onChange={this.noneEffect}>
                                                                                 {smallItems}
@@ -135,7 +149,7 @@ class PersonalRecipe extends React.Component{
                                                         }
                                                 </ul>
                                         </div>
-                                       {!this.state.editable  && <div className="self-recipe-main-area"><span>Description: </span>{items.recipeDescription}</div>}
+                                       {!this.state.editable  && <div className="self-recipe-main-area"><span>Description: </span>{this.state.description}</div>}
                                        {this.state.editable && (items.userEmail ==  email ) && 
                                                 <textarea className="recipe-introduction-text" name="description" placeholder="Please enter a description" autoComplete="off"
                                                  value={this.state.description} onChange={this.handleTextAreaChange}/>} 
@@ -151,6 +165,7 @@ const mapStateToProps = (state) =>{
                 email: state.users.email,
                 username: state.users.username,
                 selfRecipeList: state.selfRecipe,
+                myRecipe: state.myRecipe,
         }
 }
 export default connect(mapStateToProps, {
@@ -160,4 +175,5 @@ export default connect(mapStateToProps, {
         addRecipe,
         resetAllT,
         setPersonalRecipe,
+        setMyRecipe,
 })(PersonalRecipe);

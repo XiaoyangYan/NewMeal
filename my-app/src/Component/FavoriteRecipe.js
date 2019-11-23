@@ -56,6 +56,16 @@ class FavoriteRecipe extends React.Component{
                 })
                 await this.assignData();
         }
+        async sortByCalories(){
+                console.log(this.state.currentData);
+               this.state.currentData.sort((a,b) => {
+                       if (a.calories < b.calories){
+                               return -1;
+                       } else {
+                               return 1;
+                       }
+               })
+        }
         async sortByPublishDate(){
                 let {rec} = this.state;
                 rec.sort((a, b) => {
@@ -91,6 +101,7 @@ class FavoriteRecipe extends React.Component{
                                 return "red";
                 }
         }
+        
         async onChange(e){
                 e.preventDefault();
                 this.setState({
@@ -102,6 +113,9 @@ class FavoriteRecipe extends React.Component{
                                 break;
                         case "SaveDate":
                                 await this.sortByPublishDate();
+                                break;
+                        case "Calories":
+                                await this.sortByCalories();
                                 break;
                         default:
                                 break;
@@ -127,6 +141,7 @@ class FavoriteRecipe extends React.Component{
                                                                                 <select value={this.state.sorting} onChange={this.onChange} name="sorting">
                                                                                         <option value="ratings">Ratings</option>
                                                                                         <option value="SaveDate">Saved Date</option>
+                                                                                        <option value="Calories">Calories</option>
                                                                                 </select>
                                                                          </div>
                                                                 </th>
@@ -139,7 +154,7 @@ class FavoriteRecipe extends React.Component{
                                                                          <tr key={index}>
                                                                                  <td>{index}</td>
                                                                                  <td><img src={items.image} alt="recipe"/></td>
-                                                                                 <td><Link to={{pathname:`/card/${items.label}`, state:{label:`${items.label}`}}} exact="true">{items.label}</Link> </td>
+                                                                                 <td><Link to={{pathname:`/card/${encodeURIComponent(items.uri)}`, state:{label:`${encodeURIComponent(items.uri)} `, name:`${items.label}`}}} exact="true">{items.label}</Link> </td>
                                                                                  <td>{Math.round(items.calories)}</td>
                                                                                  <td><StarRatings rating={this.state.rec[index].ratings} starRatedColor="gold" className="starItem" numOfStars={5} name='rating' starDimension={'15px'}/></td>
                                                                                  <td>

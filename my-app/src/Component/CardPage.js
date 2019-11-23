@@ -26,8 +26,8 @@ class CardPage extends React.Component {
         saveRecipe= (e) =>{
                 e.preventDefault();
                 const Recipe = {
-                       image: this.state.currentData.recipe.uri,
-                       label: this.state.currentData.recipe.label,
+                       image: this.state.currentData.uri,
+                       label: this.state.currentData.label,
                        lastUpdateTime: new Date(),
                        publishDate: new Date(),
                        ratings: 0
@@ -36,81 +36,71 @@ class CardPage extends React.Component {
                 if (AuthenticationService.isUserLoggedIn()){
                         AjaxServiceRecipeForm.saveNewFood(Recipe, email).then(
                                 res=>{
-                                        console.log(res);   
                                         this.setState({saved:true});
-                                        console.log(this.state.saved);
                                 }
                         )
                 }
         }
        
         async componentWillReceiveProps(nextProps){
-                if (this.state.currentData.recipe.label !== nextProps.match.params.label){
+                console.log(nextProps.match.params.label);
+                console.log(encodeURIComponent(this.state.currentData.uri));
+                if (encodeURIComponent(this.state.currentData.uri) !== nextProps.match.params.label){
                         if ( nextProps.match.params.label){
                                 this.setState({saved:false});
-                               await  this.handleData(nextProps.match.params.label);
+                               await  this.handleData(nextProps.match.params.name, nextProps.match.params.label);
                         }
                 }
         }
-       async handleData(currentLabel){
-                console.log(currentLabel);
+       async handleData(currentLabel, currentUri){
                 this.setState({ isLoading: true, currentLabel});
-                let data = await Data.getSpecialRecipe(currentLabel);
-                var currentDataList = [];
-                 console.log(data);
-                data.data.hits.map((recipe, index) => {
-                        if (recipe.recipe.label == currentLabel){
-                                currentDataList.push(recipe);
-                        }
-                })
-                console.log(currentDataList);
+                let data = await Data.getSpecialRecipes(currentLabel);
+                let dataSpecial = await Data.getSpecialRecipe(currentUri);
                 this.setState({
-                        currentData:currentDataList[0],
+                        currentData: dataSpecial.data[0],
                         totalData: data.data.hits,
                 })
                 this.state.totalData.shift(); 
-                console.log(this.state.currentData);
-                const label = this.state.currentData.recipe.label;
-                AjaxServiceReviewForm.getRecipeReview(label).then(res =>{
-                         this.setState({
-                                 totalReview: res.data,
-                                isLoading: false
-                        });
-                         console.log(this.state.totalReview);
-                })
-                AjaxServiceRecipeForm.getSpecialRecipe(label).then(res => {
-                        console.log(res.data);
-                        this.setState({
-                                currentRating: res.data.ratings
-                        })
+                console.log(dataSpecial);
+                const label = this.state.currentData.label;
+                const res = await AjaxServiceReviewForm.getRecipeReview(label)
+                this.setState({
+                        totalReview: res.data,
+               });
+                const result = await AjaxServiceRecipeForm.getSpecialRecipe(label)
+                this.setState({
+                        currentRating: result.data.ratings,
+                        isLoading: false
                 })
         }
          async  componentDidMount() {
-                 const currentLabel = this.props.match.params.label;
-                 console.log(currentLabel);
-                await this.handleData(currentLabel);
-                
+                 const currentLabel = this.props.match.params.name;
+                 const currentUri = this.props.match.params.label;
+                await this.handleData(currentLabel, currentUri);
         }
         render() {
                 if (this.state.isLoading) {
                         return <ReactLoading type={"balls"} color={"green"} height={567} width={475} className="banner-loading" />
                 } else {
-                        const { currentData, totalData } = this.state;
+                        var { currentData, totalData } = this.state;
+                        console.log(currentData);
                         totalData.shift(0);
-                        const threeNum = currentData.recipe.digest[0].daily +  currentData.recipe.digest[1].daily
-                                + currentData.recipe.digest[2].daily;
-                        const widthOne = (currentData.recipe.digest[0].daily*100/threeNum).toLocaleString() + "%";
-                        const widthTwo = (currentData.recipe.digest[1].daily*100/threeNum).toLocaleString() + "%";
-                         const widthThree = (currentData.recipe.digest[2].daily*100/threeNum).toLocaleString() + "%";
+                        let first = currentData.digest.shift(0);
+                        let second = currentData.digest.shift(0);
+                        let third = currentData.digest.shift(0);
+                        const threeNum = first.daily +  second.daily+third.daily;
+                        const widthOne = (first.daily*100/threeNum).toLocaleString() + "%";
+                        const widthTwo = (second.daily*100/threeNum).toLocaleString() + "%";
+                         const widthThree = (third.daily*100/threeNum).toLocaleString() + "%";
                         return (
                                 <>
                                         <section className="total-data cf">
                                                 <div className="recipe-data">
                                                         <div className="upper-introduction">
-                                                                <img className="recipe-image" src={currentData.recipe.image} alt=""></img>
+                                                                <img className="recipe-image" src={currentData.image} alt=""></img>
                                                                 <div className="right-intro">
-                                                                        <h2 className="recipe-title">{currentData.recipe.label}</h2>
-                                                                        <p className="recipe-source">See full recipe on:<a href={currentData.recipe.url}>{currentData.recipe.source}</a></p>
+                                                                        <h2 className="recipe-title">{currentData.label}</h2>
+                                                                        <p className="recipe-source">See full recipe on:<a href={currentData.url}>{currentData.source}</a></p>
                                                                         <div className="bookmark-options">
                                                                                 <StarRatings rating={this.state.currentRating} className="starItem" numOfStars={5} name='rating' starDimension={'20px'}  starRatedColor="gold" />
                                                                                 <button className="save-button" onClick={this.saveRecipe}><span>Save</span></button>
@@ -121,10 +111,10 @@ class CardPage extends React.Component {
                                                         <div className="recipe-details">
                                                                 <div className="recipe-p-i">
                                                                         <div className="recipe-ingredients">
-                                                                                <h4>{currentData.recipe.ingredients.length} Ingredients</h4>
+                                                                                <h4>{currentData.ingredients.length} Ingredients</h4>
                                                                                 <ul className="menu-list">
                                                                                         {
-                                                                                                currentData.recipe.ingredientLines.map((items, index) =>
+                                                                                                currentData.ingredientLines.map((items, index) =>
                                                                                                         <li key={index}><span>{index}: </span>{items}</li>
                                                                                                 )
                                                                                         }
@@ -135,7 +125,7 @@ class CardPage extends React.Component {
                                                                         </div>
                                                                         <div className="recipe-review">
                                                                                 <h4>Reviews</h4>
-                                                                                <Reviews label={currentData.recipe.label} totalReview={this.state.totalReview}/>
+                                                                                <Reviews label={currentData.label} totalReview={this.state.totalReview}/>
                                                                         </div>
                                                                 </div>
                                                                 <div className="recipe-nutrition" itemProp="nutrition" itemScope=""
@@ -144,12 +134,12 @@ class CardPage extends React.Component {
                                                                         <div className="nutrition-details">
                                                                                 <ul className="recipe-diet-labels">
                                                                                         {
-                                                                                                currentData.recipe.dietLabels.map((items, index) =>
+                                                                                                currentData.dietLabels.map((items, index) =>
                                                                                                         <li key={index}><strong>{items}</strong></li>
                                                                                                 )
                                                                                         }
                                                                                           {
-                                                                                                currentData.recipe.healthLabels.map((items, index) =>
+                                                                                                currentData.healthLabels.map((items, index) =>
                                                                                                         <li key={index}><strong>{items}</strong></li>
                                                                                                 )
                                                                                         }
@@ -163,7 +153,7 @@ class CardPage extends React.Component {
                                                                                 </div>
                                                                                 <ul className="nutrition-list">
                                                                                         {
-                                                                                                currentData.recipe.digest.map((items, index) =>
+                                                                                                currentData.digest.map((items, index) =>
                                                                                                         <li key={index}>
                                                                                                                 <h2>{items.label}</h2><span>{Math.round(items.daily)}{items.unit}</span>
                                                                                                         </li>
@@ -180,7 +170,8 @@ class CardPage extends React.Component {
                                                                 {
                                                                         totalData.map((items, index) =>
                                                                                 <li key={index}><Card calories={items.recipe.calories} ingredientsLength={items.recipe.ingredients.length}
-                                                                                        backgroundImage={items.recipe.image} title={items.recipe.label} source={items.recipe.source} 
+                                                                                        backgroundImage={items.recipe.image} source={items.recipe.source} title={encodeURIComponent(items.recipe.uri)}
+                                                                                        name={items.recipe.label} 
                                                                                        props={this.props}
                                                                                         /></li>
                                                                         )

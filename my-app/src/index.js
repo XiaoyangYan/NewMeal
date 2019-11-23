@@ -17,7 +17,8 @@ let initialStore = {
 const storageConfig = {
         key: 'root', 
         storage:storageSession, 
-        blacklist: ['username','password', 'email', 'breakfast','lunch','dinner']
+        blacklist: ['username','password', 'email', 'breakfast','lunch','dinner','calendar'
+                            ,'monday', 'tuesday', 'wednesday', 'thursday', 'friday']
     }
 const myPersistReducer = persistReducer(storageConfig, rootReducer);
 const store = createStore(myPersistReducer, devToolsEnhancer());

@@ -1,5 +1,5 @@
 import {ADD_RECIPE, REMOVE_FROM_CALENDER, ADD_CAUTIONS, 
-        REMOVE_CAUTIONS, RESET_ALL, SET_PERSONAL_RECIPE} from "../actions"
+        REMOVE_CAUTIONS, RESET_ALL, SET_PERSONAL_RECIPE, SET_MY_RECIPE} from "../actions"
 
 const INITIAL_MENU = {
         breakfast: null,
@@ -65,6 +65,17 @@ export const selfRecipe = (state = [], action) => {
                 case SET_PERSONAL_RECIPE:
                         state = recipeMessage;
                         return state;
+                default:
+                        return state;
+        }
+}
+
+export const myRecipe = (state = {}, action) => {
+        const {recipeOne} = action;
+        switch(action.type){
+                case SET_MY_RECIPE:
+                        state = {...state, recipeOne};
+                        return {...state, recipeOne};
                 default:
                         return state;
         }

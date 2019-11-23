@@ -25,8 +25,12 @@ class FetchData {
                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&health=${health}&dishType=${dishType}&calories=${calories}&from=0&to=100${searchString}`);
          }
          async getSpecialRecipe(query){
-                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&from=0&to=100`);
-         }
+                 return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&r=${query}`);
+         } 
+         async getSpecialRecipes(query){
+                return await axios.get(`https://api.edamam.com/search?app_id=${APP_ID}&app_key=${APP_KEY}&q=${query}&from=0&to=100`);
+        }
+
         getDataFromAPIByBalanced() {
                 return {
                         "q": "",

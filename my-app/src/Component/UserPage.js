@@ -77,7 +77,6 @@ class UserPage extends React.Component {
                 this.props.handleClick(titleArray);
         }
         componentDidMount(){
-                this.props.resetAllCaution();
         }
         render() {
                 const {username} = this.props;

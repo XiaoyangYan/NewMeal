@@ -37,11 +37,11 @@ form {
         zoom:1;
 }
 .left-word-p{
-        float: right;
+       right:0;
         line-height: 40px;
 }
 .left-word-p p{
-        float:right;
+        right: 0;
         line-height:40px;
 }
 .maxNum{

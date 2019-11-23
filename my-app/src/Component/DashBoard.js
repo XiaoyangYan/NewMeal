@@ -13,9 +13,6 @@ const ViewList = (props) => {
                                 {
                                         props.savedData.map((items, index) =>
                                                 <li key={index} className="image-change-page">
-                                                         <div className="bookmark-btn">
-                                                                        <Link to={{pathname:`/card/${items.recipe.label}`, state:{label:`${items.recipe.label}`}}} className="add-bookmark block inp-btn btn-white"><span>Save</span></Link>
-                                                        </div>
                                                         <div  title={items.recipe.label} >
                                                                 <img src={items.recipe.image} alt={items.recipe.label} style={{ opacity: 1 }} />
                                                                 <span className="name">{items.recipe.label}</span><span className="mask"></span>

@@ -77,7 +77,7 @@ class PlanPage extends React.Component {
                                                                                         { meals[meal] ? 
                                                                                                 <div className="recipe-planning-item">
                                                                                                         <Card  backgroundImage={meals[meal].image}  calories={meals[meal].calories} props={this.props}
-                                                                                                        title={meals[meal].label} source={meals[meal].source} ingredientsLength={meals[meal].ingredients.length} /> 
+                                                                                                        title={encodeURIComponent(meals[meal].uri)} name={meals[meal].label} source={meals[meal].source} ingredientsLength={meals[meal].ingredients.length} /> 
                                                                                                         <button onClick={() => remove({meal,day})}>Clear</button>
                                                                                                 </div>
                                                                                                 : <button onClick={() => this.openRecipeModal({meal, day})} className="open-recipe-button">
